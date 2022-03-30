@@ -72,28 +72,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("\nget wishlist by user id")
         for product in Wishlist.getByUserID(userID: 1)! { print(product) }
-        /*
-        print("\n=======================")
-        print("  creating quiz attempt")
-        print("=======================")
-        User.create(username: "test", email: "test@gmail.com", password: "Tassword!")
-        let userIDForQuizAttempt = User.getByEmail(email: "test@gmail.com")![0].id
-        
-        let quizIDForQuizAttempt = Quiz.getByName(name: "Java")![0].id
-        
-        QuizAttempt.create(userID: userIDForQuizAttempt, quizID: quizIDForQuizAttempt, score: 45/60)
-        for quizAttempt in QuizAttempt.getAll()! { print(quizAttempt) }
-        for quizAttempt in QuizAttempt.getByUser(userID: 1)! { print(quizAttempt) }
         
         print("\n=======================")
-        print("creating question answer")
+        print("  adding to ShoppingCart ")
         print("=======================")
-        QuestionAnswer.create(quizID: 1, question: "What are the integer primitive types?", answer: "byte, short, int, long", wrong_options: "int, long; double, long, int; short, boolean")
-        for questionAnswer in QuestionAnswer.getAll()! { print(questionAnswer) }
+        ShoppingCart.create(userID: 1, productID: 1)
+        ShoppingCart.create(userID: 1, productID: 2)
         
-        //for questionAnswer in QuestionAnswer.getByQuiz(quizID: 1)! { print(questionAnswer) }
-        */
+        for product in ShoppingCart.getAll()! { print(product) }
         
+        print("\nget shopping cart by user id")
+        for product in ShoppingCart.getByUserID(userID: 1)! { print(product) }
+        
+        print("\n=======================")
+        print("  adding to PurchaseOrder ")
+        print("=======================")
+        PurchaseOrder.create(userID: 1, paymentType: "COD")
+        
+        for order in PurchaseOrder.getAll()! { print(order) }
+        
+        print("\n get purchase order by user id")
+        for order in PurchaseOrder.getByUserID(userID: 1)! { print(order) }
+        
+        print("\n=======================")
+        print("  adding to OrderItems ")
+        print("=======================")
+        
+        let product1 = Product.getByID(productID: 1)![0]
+        OrderItem.create(purchaseOrderID: 1, productID: 1, purchasePrice: product1.price)
+        let product2 = Product.getByID(productID: 2)![0]
+        OrderItem.create(purchaseOrderID: 1, productID: 2, purchasePrice: product2.price)
+        
+        for orderitem in OrderItem.getByPurchaseOrderID(purchaseOrderID: 1)! { print(orderitem) }
+        
+        let userID = PurchaseOrder.getByID(purchaseOrderID: 1)![0].userID
+        print(User.getByID(userID: userID)!)
         
         return true
     }

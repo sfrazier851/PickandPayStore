@@ -80,6 +80,13 @@ class SQLiteDAL {
         return User.convert(usersResultSet: usersResultSet)
     }
     
+    static func getUserByID(userID: Int) -> [User]? {
+        guard let usersResultSet = query(modelType: User.user, queryString: "SELECT * FROM User WHERE ID = '\(userID)';") else {
+            return nil
+        }
+        return User.convert(usersResultSet: usersResultSet)
+    }
+    
     static func getUsersByEmail(email: String) -> [User]? {
         guard let usersResultSet = query(modelType: User.user, queryString: "SELECT * FROM User WHERE email = '\(email)';") else {
             return nil
@@ -211,6 +218,13 @@ class SQLiteDAL {
         return Product.convert(productsResultSet: productsResultSet)
     }
     
+    static func getProductByID(productID: Int) -> [Product]? {
+        guard let productsResultSet = query(modelType: Product.product, queryString: "SELECT * FROM Product WHERE ID = '\(productID)';") else {
+            return nil
+        }
+        return Product.convert(productsResultSet: productsResultSet)
+    }
+    
     static func getProductsByName(name: String) -> [Product]? {
         guard let productsResultSet = query(modelType: Product.product, queryString: "SELECT * FROM Product WHERE name = '\(name)';") else {
             return nil
@@ -334,6 +348,13 @@ class SQLiteDAL {
         return PurchaseOrder.convert(purchaseOrderResultSet: purchaseOrderResultSet)
     }
     
+    static func getPurchaseOrderByID(purchaseOrderID: Int) -> [PurchaseOrder]? {
+        guard let purchaseOrderResultSet = query(modelType: PurchaseOrder.purchaseorder, queryString: "SELECT * FROM PurchaseOrder WHERE ID = '\(purchaseOrderID)';") else {
+            return nil
+        }
+        return PurchaseOrder.convert(purchaseOrderResultSet: purchaseOrderResultSet)
+    }
+    
     static func getPurchaseOrdersByUserID(userID: Int) -> [PurchaseOrder]? {
         guard let purchaseOrderResultSet = query(modelType: PurchaseOrder.purchaseorder, queryString: "SELECT * FROM PurchaseOrder WHERE userID = '\(userID)';") else {
             return nil
@@ -374,7 +395,7 @@ class SQLiteDAL {
         return OrderItem.convert(orderItemsResultSet: orderItemsResultSet)
     }
     
-    static func getByPurchaseOrderID(purchaseOrderID: Int) -> [OrderItem]? {
+    static func getOrderItemByPurchaseOrderID(purchaseOrderID: Int) -> [OrderItem]? {
         guard let orderItemsResultSet = query(modelType: OrderItem.orderitem, queryString: "SELECT * FROM OrderItem WHERE purchaseOrderID = '\(purchaseOrderID)';") else {
             return nil
         }
@@ -386,7 +407,7 @@ class SQLiteDAL {
             return nil
         }
         var success = true
-        let insertStatementString = "INSERT INTO OrderItem ( purchaseOrderID, productID, purchasePrice ) VALUES ( ?, ?, ?, ?, ?)"
+        let insertStatementString = "INSERT INTO OrderItem ( purchaseOrderID, productID, purchasePrice ) VALUES ( ?, ?, ?)"
         
         var insertStatement: OpaquePointer?
         

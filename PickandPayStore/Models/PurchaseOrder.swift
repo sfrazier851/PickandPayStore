@@ -36,6 +36,10 @@ struct PurchaseOrder {
         return SQLiteDAL.getAllPurchaseOrders()
     }
     
+    static func getByID(purchaseOrderID: Int) -> [PurchaseOrder]? {
+        return SQLiteDAL.getPurchaseOrderByID(purchaseOrderID: purchaseOrderID)
+    }
+    
     static func getByUserID(userID: Int) -> [PurchaseOrder]? {
         return SQLiteDAL.getPurchaseOrdersByUserID(userID: userID)
     }

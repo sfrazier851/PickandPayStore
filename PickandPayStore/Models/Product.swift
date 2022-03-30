@@ -40,6 +40,10 @@ struct Product {
         return SQLiteDAL.getAllProducts()
     }
     
+    static func getByID(productID: Int) -> [Product]? {
+        return SQLiteDAL.getProductByID(productID: productID)
+    }
+    
     static func getByName(name: String) -> [Product]? {
         return SQLiteDAL.getProductsByName(name: name)
     }

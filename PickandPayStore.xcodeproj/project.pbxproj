@@ -125,7 +125,7 @@
 			children = (
 				7F5D83EB27F3B5560063ED40 /* Models */,
 				7F5D83E027F3B39C0063ED40 /* Helper */,
-				7F5D83D527F3B32B0063ED40 /* SQLiteDatastore */,
+				7F5D83D527F3B32B0063ED40 /* SQLiteDatasource */,
 				45355FAB27F3A2FC00ABFDC8 /* AppDelegate.swift */,
 				45355FAD27F3A2FC00ABFDC8 /* SceneDelegate.swift */,
 				45355FAF27F3A2FC00ABFDC8 /* ViewController.swift */,
@@ -154,14 +154,14 @@
 			path = PickandPayStoreUITests;
 			sourceTree = "<group>";
 		};
-		7F5D83D527F3B32B0063ED40 /* SQLiteDatastore */ = {
+		7F5D83D527F3B32B0063ED40 /* SQLiteDatasource */ = {
 			isa = PBXGroup;
 			children = (
 				7F5D83D627F3B3420063ED40 /* SQLiteTables.swift */,
 				7F5D83DB27F3B3720063ED40 /* SQLiteDatabase.swift */,
 				7F5D83E627F3B5210063ED40 /* SQLiteDAL.swift */,
 			);
-			path = SQLiteDatastore;
+			path = SQLiteDatasource;
 			sourceTree = "<group>";
 		};
 		7F5D83E027F3B39C0063ED40 /* Helper */ = {

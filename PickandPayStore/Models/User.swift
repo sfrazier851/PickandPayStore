@@ -40,6 +40,10 @@ struct User {
         return SQLiteDAL.getAllUsers()
     }
     
+    static func getByID(userID: Int) -> [User]? {
+        return SQLiteDAL.getUserByID(userID: userID)
+    }
+    
     static func getByEmail(email: String) -> [User]? {
         return SQLiteDAL.getUsersByEmail(email: email)
     }

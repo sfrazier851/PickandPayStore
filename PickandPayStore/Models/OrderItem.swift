@@ -37,7 +37,7 @@ struct OrderItem {
     }
     
     static func getByPurchaseOrderID(purchaseOrderID: Int) -> [OrderItem]? {
-        return SQLiteDAL.getByPurchaseOrderID(purchaseOrderID: purchaseOrderID)
+        return SQLiteDAL.getOrderItemByPurchaseOrderID(purchaseOrderID: purchaseOrderID)
     }
     
     static func create(purchaseOrderID: Int, productID: Int, purchasePrice: Float) -> Bool? {
