@@ -260,28 +260,27 @@ class SQLiteDAL {
         return success
     }
     
-    /*
-    // ProductReview DAL (getAllReviews, getReviewByProductID, createProductReview)
-    static func getAllWishlistProducts() -> [Wishlist]? {
-        guard let wishlistProductsResultSet = query(modelType: Wishlist.wishlist, queryString: "SELECT * FROM Wishlist;") else {
+    // ProductReview DAL (getAllReviews, getReviewsByProductID, createProductReview)
+    static func getAllReviews() -> [ProductReview]? {
+        guard let productReviewsResultSet = query(modelType: ProductReview.productreview, queryString: "SELECT * FROM ProductReview;") else {
             return nil
         }
-        return Wishlist.convert(wishlistResultSet: wishlistProductsResultSet)
+        return ProductReview.convert(productReviewsResultSet: productReviewsResultSet)
     }
     
-    static func getWishlistByUserID(userID: Int) -> [Wishlist]? {
-        guard let wishlistProductsResultSet = query(modelType: Wishlist.wishlist, queryString: "SELECT * FROM Wishlist WHERE userID = '\(userID)';") else {
+    static func getReviewsByProductID(productID: Int) -> [ProductReview]? {
+        guard let productReviewsResultSet = query(modelType: ProductReview.productreview, queryString: "SELECT * FROM ProductReview WHERE productID = '\(productID)';") else {
             return nil
         }
-        return Wishlist.convert(wishlistResultSet: wishlistProductsResultSet)
+        return ProductReview.convert(productReviewsResultSet: productReviewsResultSet)
     }
     
-    static func createWishlistProduct(userID: Int, productID: Int) -> Bool? {
+    static func createProductReview(userID: Int, productID: Int, review: String) -> Bool? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil
         }
         var success = true
-        let insertStatementString = "INSERT INTO Wishlist ( userID, productID ) VALUES ( ?, ? )"
+        let insertStatementString = "INSERT INTO ProductReview ( userID, productID, review ) VALUES ( ?, ?, ? )"
         
         var insertStatement: OpaquePointer?
         
@@ -289,6 +288,7 @@ class SQLiteDAL {
             
             sqlite3_bind_int(insertStatement, 1, Int32(userID))
             sqlite3_bind_int(insertStatement, 2, Int32(productID))
+            sqlite3_bind_text(insertStatement,3, NSString(string: review).utf8String, -1, nil)
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\nSuccessfully inserted row.")
@@ -300,7 +300,6 @@ class SQLiteDAL {
         }
         return success
     }
-    */
     
     // Wishlist DAL (getAllWishlistProducts, getWishlistByUserID, createWishlistProduct)
     static func getAllWishlistProducts() -> [Wishlist]? {
