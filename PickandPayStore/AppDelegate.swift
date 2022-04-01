@@ -108,6 +108,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userID = PurchaseOrder.getByID(purchaseOrderID: 1)![0].userID
         print(User.getByID(userID: userID)!)
         
+        
+        print("\n=======================")
+        print(" adding to ProductReviews ")
+        print("=======================")
+        
+        
         return true
     }
 

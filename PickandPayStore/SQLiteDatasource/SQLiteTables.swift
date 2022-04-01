@@ -97,6 +97,24 @@ class SQLiteTables {
     
     
     
+    private static var dropProductReviewTable = "DROP TABLE IF EXISTS ProductReview;"
+    private static var createProductReviewTable = """
+             CREATE TABLE IF NOT EXISTS ProductReview
+             (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+             userID INTEGER NOT NULL,
+             productID INTEGER NOT NULL,
+             review TEXT NOT NULL,
+             FOREIGN KEY(userID) REFERENCES User(ID),
+             FOREIGN KEY(productID) REFERENCES Product(ID));
+             """
+    private static var insertIntoProductReviewTable = """
+             INSERT INTO ProductReview ( userID, productID, review )
+             VALUES ( 1, 1, "Works great! Would recommend to all my friends."),
+                    ( 2, 1, "Meh, it was alright.");
+             """
+    static var productReviewTableScripts = [dropProductReviewTable, createProductReviewTable, insertIntoProductReviewTable]
+    
+    
     private static var dropWishlistTable = "DROP TABLE IF EXISTS Wishlist;"
     private static var createWishlistTable = """
              CREATE TABLE IF NOT EXISTS Wishlist

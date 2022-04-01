@@ -53,6 +53,7 @@ class SQLiteDatabase {
                         SQLiteTables.departmentTableScripts.joined(),
                         SQLiteTables.categoryTableScripts.joined(),
                         SQLiteTables.productTableScripts.joined(),
+                        SQLiteTables.productReviewTableScripts.joined(),
                         SQLiteTables.wishlistTableScripts.joined(),
                         SQLiteTables.shoppingCartTableScripts.joined(),
                         SQLiteTables.purchaseOrderTableScripts.joined(),
