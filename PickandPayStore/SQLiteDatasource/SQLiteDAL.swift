@@ -260,6 +260,48 @@ class SQLiteDAL {
         return success
     }
     
+    /*
+    // ProductReview DAL (getAllReviews, getReviewByProductID, createProductReview)
+    static func getAllWishlistProducts() -> [Wishlist]? {
+        guard let wishlistProductsResultSet = query(modelType: Wishlist.wishlist, queryString: "SELECT * FROM Wishlist;") else {
+            return nil
+        }
+        return Wishlist.convert(wishlistResultSet: wishlistProductsResultSet)
+    }
+    
+    static func getWishlistByUserID(userID: Int) -> [Wishlist]? {
+        guard let wishlistProductsResultSet = query(modelType: Wishlist.wishlist, queryString: "SELECT * FROM Wishlist WHERE userID = '\(userID)';") else {
+            return nil
+        }
+        return Wishlist.convert(wishlistResultSet: wishlistProductsResultSet)
+    }
+    
+    static func createWishlistProduct(userID: Int, productID: Int) -> Bool? {
+        guard let db = SQLiteDatabase.getDatabase() else {
+            return nil
+        }
+        var success = true
+        let insertStatementString = "INSERT INTO Wishlist ( userID, productID ) VALUES ( ?, ? )"
+        
+        var insertStatement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            
+            sqlite3_bind_int(insertStatement, 1, Int32(userID))
+            sqlite3_bind_int(insertStatement, 2, Int32(productID))
+            
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("\nSuccessfully inserted row.")
+            } else {
+                print("\n INSERT statement is not prepared.")
+                success = false
+            }
+            sqlite3_finalize(insertStatement)
+        }
+        return success
+    }
+    */
+    
     // Wishlist DAL (getAllWishlistProducts, getWishlistByUserID, createWishlistProduct)
     static func getAllWishlistProducts() -> [Wishlist]? {
         guard let wishlistProductsResultSet = query(modelType: Wishlist.wishlist, queryString: "SELECT * FROM Wishlist;") else {
