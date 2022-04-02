@@ -113,6 +113,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(" adding to ProductReviews ")
         print("=======================")
         
+        ProductReview.create(userID: 2, productID: 2, review: "Terrible, wouldn't recommend. It broke 3 weeks after it arrived.")
+        
+        print("\nget all product reviews")
+        for review in ProductReview.getAll()! { print(review) }
+        
+        let product = Product.getByID(productID: 1)![0]
+        print("\nget all product reviews for product: \(product.name).")
+        for review in ProductReview.getByProductID(productID: product.id)! { print(review) }
+        
+        
         
         return true
     }
