@@ -17,6 +17,7 @@
 		45355FCD27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FCC27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift */; };
 		45355FCF27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */; };
 		7F0A613727F78B950028B399 /* ProductReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A613627F78B950028B399 /* ProductReview.swift */; };
+		7F0A614227F80A970028B399 /* SQLiteDbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A614127F80A970028B399 /* SQLiteDbTests.swift */; };
 		7F5D83D727F3B3420063ED40 /* SQLiteTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83D627F3B3420063ED40 /* SQLiteTables.swift */; };
 		7F5D83DC27F3B3720063ED40 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83DB27F3B3720063ED40 /* SQLiteDatabase.swift */; };
 		7F5D83E227F3B3AE0063ED40 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83E127F3B3AE0063ED40 /* Constants.swift */; };
@@ -63,6 +64,7 @@
 		45355FCC27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickandPayStoreUITests.swift; sourceTree = "<group>"; };
 		45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickandPayStoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7F0A613627F78B950028B399 /* ProductReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReview.swift; sourceTree = "<group>"; };
+		7F0A614127F80A970028B399 /* SQLiteDbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDbTests.swift; sourceTree = "<group>"; };
 		7F5D83D627F3B3420063ED40 /* SQLiteTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTables.swift; sourceTree = "<group>"; };
 		7F5D83DB27F3B3720063ED40 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		7F5D83E127F3B3AE0063ED40 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				45355FC227F3A2FD00ABFDC8 /* PickandPayStoreTests.swift */,
+				7F0A614127F80A970028B399 /* SQLiteDbTests.swift */,
 			);
 			path = PickandPayStoreTests;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45355FC327F3A2FD00ABFDC8 /* PickandPayStoreTests.swift in Sources */,
+				7F0A614227F80A970028B399 /* SQLiteDbTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +517,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BV8QQX5M8Y;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PickandPayStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -542,7 +546,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BV8QQX5M8Y;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PickandPayStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -573,7 +577,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BV8QQX5M8Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = algoIves.PickandPayStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -593,7 +597,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BV8QQX5M8Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = algoIves.PickandPayStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -612,6 +616,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BV8QQX5M8Y;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = algoIves.PickandPayStoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -630,6 +635,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BV8QQX5M8Y;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = algoIves.PickandPayStoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
