@@ -9,12 +9,14 @@ import Foundation
 import SQLite3
 
 class SQLiteDatabase {
+    // application database instance
     private static let sharedInstance = SQLiteDatabase(testing: false)
     private var database: OpaquePointer?
     static func getDatabase() -> OpaquePointer? {
         return sharedInstance.database
     }
     
+    // testing database instance
     private static let testInstance = SQLiteDatabase(testing: true)
     private var testDatabase: OpaquePointer?
     static func getTestDatabase() -> OpaquePointer? {
@@ -29,7 +31,9 @@ class SQLiteDatabase {
                 if sqlite3_open("file::memory:", &testDatabase) != SQLITE_OK {
                     print("error opening database")
                 } else {
+                    print("====================")
                     print("test database opened")
+                    print("====================")
                 }
                 
             } else {
@@ -50,30 +54,45 @@ class SQLiteDatabase {
     }
     
     
-    private static func createTable(createTableScript: String, database: OpaquePointer?) {
+    private static func runSqlScript(sqlScript: String, database: OpaquePointer?) {
         if let db = database {
             do {
-                if sqlite3_exec(db, createTableScript, nil, nil, nil) != SQLITE_OK {
+                if sqlite3_exec(db, sqlScript, nil, nil, nil) != SQLITE_OK {
                     let error = String(cString: sqlite3_errmsg(db)!)
-                    print("error creating table: \(error)")
+                    print("error running sql script: \(error)")
                 }
             }
         }
     }
     
     static func createTables(database: OpaquePointer?) {
-        let scripts = [ SQLiteTables.userTableScripts.joined(),
-                        SQLiteTables.departmentTableScripts.joined(),
-                        SQLiteTables.categoryTableScripts.joined(),
-                        SQLiteTables.productTableScripts.joined(),
-                        SQLiteTables.productReviewTableScripts.joined(),
-                        SQLiteTables.wishlistTableScripts.joined(),
-                        SQLiteTables.shoppingCartTableScripts.joined(),
-                        SQLiteTables.purchaseOrderTableScripts.joined(),
-                        SQLiteTables.orderItemTableScripts.joined() ]
+        let scripts = [ SQLiteTables.userTableSchemaScripts.joined(),
+                        SQLiteTables.departmentTableSchemaScripts.joined(),
+                        SQLiteTables.categoryTableSchemaScripts.joined(),
+                        SQLiteTables.productTableSchemaScripts.joined(),
+                        SQLiteTables.productReviewTableSchemaScripts.joined(),
+                        SQLiteTables.wishlistTableSchemaScripts.joined(),
+                        SQLiteTables.shoppingCartTableSchemaScripts.joined(),
+                        SQLiteTables.purchaseOrderTableSchemaScripts.joined(),
+                        SQLiteTables.orderItemTableSchemaScripts.joined() ]
         
         for script in scripts {
-            createTable(createTableScript: script, database: database)
+            runSqlScript(sqlScript: script, database: database)
+        }
+    }
+    
+    static func insertData(database: OpaquePointer?) {
+        let scripts = [ SQLiteTables.userTableInsertScript,
+                        SQLiteTables.departmentTableInsertScript,
+                        SQLiteTables.categoryTableInsertScript,
+                        SQLiteTables.productTableInsertScript,
+                        SQLiteTables.productReviewTableInsertScript,
+                        SQLiteTables.wishlistTableInsertScript,
+                        SQLiteTables.shoppingCartTableInsertScript,
+                        SQLiteTables.purchaseOrderTableInsertScript,
+                        SQLiteTables.orderItemTableInsertScript ]
+        for script in scripts {
+            runSqlScript(sqlScript: script, database: database)
         }
     }
     

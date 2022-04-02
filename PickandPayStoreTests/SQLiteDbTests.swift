@@ -3,11 +3,10 @@
 //
 //  Created by iMac on 4/1/22.
 //
-import SQLite3
 
 import XCTest
 @testable import PickandPayStore
-
+import SQLite3
 
 class SQLiteDbTests: XCTestCase {
 
@@ -26,7 +25,9 @@ class SQLiteDbTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         // Call destructor for sqlite3 test database
         if sqlite3_close_v2(testDB!) == 0 {
+            print("==============")
             print("test db closed")
+            print("==============")
         }
     }
 

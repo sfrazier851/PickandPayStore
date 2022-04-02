@@ -25,7 +25,8 @@ class SQLiteTables {
                     ('gary', 'gary@gmail.com', 'Gassword!', 3242334560, 0.000),
                     ('admin', 'admin@gmail.com', 'superSecret!', 2393648760, 0.000);
              """
-    static var userTableScripts = [dropUserTable, createUserTable, insertIntoUserTable]
+    static var userTableSchemaScripts = [dropUserTable, createUserTable]
+    static var userTableInsertScript = insertIntoUserTable
     
     
     
@@ -48,8 +49,8 @@ class SQLiteTables {
                     ( 'Books', 'imBooks'),
                     ( 'Camera & Photography', 'imCameraPhotography');
              """
-    static var departmentTableScripts = [dropDepartmentTable, createDepartmentTable, insertIntoDepartmentTable]
-    
+    static var departmentTableSchemaScripts = [dropDepartmentTable, createDepartmentTable]
+    static var departmentTableInsertScript = insertIntoDepartmentTable
     
     
     private static var dropCategoryTable = "DROP TABLE IF EXISTS Category;"
@@ -72,7 +73,8 @@ class SQLiteTables {
                     ( 3, "Women's Fashion", 'imWomenFashion'),
                     ( 3, "Men's Fashion", 'imMenFashion');
              """
-    static var categoryTableScripts = [dropCategoryTable, createCategoryTable, insertIntoCategoryTable]
+    static var categoryTableSchemaScripts = [dropCategoryTable, createCategoryTable]
+    static var categoryTableInsertScript = insertIntoCategoryTable
     
     
     
@@ -94,7 +96,8 @@ class SQLiteTables {
              VALUES ( 1, 1, 'Microwave', 196.75, 'imMicrowave', "Microwave oven with touch control and stainless steel." ),
                     ( 2, 2, 'Eyeliner', 12.50, 'imEyeliner', "Gel black and brown lasts for all day with eye liner brush.");
              """
-    static var productTableScripts = [dropProductTable, createProductTable, insertIntoProductTable]
+    static var productTableSchemaScripts = [dropProductTable, createProductTable]
+    static var productTableInsertScript = insertIntoProductTable
     
     
     
@@ -113,7 +116,8 @@ class SQLiteTables {
              VALUES ( 1, 1, "Works great! Would recommend to all my friends."),
                     ( 2, 1, "Meh, it was alright.");
              """
-    static var productReviewTableScripts = [dropProductReviewTable, createProductReviewTable, insertIntoProductReviewTable]
+    static var productReviewTableSchemaScripts = [dropProductReviewTable, createProductReviewTable]
+    static var productReviewTableInsertScript = insertIntoProductReviewTable
     
     
     private static var dropWishlistTable = "DROP TABLE IF EXISTS Wishlist;"
@@ -131,7 +135,8 @@ class SQLiteTables {
              VALUES ( 1, 1, '2022-03-29' ),
                     ( 1, 2, '2022-03-28' );
              """
-    static var wishlistTableScripts = [dropWishlistTable, createWishlistTable, insertIntoWishlistTable]
+    static var wishlistTableSchemaScripts = [dropWishlistTable, createWishlistTable]
+    static var wishlistTableInsertScript = insertIntoWishlistTable
     
     
     
@@ -150,7 +155,8 @@ class SQLiteTables {
              VALUES ( 1, 1, '2022-03-29' ),
                     ( 1, 2, '2022-03-28' );
              """
-    static var shoppingCartTableScripts = [dropShoppingCartTable, createShoppingCartTable, insertIntoShoppingCartTable]
+    static var shoppingCartTableSchemaScripts = [dropShoppingCartTable, createShoppingCartTable]
+    static var shoppingCartTableInsertScript = insertIntoShoppingCartTable
     
     
     
@@ -164,12 +170,12 @@ class SQLiteTables {
              FOREIGN KEY(userID) REFERENCES User(ID));
              """
     private static var insertIntoPurchaseOrderTable = """
-             INSERT INTO Wishlist ( userID, productID, date_added )
-             VALUES ( 1, 1, '2022-03-29' ),
-                    ( 1, 2, '2022-03-28' );
+             INSERT INTO PurchaseOrder ( userID, paymentType, date_purchased )
+             VALUES ( 1, "COD", '2022-03-29' ),
+                    ( 1, "CC", '2022-03-28' );
              """
-    static var purchaseOrderTableScripts = [dropPurchaseOrderTable, createPurchaseOrderTable, insertIntoPurchaseOrderTable]
-    
+    static var purchaseOrderTableSchemaScripts = [dropPurchaseOrderTable, createPurchaseOrderTable]
+    static var purchaseOrderTableInsertScript = insertIntoPurchaseOrderTable
     
     
     private static var dropOrderItemTable = "DROP TABLE IF EXISTS OrderItem;"
@@ -185,7 +191,9 @@ class SQLiteTables {
     private static var insertIntoOrderItemTable = """
              INSERT INTO OrderItem ( purchaseOrderID, productID, purchasePrice )
              VALUES ( 1, 1, 10.23 ),
-                    ( 1, 2, 25.60 );
+                    ( 1, 2, 25.60 ),
+                    ( 2, 1, 10.23 );
              """
-    static var orderItemTableScripts = [dropOrderItemTable, createOrderItemTable, insertIntoOrderItemTable]
+    static var orderItemTableSchemaScripts = [dropOrderItemTable, createOrderItemTable]
+    static var orderItemTableInsertScript = insertIntoOrderItemTable
 }

@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /*
         //NOTE: this recreates the database if already exists.
         // Comment out after first run.
-        SQLiteDatabase.createTables(database: SQLiteDatabase.getDatabase())
+        let db = SQLiteDatabase.getDatabase()
+        SQLiteDatabase.createTables(database: db)
+        SQLiteDatabase.insertData(database: db)
         
         // Example db usage:
         print()
@@ -66,7 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\n=======================")
         print("  adding to Wishlist  ")
         print("=======================")
-        Wishlist.create(userID: 1, productID: 1)
+        Wishlist.create(userID: 2, productID: 1)
+        print("\ngetting all wishlist items")
         for product in Wishlist.getAll()! { print(product) }
         
         print("\nget wishlist by user id")
@@ -75,13 +78,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\n=======================")
         print("  adding to ShoppingCart ")
         print("=======================")
-        ShoppingCart.create(userID: 1, productID: 1)
-        ShoppingCart.create(userID: 1, productID: 2)
+        ShoppingCart.create(userID: 2, productID: 1)
+        ShoppingCart.create(userID: 2, productID: 2)
         
         for product in ShoppingCart.getAll()! { print(product) }
         
         print("\nget shopping cart by user id")
-        for product in ShoppingCart.getByUserID(userID: 1)! { print(product) }
+        for product in ShoppingCart.getByUserID(userID: 2)! { print(product) }
         
         print("\n=======================")
         print("  adding to PurchaseOrder ")
