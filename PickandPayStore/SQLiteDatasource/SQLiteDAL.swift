@@ -260,8 +260,8 @@ class SQLiteDAL {
         return success
     }
     
-    // ProductReview DAL (getAllReviews, getReviewsByProductID, createProductReview)
-    static func getAllReviews() -> [ProductReview]? {
+    // ProductReview DAL (getAllProductReviews, getReviewsByProductID, createProductReview)
+    static func getAllProductReviews() -> [ProductReview]? {
         guard let productReviewsResultSet = query(modelType: ProductReview.productreview, queryString: "SELECT * FROM ProductReview;") else {
             return nil
         }

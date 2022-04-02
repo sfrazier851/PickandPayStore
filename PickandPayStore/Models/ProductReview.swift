@@ -32,17 +32,15 @@ struct ProductReview {
         return productReviews
     }
     
-    /*
-    static func getAll() -> [Wishlist]? {
-        return SQLiteDAL.getAllWishlistProducts()
+    static func getAll() -> [ProductReview]? {
+        return SQLiteDAL.getAllProductReviews()
     }
     
-    static func getByUserID(userID: Int) -> [Wishlist]? {
-        return SQLiteDAL.getWishlistByUserID(userID: userID)
+    static func getByProductID(productID: Int) -> [ProductReview]? {
+        return SQLiteDAL.getReviewsByProductID(productID: productID)
     }
     
-    static func create(userID: Int, productID: Int) -> Bool? {
-        return SQLiteDAL.createWishlistProduct(userID: userID, productID: productID)
+    static func create(userID: Int, productID: Int, review: String) -> Bool? {
+        return SQLiteDAL.createProductReview(userID: userID, productID: productID, review: review)
     }
-    */
 }
