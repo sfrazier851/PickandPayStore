@@ -14,6 +14,7 @@ struct Product {
     var name: String = ""
     var price: Float = 0.0
     var imageName: String = ""
+    var description: String = ""
     
     static let product = Product()
     
@@ -30,6 +31,7 @@ struct Product {
             product.name = columns[3]
             product.price = Float(columns[4])!
             product.imageName = columns[5]
+            product.description = columns[6]
             
             products.append(product)
         }
@@ -48,7 +50,7 @@ struct Product {
         return SQLiteDAL.getProductsByName(name: name)
     }
     
-    static func create(departmentID: Int, categoryID: Int, name: String, price: Float, imageName: String) -> Bool? {
-        return SQLiteDAL.createProduct(departmentID: departmentID, categoryID: categoryID, name: name, price: price, imageName: imageName)
+    static func create(departmentID: Int, categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {
+        return SQLiteDAL.createProduct(departmentID: departmentID, categoryID: categoryID, name: name, price: price, imageName: imageName, description: description)
     }
 }

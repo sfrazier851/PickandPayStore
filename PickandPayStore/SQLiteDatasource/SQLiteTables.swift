@@ -85,13 +85,14 @@ class SQLiteTables {
              name TEXT NOT NULL,
              price DECIMAL(10,3) NOT NULL,
              imageName TEXT NOT NULL,
+             description TEXT NOT NULL,
              FOREIGN KEY(departmentID) REFERENCES Department(ID),
              FOREIGN KEY(categoryID) REFERENCES Category(ID));
              """
     private static var insertIntoProductTable = """
-             INSERT INTO Product ( departmentID, categoryID, name, price, imageName )
-             VALUES ( 1, 1, 'Microwave', 45.50, 'imMicrowave' ),
-                    ( 2, 2, 'Eyeliner', 12.50, 'imEyeliner' );
+             INSERT INTO Product ( departmentID, categoryID, name, price, imageName, description )
+             VALUES ( 1, 1, 'Microwave', 196.75, 'imMicrowave', "Microwave oven with touch control and stainless steel." ),
+                    ( 2, 2, 'Eyeliner', 12.50, 'imEyeliner', "Gel black and brown lasts for all day with eye liner brush.");
              """
     static var productTableScripts = [dropProductTable, createProductTable, insertIntoProductTable]
     

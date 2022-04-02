@@ -232,12 +232,12 @@ class SQLiteDAL {
         return Product.convert(productsResultSet: productsResultSet)
     }
     
-    static func createProduct(departmentID: Int, categoryID: Int, name: String, price: Float, imageName: String) -> Bool? {
+    static func createProduct(departmentID: Int, categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil
         }
         var success = true
-        let insertStatementString = "INSERT INTO Product ( departmentID, categoryID, name, price, imageName ) VALUES ( ?, ?, ?, ?, ?)"
+        let insertStatementString = "INSERT INTO Product ( departmentID, categoryID, name, price, imageName, description ) VALUES ( ?, ?, ?, ?, ?, ?)"
         
         var insertStatement: OpaquePointer?
         
@@ -248,6 +248,7 @@ class SQLiteDAL {
             sqlite3_bind_text(insertStatement, 3, NSString(string: name).utf8String, -1, nil)
             sqlite3_bind_double(insertStatement, 4, Double(price))
             sqlite3_bind_text(insertStatement, 5, NSString(string: imageName).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 6, NSString(string: description).utf8String, -1, nil)
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\nSuccessfully inserted row.")
