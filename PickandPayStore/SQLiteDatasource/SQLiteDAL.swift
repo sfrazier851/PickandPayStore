@@ -22,6 +22,17 @@ class SQLiteDAL {
         return columnTypes
     }
     
+    // Return latest row id.
+    // For getting id of most recently
+    // created db entity.
+    static func getLatestInsertId() -> Int? {
+        guard let db = SQLiteDatabase.getDatabase() else {
+            return nil
+        }
+        let lastRowId = sqlite3_last_insert_rowid(db)
+        return Int(lastRowId)
+    }
+    
     // general purpose query (NOTE: QUERY MUST RETURN ALL FIELDS OF TABLE!)
     static func query(modelType: Any, queryString: String) -> [[String]]? {
         guard let db = SQLiteDatabase.getDatabase() else {
