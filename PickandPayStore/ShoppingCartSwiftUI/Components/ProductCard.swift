@@ -18,7 +18,7 @@ struct ProductCard: View {
     var body: some View {
         
         ZStack(alignment: .topTrailing) {
-            ZStack(alignment: .bottom){
+            VStack{
                 Image(product.image)
                     .resizable()
                     .cornerRadius(20)
@@ -30,7 +30,7 @@ struct ProductCard: View {
                     Text(product.name)
                         .bold()
                     
-                    Text("\(product.price)$")
+                    Text("$\(product.price, specifier: "%.2f")")
                         .font(.caption)
                 }
                 .padding()

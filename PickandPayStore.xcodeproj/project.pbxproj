@@ -24,7 +24,7 @@
 		AC16E9B327F632870037743F /* ProductInCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9B227F632870037743F /* ProductInCart.swift */; };
 		AC16E9B627F633950037743F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9B527F633950037743F /* Product.swift */; };
 		AC16E9BB27F637060037743F /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9BA27F637060037743F /* CartManager.swift */; };
-		AC16E9C027F742930037743F /* CartComponentSwiftUiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9BF27F742930037743F /* CartComponentSwiftUiVC.swift */; };
+		ACF01B8827FAA0C300989F1C /* CartComponentSwiftUiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9BF27F742930037743F /* CartComponentSwiftUiVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,9 +123,9 @@
 				45355FB127F3A2FC00ABFDC8 /* Main.storyboard */,
 				45355FB427F3A2FD00ABFDC8 /* Assets.xcassets */,
 				45355FB627F3A2FD00ABFDC8 /* LaunchScreen.storyboard */,
+				AC16E9BF27F742930037743F /* CartComponentSwiftUiVC.swift */,
 				45355FB927F3A2FD00ABFDC8 /* Info.plist */,
 				AC16E9A527F62E8D0037743F /* ShoppingCartSwiftUI */,
-				AC16E9BF27F742930037743F /* CartComponentSwiftUiVC.swift */,
 			);
 			path = PickandPayStore;
 			sourceTree = "<group>";
@@ -325,8 +325,8 @@
 				45355FB027F3A2FC00ABFDC8 /* ViewController.swift in Sources */,
 				45355FAC27F3A2FC00ABFDC8 /* AppDelegate.swift in Sources */,
 				45355FAE27F3A2FC00ABFDC8 /* SceneDelegate.swift in Sources */,
+				ACF01B8827FAA0C300989F1C /* CartComponentSwiftUiVC.swift in Sources */,
 				AC16E9B627F633950037743F /* Product.swift in Sources */,
-				AC16E9C027F742930037743F /* CartComponentSwiftUiVC.swift in Sources */,
 				AC16E9B327F632870037743F /* ProductInCart.swift in Sources */,
 				AC16E9AF27F630C60037743F /* ProductCard.swift in Sources */,
 			);
