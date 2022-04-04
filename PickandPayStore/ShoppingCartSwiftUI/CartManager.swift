@@ -19,8 +19,9 @@ class CartManager: ObservableObject {
     func addToCart(product: Product, count: Int){
         for _ in 1...count{
             products.append(product)
+            total += product.price
         }
-        total += product.price
+        //total += product.price
     }
     
     // Remove from cart.
@@ -40,5 +41,14 @@ class CartManager: ObservableObject {
         // Append what is left to the productsToBeRemoved to the products array.
         products = products + productsToBeRemoved
         
+    }
+    
+    func printManager(){
+        
+        for p in products{
+            print(p.name)
+        }
+        
+        print(self.total)
     }
 }

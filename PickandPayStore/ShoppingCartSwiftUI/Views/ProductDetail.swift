@@ -26,7 +26,7 @@ struct ProductDetailView: View {
                 }
                 HStack{
                     Button {
-                        if total != 0{
+                        if cartManager.total != 0{
                             total -= 1
                         }
                     } label: {
@@ -43,7 +43,6 @@ struct ProductDetailView: View {
                         //.cornerRadius(5)
                     Button {
                         total += 1
-                        
                     } label: {
                         Image(systemName: "plus")
                             

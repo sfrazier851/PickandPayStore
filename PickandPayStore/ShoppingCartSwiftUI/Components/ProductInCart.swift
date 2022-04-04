@@ -24,7 +24,7 @@ struct ProductInCart: View {
                 Text(product.name)
                     .bold()
                 
-                Text("$\(product.price)")
+                Text("$\(product.price, specifier:"%.2f")")
             }
             Spacer()
             
@@ -32,6 +32,7 @@ struct ProductInCart: View {
                 .foregroundColor(.red)
                 .onTapGesture {
                     cartManager.removeFromCart(product: product)
+                    cartManager.printManager()
                 }
             
         }
