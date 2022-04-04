@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CartManager: ObservableObject {
     
@@ -15,8 +16,10 @@ class CartManager: ObservableObject {
     private(set) var productsToBeRemoved: [Product] = []
     
    // Add to cart.
-    func addToCart(product: Product){
-        products.append(product)
+    func addToCart(product: Product, count: Int){
+        for _ in 1...count{
+            products.append(product)
+        }
         total += product.price
     }
     

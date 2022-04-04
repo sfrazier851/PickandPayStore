@@ -44,7 +44,7 @@ struct ProductCard: View {
             .shadow(radius: 3)
             
             Button {
-                cartManager.addToCart(product: product)
+                cartManager.addToCart(product: product, count: 1)
             } label: {
                 Image(systemName: "plus")
                     .padding(10)
