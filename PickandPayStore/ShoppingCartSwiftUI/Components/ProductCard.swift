@@ -45,6 +45,7 @@ struct ProductCard: View {
             
             Button {
                 cartManager.addToCart(product: product, count: 1)
+                cartManager.printManager()
             } label: {
                 Image(systemName: "plus")
                     .padding(10)
