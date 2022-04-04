@@ -7,8 +7,9 @@ The selected items may be collected in a shopping cart. At checkout time, the it
 [Project-3-Requirements.pdf](https://github.com/algoives/PickandPayStore/files/8411348/Project-3-Requirements.pdf)
 
 
+[PickandPayStore.UI.Flows.Requirements.and.Database.Queries.pdf](https://github.com/algoives/PickandPayStore/files/8411353/PickandPayStore.UI.Flows.Requirements.and.Database.Queries.pdf)
 
-[PickandPayStore (UI Flows, Requirements and Database Queries).pdf]
 
 
 [Possible App Theme ideas.pdf](https://github.com/algoives/PickandPayStore/files/8411338/Possible.App.Theme.ideas.pdf)
+
