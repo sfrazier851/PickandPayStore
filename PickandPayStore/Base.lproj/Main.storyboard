@@ -261,6 +261,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScV-Id-2PZ" userLabel="Register Button">
                                         <rect key="frame" x="128.5" y="216" width="57" height="30"/>
                                         <state key="normal" title="Register"/>
+                                        <connections>
+                                            <action selector="registerButton:" destination="xWe-Qk-nEZ" eventType="touchUpInside" id="XOv-0q-PYu"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xr-eg-Dmg" userLabel="Error Label">
                                         <rect key="frame" x="138.5" y="266" width="37.5" height="20.5"/>
@@ -289,6 +292,12 @@
                     </view>
                     <connections>
                         <outlet property="backToHomeButton" destination="lHo-NK-DkU" id="ooh-SC-saE"/>
+                        <outlet property="confirmPasswordTextField" destination="qcX-Ct-SWZ" id="eFL-By-NKD"/>
+                        <outlet property="emailTextField" destination="ERY-Wa-7mT" id="mVi-N0-y8L"/>
+                        <outlet property="errorLabel" destination="0xr-eg-Dmg" id="Lvp-hc-5m1"/>
+                        <outlet property="mobileNumberTextField" destination="Iih-OM-K1y" id="pEY-Dv-1fs"/>
+                        <outlet property="passwordTextField" destination="tpJ-Fh-uBD" id="oo2-tF-3LA"/>
+                        <outlet property="registerButton" destination="ScV-Id-2PZ" id="Yei-UH-9lH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBE-6N-wFj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
