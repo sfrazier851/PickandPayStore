@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
         Utilities.styleHollowButton(loginButton)
         
         mobileNumberTextField.becomeFirstResponder()
+        hideKeyboardWhenTappedAround()
     }
     
     
@@ -42,3 +43,16 @@ class LoginViewController: UIViewController {
     }
     
 }
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+

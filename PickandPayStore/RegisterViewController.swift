@@ -36,6 +36,7 @@ class RegisterViewController: UIViewController {
         Utilities.styleHollowButton(registerButton)
         
         mobileNumberTextField.becomeFirstResponder()
+        hideKeyboardWhenTappedAround()
     }
     
     @IBAction func backToHomeButtonTapped(_ sender: Any) {
