@@ -181,18 +181,18 @@ class SQLiteDAL {
     }
     
     // Category DAL (getAllCategories, getCategoriesByName, createCategory)
-    static func getAllCategories() -> [Category]? {
-        guard let categoriesResultSet = query(modelType: Category.category, queryString: "SELECT * FROM Category;") else {
+    static func getAllCategories() -> [CategoryM]? {
+        guard let categoriesResultSet = query(modelType: CategoryM.category, queryString: "SELECT * FROM Category;") else {
             return nil
         }
-        return Category.convert(categoriesResultSet: categoriesResultSet)
+        return CategoryM.convert(categoriesResultSet: categoriesResultSet)
     }
     
-    static func getCategoriesByName(name: String) -> [Category]? {
-        guard let categoriesResultSet = query(modelType: Category.category, queryString: "SELECT * FROM Category WHERE name = '\(name)';") else {
+    static func getCategoriesByName(name: String) -> [CategoryM]? {
+        guard let categoriesResultSet = query(modelType: CategoryM.category, queryString: "SELECT * FROM Category WHERE name = '\(name)';") else {
             return nil
         }
-        return Category.convert(categoriesResultSet: categoriesResultSet)
+        return CategoryM.convert(categoriesResultSet: categoriesResultSet)
     }
     
     static func createCategory(departmentID: Int, name: String, imageName: String) -> Bool? {

@@ -49,11 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\n=======================")
         print("  creating Category  ")
         print("=======================")
-        Category.create(departmentID: 10, name: "Sewing", imageName: "imSewing")
-        for category in Category.getAll()! { print(category) }
+        CategoryM.create(departmentID: 10, name: "Sewing", imageName: "imSewing")
+        for category in CategoryM.getAll()! { print(category) }
         
         print("\nget categories by name")
-        for category in Category.getByName(name: "Sewing")! { print(category) }
+        for category in CategoryM.getByName(name: "Sewing")! { print(category) }
         
         
         print("\n=======================")
