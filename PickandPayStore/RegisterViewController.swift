@@ -26,7 +26,16 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hide error label
+        errorLabel.alpha = 0
         
+        Utilities.styleTextField(mobileNumberTextField, placeHolderString: "mobile number")
+        Utilities.styleTextField(emailTextField, placeHolderString: "email")
+        Utilities.styleTextField(passwordTextField, placeHolderString: "password")
+        Utilities.styleTextField(confirmPasswordTextField, placeHolderString: "confirm password")
+        Utilities.styleHollowButton(registerButton)
+        
+        mobileNumberTextField.becomeFirstResponder()
     }
     
     @IBAction func backToHomeButtonTapped(_ sender: Any) {

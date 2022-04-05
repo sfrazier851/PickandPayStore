@@ -268,11 +268,8 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScV-Id-2PZ" userLabel="Register Button">
-                                        <rect key="frame" x="128.5" y="216" width="57" height="30"/>
+                                        <rect key="frame" x="40" y="216" width="234" height="30"/>
                                         <state key="normal" title="Register"/>
-                                        <connections>
-                                            <action selector="registerButton:" destination="xWe-Qk-nEZ" eventType="touchUpInside" id="XOv-0q-PYu"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xr-eg-Dmg" userLabel="Error Label">
                                         <rect key="frame" x="138.5" y="266" width="37.5" height="20.5"/>
@@ -287,8 +284,10 @@
                                     <constraint firstAttribute="trailing" secondItem="tpJ-Fh-uBD" secondAttribute="trailing" constant="10" id="TF0-n5-sRl"/>
                                     <constraint firstAttribute="trailing" secondItem="Iih-OM-K1y" secondAttribute="trailing" constant="10" id="XDV-eg-HHp"/>
                                     <constraint firstItem="ERY-Wa-7mT" firstAttribute="leading" secondItem="gFw-QO-ly8" secondAttribute="leading" constant="10" id="awa-Lv-4qN"/>
+                                    <constraint firstAttribute="trailing" secondItem="ScV-Id-2PZ" secondAttribute="trailing" constant="40" id="bcq-Ug-VhK"/>
                                     <constraint firstItem="qcX-Ct-SWZ" firstAttribute="leading" secondItem="gFw-QO-ly8" secondAttribute="leading" constant="10" id="cUi-EX-Id5"/>
                                     <constraint firstItem="Iih-OM-K1y" firstAttribute="leading" secondItem="gFw-QO-ly8" secondAttribute="leading" constant="10" id="g3c-6C-csl"/>
+                                    <constraint firstItem="ScV-Id-2PZ" firstAttribute="leading" secondItem="gFw-QO-ly8" secondAttribute="leading" constant="40" id="gfL-kT-w5L"/>
                                     <constraint firstAttribute="trailing" secondItem="qcX-Ct-SWZ" secondAttribute="trailing" constant="10" id="veD-Tm-XC3"/>
                                 </constraints>
                             </stackView>
