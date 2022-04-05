@@ -40,7 +40,7 @@ class SQLiteDatabase {
                 // Get full path
                 let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 // Define path for database file
-                let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.testDbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
+                let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.dbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
                 print(fileUrl.path)
                 
                 // Connect to db or create if doesn't exist
