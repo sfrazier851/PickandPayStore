@@ -27,18 +27,24 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // call the 'keyboardWillShow' function when the view controller receives notification that the keyboard is going to be shown
-        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        // call the 'keyboardWillHide' function when the view controller receives notification that the keyboard is going to be hidden
-        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         // style the textfields, button and error label
         setupUI()
         
         mobileNumberTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // call the 'keyboardWillShow' function when the view controller receives notification that the keyboard is going to be shown
+        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // call the 'keyboardWillHide' function when the view controller receives notification that the keyboard is going to be hidden
+        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        mobileNumberTextField.becomeFirstResponder()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -79,7 +85,6 @@ class LoginViewController: UIViewController {
         Utilities.styleTextField(passwordTextField, placeHolderString: "password")
         Utilities.styleHollowButton(loginButton)
         
-        mobileNumberTextField.becomeFirstResponder()
         hideKeyboardWhenTappedAround()
     }
     

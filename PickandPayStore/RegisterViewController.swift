@@ -29,13 +29,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // call the 'keyboardWillShow' function when the view controller receives notification that the keyboard is going to be shown
-        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        // call the 'keyboardWillHide' function when the view controller receives notification that the keyboard is going to be hidden
-        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        
         // style textfields, button and error label
         setupUI()
         
@@ -43,6 +36,18 @@ class RegisterViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // call the 'keyboardWillShow' function when the view controller receives notification that the keyboard is going to be shown
+        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // call the 'keyboardWillHide' function when the view controller receives notification that the keyboard is going to be hidden
+        NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        mobileNumberTextField.becomeFirstResponder()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -68,6 +73,8 @@ class RegisterViewController: UIViewController {
             // amount to move the view up
             let moveUpDistance = activeTextField!.convert(activeTextField!.bounds, to: self.view).maxY - (self.view.frame.height - keyboardSize.height)
             
+            //print(moveUpDistance)
+            
             // move the root view up by the distance of keyboard height
             self.view.frame.origin.y = 0 - moveUpDistance
         }
@@ -89,7 +96,6 @@ class RegisterViewController: UIViewController {
         Utilities.styleTextField(confirmPasswordTextField, placeHolderString: "confirm password")
         Utilities.styleHollowButton(registerButton)
         
-        mobileNumberTextField.becomeFirstResponder()
         hideKeyboardWhenTappedAround()
     }
     
