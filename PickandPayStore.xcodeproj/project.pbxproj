@@ -16,6 +16,8 @@
 		45355FC327F3A2FD00ABFDC8 /* PickandPayStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FC227F3A2FD00ABFDC8 /* PickandPayStoreTests.swift */; };
 		45355FCD27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FCC27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift */; };
 		45355FCF27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */; };
+		45C0762E27FBF69A009B4221 /* TrackOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0762D27FBF69A009B4221 /* TrackOrderView.swift */; };
+		45C0763127FBFCC0009B4221 /* TrackOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0763027FBFCC0009B4221 /* TrackOrderModel.swift */; };
 		84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84699DCF27FA899B00AE497D /* ProductDetail.swift */; };
 		AC16E9AA27F62F980037743F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9A927F62F980037743F /* ContentView.swift */; };
 		AC16E9AC27F62FF60037743F /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9AB27F62FF60037743F /* CartView.swift */; };
@@ -59,6 +61,8 @@
 		45355FC827F3A2FD00ABFDC8 /* PickandPayStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45355FCC27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickandPayStoreUITests.swift; sourceTree = "<group>"; };
 		45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickandPayStoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		45C0762D27FBF69A009B4221 /* TrackOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderView.swift; sourceTree = "<group>"; };
+		45C0763027FBFCC0009B4221 /* TrackOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderModel.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		AC16E9A927F62F980037743F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC16E9AB27F62FF60037743F /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		45355FAA27F3A2FC00ABFDC8 /* PickandPayStore */ = {
 			isa = PBXGroup;
 			children = (
+				45C0762F27FBFC55009B4221 /* TrackOrders */,
 				45355FAB27F3A2FC00ABFDC8 /* AppDelegate.swift */,
 				45355FAD27F3A2FC00ABFDC8 /* SceneDelegate.swift */,
 				45355FAF27F3A2FC00ABFDC8 /* ViewController.swift */,
@@ -147,6 +152,15 @@
 				45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */,
 			);
 			path = PickandPayStoreUITests;
+			sourceTree = "<group>";
+		};
+		45C0762F27FBFC55009B4221 /* TrackOrders */ = {
+			isa = PBXGroup;
+			children = (
+				45C0762D27FBF69A009B4221 /* TrackOrderView.swift */,
+				45C0763027FBFCC0009B4221 /* TrackOrderModel.swift */,
+			);
+			path = TrackOrders;
 			sourceTree = "<group>";
 		};
 		AC16E9A527F62E8D0037743F /* ShoppingCartSwiftUI */ = {
@@ -323,6 +337,7 @@
 				AC16E9AC27F62FF60037743F /* CartView.swift in Sources */,
 				AC16E9B127F632320037743F /* CartButton.swift in Sources */,
 				84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */,
+				45C0762E27FBF69A009B4221 /* TrackOrderView.swift in Sources */,
 				AC16E9BB27F637060037743F /* CartManager.swift in Sources */,
 				AC16E9AA27F62F980037743F /* ContentView.swift in Sources */,
 				45355FB027F3A2FC00ABFDC8 /* ViewController.swift in Sources */,
@@ -331,6 +346,7 @@
 				ACF01B8827FAA0C300989F1C /* CartComponentSwiftUiVC.swift in Sources */,
 				AC9AAB4627FB996900AC8DD2 /* Category.swift in Sources */,
 				AC16E9B627F633950037743F /* Product.swift in Sources */,
+				45C0763127FBFCC0009B4221 /* TrackOrderModel.swift in Sources */,
 				AC16E9B327F632870037743F /* ProductInCart.swift in Sources */,
 				AC16E9AF27F630C60037743F /* ProductCard.swift in Sources */,
 			);
