@@ -11,23 +11,23 @@ import SQLite3
 class SQLiteDbTests: XCTestCase {
 
     // initialize test database
-    let testDB = SQLiteDatabase.getTestDatabase()
+    private static let testDB = SQLiteDatabase.getTestDatabase()
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Apply schema to test database
-        SQLiteDatabase.createTables(database: testDB)
-        
+        // Drop all tables then recreate tables for test database
+        SQLiteDatabase.createTables(database: SQLiteDbTests.testDB)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+    
+    // called after all tests have been run
+    override class func tearDown() {
         // Call destructor for sqlite3 test database
-        if sqlite3_close_v2(testDB!) == 0 {
-            print("==============")
+        if sqlite3_close_v2(SQLiteDbTests.testDB!) == 0 {
+            print("\n==============")
             print("test db closed")
-            print("==============")
+            print("==============\n")
         }
     }
 

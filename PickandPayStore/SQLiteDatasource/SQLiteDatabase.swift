@@ -31,9 +31,9 @@ class SQLiteDatabase {
                 if sqlite3_open("file::memory:", &testDatabase) != SQLITE_OK {
                     print("error opening database")
                 } else {
-                    print("====================")
-                    print("test database opened")
-                    print("====================")
+                    print("\n==============")
+                    print("test db opened")
+                    print("==============\n")
                 }
                 
             } else {
