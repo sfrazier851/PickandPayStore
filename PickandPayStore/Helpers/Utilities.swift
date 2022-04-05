@@ -65,11 +65,11 @@ class Utilities {
         
         button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         // Filled rounded corner style
-        button.backgroundColor = UIColor.white //K.Color.Blue//.withAlphaComponent(0.7)
+        button.backgroundColor = UIColor.black //K.Color.Blue//.withAlphaComponent(0.7)
         
         button.layer.cornerRadius = 25.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        button.tintColor = UIColor.black//UIColor.white
+        button.tintColor = UIColor.white
     }
     
     // Orange hollow button with border and Orange label
@@ -79,11 +79,11 @@ class Utilities {
         // Hollow rounded corner style
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor //K.Color.Orange.cgColor
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.white
         
         button.layer.cornerRadius = 25.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        button.tintColor = UIColor.white
+        button.tintColor = UIColor.black
     }
     
     static func fitTextInsideButton(_ button: UIButton) {

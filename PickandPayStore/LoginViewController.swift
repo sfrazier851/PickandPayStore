@@ -24,6 +24,16 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // hide error label
+        errorLabel.alpha = 0
+        
+        Utilities.styleTextField(mobileNumberTextField, placeHolderString: "mobile number")
+        Utilities.styleTextField(emailTextField, placeHolderString: "email")
+        Utilities.styleTextField(passwordTextField, placeHolderString: "password")
+        Utilities.styleHollowButton(loginButton)
+        
+        mobileNumberTextField.becomeFirstResponder()
     }
     
     
