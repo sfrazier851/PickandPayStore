@@ -24,6 +24,7 @@
 		7F0A61A227FC690C0028B399 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61A127FC690C0028B399 /* HomeViewController.swift */; };
 		7F0A61A727FC6CDB0028B399 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */; };
 		7F0A61AC27FC6D990028B399 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61AB27FC6D990028B399 /* LoginViewController.swift */; };
+		7F0A61B127FC73880028B399 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61B027FC73870028B399 /* Utilities.swift */; };
 		7F5D83D727F3B3420063ED40 /* SQLiteTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83D627F3B3420063ED40 /* SQLiteTables.swift */; };
 		7F5D83DC27F3B3720063ED40 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83DB27F3B3720063ED40 /* SQLiteDatabase.swift */; };
 		7F5D83E227F3B3AE0063ED40 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83E127F3B3AE0063ED40 /* Constants.swift */; };
@@ -87,6 +88,7 @@
 		7F0A61A127FC690C0028B399 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F0A61AB27FC6D990028B399 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7F0A61B027FC73870028B399 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7F5D83D627F3B3420063ED40 /* SQLiteTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTables.swift; sourceTree = "<group>"; };
 		7F5D83DB27F3B3720063ED40 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		7F5D83E127F3B3AE0063ED40 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				7F5D83E127F3B3AE0063ED40 /* Constants.swift */,
 				7F0A619627FC60CB0028B399 /* Helper.swift */,
+				7F0A61B027FC73870028B399 /* Utilities.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				7F5D840F27F3F8B50063ED40 /* CategoryM.swift in Sources */,
 				7F0A61A727FC6CDB0028B399 /* RegisterViewController.swift in Sources */,
 				7F5D840A27F3F5810063ED40 /* Department.swift in Sources */,
+				7F0A61B127FC73880028B399 /* Utilities.swift in Sources */,
 				7F5D841727F3FCF30063ED40 /* ProductM.swift in Sources */,
 				7F5D842427F406650063ED40 /* ShoppingCart.swift in Sources */,
 				ACF01B8827FAA0C300989F1C /* CartComponentSwiftUiVC.swift in Sources */,
