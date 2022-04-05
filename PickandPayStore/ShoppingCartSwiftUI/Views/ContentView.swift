@@ -43,15 +43,20 @@ struct ContentView: View {
             }
             .navigationTitle(Text("Toy Shop"))
             .toolbar{
+                /* Commented out due to build errors
                 //Navigate to the CartView
+                //  Build error messages(2):
+                // Type '() -> CartButton' cannot conform to 'View'; only struct/enum/class types can conform to protocols
+                // Type '() -> some View' cannot conform to 'StringProtocol'; only struct/enum/class types can conform to protocols
                 NavigationLink {
                     // This is the destination.
                     CartView()
                         .environmentObject(cartManager)
-                } label: {
+                } destination: {
                     //On CartButton click go to CartView.
                     CartButton(numberOfProducts: cartManager.products.count)
                 }
+                */
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
