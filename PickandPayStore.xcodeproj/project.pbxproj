@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		45355FAC27F3A2FC00ABFDC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FAB27F3A2FC00ABFDC8 /* AppDelegate.swift */; };
 		45355FAE27F3A2FC00ABFDC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FAD27F3A2FC00ABFDC8 /* SceneDelegate.swift */; };
-		45355FB027F3A2FC00ABFDC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FAF27F3A2FC00ABFDC8 /* ViewController.swift */; };
 		45355FB327F3A2FC00ABFDC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45355FB127F3A2FC00ABFDC8 /* Main.storyboard */; };
 		45355FB527F3A2FD00ABFDC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45355FB427F3A2FD00ABFDC8 /* Assets.xcassets */; };
 		45355FB827F3A2FD00ABFDC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45355FB627F3A2FD00ABFDC8 /* LaunchScreen.storyboard */; };
@@ -70,7 +69,6 @@
 		45355FA827F3A2FC00ABFDC8 /* PickandPayStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickandPayStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45355FAB27F3A2FC00ABFDC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45355FAD27F3A2FC00ABFDC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		45355FAF27F3A2FC00ABFDC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		45355FB227F3A2FC00ABFDC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45355FB427F3A2FD00ABFDC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45355FB727F3A2FD00ABFDC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				7F5D83D527F3B32B0063ED40 /* SQLiteDatasource */,
 				45355FAB27F3A2FC00ABFDC8 /* AppDelegate.swift */,
 				45355FAD27F3A2FC00ABFDC8 /* SceneDelegate.swift */,
-				45355FAF27F3A2FC00ABFDC8 /* ViewController.swift */,
 				45355FB127F3A2FC00ABFDC8 /* Main.storyboard */,
 				45355FB427F3A2FD00ABFDC8 /* Assets.xcassets */,
 				45355FB627F3A2FD00ABFDC8 /* LaunchScreen.storyboard */,
@@ -421,7 +418,6 @@
 				AC16E9BB27F637060037743F /* CartManager.swift in Sources */,
 				AC16E9AA27F62F980037743F /* ContentView.swift in Sources */,
 				7F0A61A227FC690C0028B399 /* HomeViewController.swift in Sources */,
-				45355FB027F3A2FC00ABFDC8 /* ViewController.swift in Sources */,
 				7F0A613727F78B950028B399 /* ProductReview.swift in Sources */,
 				7F5D841F27F400870063ED40 /* Wishlist.swift in Sources */,
 				45355FAC27F3A2FC00ABFDC8 /* AppDelegate.swift in Sources */,
