@@ -222,25 +222,25 @@ class SQLiteDAL {
     }
     
     // Product DAL (getAllProducts, getProductsByName, createProduct)
-    static func getAllProducts() -> [Product]? {
-        guard let productsResultSet = query(modelType: Product.product, queryString: "SELECT * FROM Product;") else {
+    static func getAllProducts() -> [ProductM]? {
+        guard let productsResultSet = query(modelType: ProductM.product, queryString: "SELECT * FROM Product;") else {
             return nil
         }
-        return Product.convert(productsResultSet: productsResultSet)
+        return ProductM.convert(productsResultSet: productsResultSet)
     }
     
-    static func getProductByID(productID: Int) -> [Product]? {
-        guard let productsResultSet = query(modelType: Product.product, queryString: "SELECT * FROM Product WHERE ID = '\(productID)';") else {
+    static func getProductByID(productID: Int) -> [ProductM]? {
+        guard let productsResultSet = query(modelType: ProductM.product, queryString: "SELECT * FROM Product WHERE ID = '\(productID)';") else {
             return nil
         }
-        return Product.convert(productsResultSet: productsResultSet)
+        return ProductM.convert(productsResultSet: productsResultSet)
     }
     
-    static func getProductsByName(name: String) -> [Product]? {
-        guard let productsResultSet = query(modelType: Product.product, queryString: "SELECT * FROM Product WHERE name = '\(name)';") else {
+    static func getProductsByName(name: String) -> [ProductM]? {
+        guard let productsResultSet = query(modelType: ProductM.product, queryString: "SELECT * FROM Product WHERE name = '\(name)';") else {
             return nil
         }
-        return Product.convert(productsResultSet: productsResultSet)
+        return ProductM.convert(productsResultSet: productsResultSet)
     }
     
     static func createProduct(departmentID: Int, categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        /*
+        
         //NOTE: this recreates the database if already exists.
         // Comment out after first run.
         let db = SQLiteDatabase.getDatabase()
@@ -59,11 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\n=======================")
         print("  creating Product  ")
         print("=======================")
-        Product.create(departmentID: 10, categoryID: 9, name: "Hand Sewing needles (x25)", price: 0.97, imageName: "imHandSewingNeedles", description: "Set of 25 assorted hand needles. Includes betweens, darners, sharps and embroidery needles.")
-        for product in Product.getAll()! { print(product) }
+        ProductM.create(departmentID: 10, categoryID: 9, name: "Hand Sewing needles (x25)", price: 0.97, imageName: "imHandSewingNeedles", description: "Set of 25 assorted hand needles. Includes betweens, darners, sharps and embroidery needles.")
+        for product in ProductM.getAll()! { print(product) }
         
         print("\nget product by name")
-        for product in Product.getByName(name: "Hand Sewing needles (x25)")! { print(product) }
+        for product in ProductM.getByName(name: "Hand Sewing needles (x25)")! { print(product) }
         
         print("\n=======================")
         print("  adding to Wishlist  ")
@@ -100,9 +100,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("  adding to OrderItems ")
         print("=======================")
         
-        let product1 = Product.getByID(productID: 1)![0]
+        let product1 = ProductM.getByID(productID: 1)![0]
         OrderItem.create(purchaseOrderID: 1, productID: 1, purchasePrice: product1.price)
-        let product2 = Product.getByID(productID: 2)![0]
+        let product2 = ProductM.getByID(productID: 2)![0]
         OrderItem.create(purchaseOrderID: 1, productID: 2, purchasePrice: product2.price)
         
         for orderitem in OrderItem.getByPurchaseOrderID(purchaseOrderID: 1)! { print(orderitem) }
@@ -120,10 +120,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\nget all product reviews")
         for review in ProductReview.getAll()! { print(review) }
         
-        let product = Product.getByID(productID: 1)![0]
+        let product = ProductM.getByID(productID: 1)![0]
         print("\nget all product reviews for product: \(product.name).")
         for review in ProductReview.getByProductID(productID: product.id)! { print(review) }
-        */
+        
         
         
         return true

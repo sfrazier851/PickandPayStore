@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product {
+struct ProductM {
     var id: Int = 0
     var departmentID: Int = 0
     var categoryID: Int = 0
@@ -16,15 +16,15 @@ struct Product {
     var imageName: String = ""
     var description: String = ""
     
-    static let product = Product()
+    static let product = ProductM()
     
     // Convert query result set to Array of Product
-    static func convert(productsResultSet: [[String]]) -> [Product]? {
-        var products = [Product]()
+    static func convert(productsResultSet: [[String]]) -> [ProductM]? {
+        var products = [ProductM]()
         for product_row in productsResultSet {
             let columns = product_row
             
-            var product = Product()
+            var product = ProductM()
             product.id = Int(columns[0])!
             product.departmentID = Int(columns[1])!
             product.categoryID = Int(columns[2])!
@@ -38,15 +38,15 @@ struct Product {
         return products
     }
     
-    static func getAll() -> [Product]? {
+    static func getAll() -> [ProductM]? {
         return SQLiteDAL.getAllProducts()
     }
     
-    static func getByID(productID: Int) -> [Product]? {
+    static func getByID(productID: Int) -> [ProductM]? {
         return SQLiteDAL.getProductByID(productID: productID)
     }
     
-    static func getByName(name: String) -> [Product]? {
+    static func getByName(name: String) -> [ProductM]? {
         return SQLiteDAL.getProductsByName(name: name)
     }
     
