@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        
+        /*
         //NOTE: this recreates the database if already exists.
         // Comment out after first run.
         let db = SQLiteDatabase.getDatabase()
@@ -123,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let product = ProductM.getByID(productID: 1)![0]
         print("\nget all product reviews for product: \(product.name).")
         for review in ProductReview.getByProductID(productID: product.id)! { print(review) }
-        
+        */
         
         
         return true
