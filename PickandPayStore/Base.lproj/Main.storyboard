@@ -202,6 +202,11 @@
                     </view>
                     <connections>
                         <outlet property="backToHomeButton" destination="k0f-u8-O72" id="0mS-W9-FkU"/>
+                        <outlet property="emailTextField" destination="zdD-1P-Z8X" id="hRC-HA-yKD"/>
+                        <outlet property="errorLabel" destination="Glt-vP-fXt" id="nhB-qw-26q"/>
+                        <outlet property="loginButton" destination="OJB-qb-JnY" id="Sx7-5V-qMt"/>
+                        <outlet property="mobileNumberTextField" destination="KUO-io-n33" id="c9y-hz-Ut3"/>
+                        <outlet property="passwordTextField" destination="pqx-Nd-iWu" id="2D6-dd-RyX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7UI-84-UJx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
