@@ -74,7 +74,7 @@ struct ProductDetailView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(product: productList[0])
+        ProductDetailView(product: Product(name: "buddy", category: "droids", image: "buddy", price: 9000))
             .environmentObject(CartManager())
     }
 }
