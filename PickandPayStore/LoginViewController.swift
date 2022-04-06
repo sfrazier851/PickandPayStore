@@ -136,7 +136,26 @@ class LoginViewController: UIViewController {
             // There's something wrong with the fields, show error message
             showError(error!)
         } else {
-            // TODO: add login user + validation
+            // Create cleaned versions of the text field
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            var userToLogin: [User]? = User.getByEmail(email: email)
+            
+            if let userToLoginValue = userToLogin {
+                userToLogin = userToLoginValue
+                if email == "" || password == "" {
+                    showError("Pleae make sure both fields are filled in.")
+                } else if userToLogin?.count == 0 {
+                    showError("User with email: \(email), doesn't exist.")
+                } else {
+                    if userToLogin?[0].password == password {
+                        PresenterManager.shared.show(vc: .home)
+                    } else {
+                        showError("Incorrect credentials, please try again.")
+                    }
+                }
+            }
         }
     }
     

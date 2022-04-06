@@ -154,7 +154,22 @@ class RegisterViewController: UIViewController {
             // There's something wrong with the fields, show error message
             showError(error!)
         } else {
-            // TODO: add register user code + additional validation
+            let phonenumber = mobileNumberTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let username = usernameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // check if user with email already exists
+            if User.getByEmail(email: email)!.count == 0 {
+                // user does not already exist
+                // Create the user
+                User.create(username: username, email: email, password: password, phoneNumber: phonenumber)
+                PresenterManager.shared.show(vc: .home)
+            }
+            else {
+                // user email already exists
+                showError("That user with email: \(email) already exists.")
+            }
         }
     }
     
