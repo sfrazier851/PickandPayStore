@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProductInCart: View {
-    // Environment object modifier of CartManager type.
+    // Environment object modifier of CartManager, and ProductsManager type.
     @EnvironmentObject var cartManager: CartManager
+    @EnvironmentObject var productsManager: ProductsManager
+
     var product: Product
     
     var body: some View {
@@ -45,8 +47,9 @@ struct ProductInCart: View {
 struct ProductInCart_Previews: PreviewProvider {
     
     static var previews: some View {
-        ProductInCart(product: productList[1])
+        ProductInCart(product: Product(name: "bb8", category: "droids", image: "bb8", price: 19000))
             .environmentObject(CartManager())
+            .environmentObject(ProductsManager())
     }
     
 }

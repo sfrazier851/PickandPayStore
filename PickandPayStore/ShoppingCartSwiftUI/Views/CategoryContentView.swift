@@ -1,20 +1,22 @@
 //
-//  ContentView.swift
+//  CategoryContentView.swift
 //  PickandPayStore
 //
-//  Created by costin popescu on 3/31/22.
+//  Created by costin popescu on 4/5/22.
 //
 
-/*import SwiftUI
+import SwiftUI
 
-struct ContentView: View {
+struct CategoryContentView: View {
     
-    // Instance of CartManager so you can access its functions.
-    // Added in this file to ProductCart and CartView.
+    // Instance of CartManager and ProductsManager so you can access its functions and //properties.
+    // Added cartManager to ProductCart and CartView.
     @StateObject var cartManager = CartManager()
     @EnvironmentObject var productsManager: ProductsManager
     
     
+    var category: Category
+    var productsList: [Product]
     
     // Need this variables for the lazy view grid.
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
@@ -28,9 +30,10 @@ struct ContentView: View {
         NavigationView {
             ScrollView{
                 LazyVGrid(columns: columns, spacing: 20){
-                    ForEach(productsManager.productList, id: \.id)  { product in
+                    ForEach(productsList, id: \.id)  { product in
                         NavigationLink(destination: ProductDetailView(product: product)
-                                        .environmentObject(cartManager))
+                                        .environmentObject(cartManager)
+                                        .environmentObject(productsManager))
                         {
                         ProductCard(product: product)
                             .environmentObject(cartManager)
@@ -41,22 +44,17 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .navigationTitle(Text("Toy Shop"))
+            .navigationTitle(Text(category.name))
             .toolbar{
-                /* Commented out due to build errors
                 //Navigate to the CartView
-                //  Build error messages(2):
-                // Type '() -> CartButton' cannot conform to 'View'; only struct/enum/class types can conform to protocols
-                // Type '() -> some View' cannot conform to 'StringProtocol'; only struct/enum/class types can conform to protocols
                 NavigationLink {
                     // This is the destination.
                     CartView()
                         .environmentObject(cartManager)
-                } destination: {
+                } label: {
                     //On CartButton click go to CartView.
                     CartButton(numberOfProducts: cartManager.products.count)
                 }
-                */
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -65,9 +63,11 @@ struct ContentView: View {
 
 
 
-struct ContentView_Previews: PreviewProvider {
+struct CategoryContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CategoryContentView(category:Category(name: "ground", image: "speeder" ),
+        productsList: [])
+            .environmentObject(ProductsManager())
     }
 }
-*/
+

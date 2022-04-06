@@ -11,6 +11,7 @@ struct ProductCard: View {
     
     // Environment object modifier of CartManager type.
     @EnvironmentObject var cartManager: CartManager
+    @EnvironmentObject var productsManager: ProductsManager
     
     // It displays a Product object.
     var product: Product
@@ -21,47 +22,60 @@ struct ProductCard: View {
             VStack{
                 Image(product.image)
                     .resizable()
-                    .cornerRadius(20)
+                    .cornerRadius(10)
                     .frame(width: 180)
                     .scaledToFit()
                 
                 // This VStack contains the name and price of the toy.
-                VStack(alignment: .leading){
-                    Text(product.name)
-                        .bold()
-                    
-                    Text("$\(product.price, specifier: "%.2f")")
-                        .font(.caption)
-                }
-                .padding()
-                .frame(width: 180, alignment: .leading)
+                    VStack(alignment: .leading){
+                        Text(product.name)
+                            .bold()
+                        
+                        Text("$\(product.price, specifier: "%.2f")")
+                            .font(.caption)
+                    }
+                    .padding()
+                    .frame(width: 150, alignment: .leading)
                 // Only for IOS 15 and above.
                 //.background(.ultraThinMaterial)
                 .cornerRadius(20)
+                    
+                    Button {
+                        cartManager.addToCart(product: product, count: 1)
+                        cartManager.printManager()
+                    } label: {
+                        Image(systemName: "plus")
+                            .padding(5)
+                            .foregroundColor(.red)
+                            //available only in IOS 15 .background(.black)
+                            .cornerRadius(50)
+                            //.padding()
+                    }
+                }
             
             }
-            .frame(width: 180, height: 250)
+            .frame(width: 200, height: 250)
             .shadow(radius: 3)
             
-            Button {
+           /* Button {
                 cartManager.addToCart(product: product, count: 1)
                 cartManager.printManager()
             } label: {
                 Image(systemName: "plus")
                     .padding(10)
-                    .foregroundColor(.black)
+                    .foregroundColor(.red)
                     //available only in IOS 15 .background(.black)
                     .cornerRadius(50)
                     .padding()
-            }
+            }*/
         }
     }
-}
+
 
 struct ProductCard_Previews: PreviewProvider {
     static var previews: some View {
         // You pass the argument that needs to be displayed here.
-        ProductCard(product: productList[0])
+        ProductCard(product: Product(name: "bb8", category: "droids", image: "bb8", price: 19000))
             .environmentObject(CartManager())
     }
 }
