@@ -96,10 +96,11 @@ class LoginViewController: UIViewController {
     // Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
     private func validateFields() -> String? {
         // Check that email and password fields are filled in
-        if  emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+        if  (mobileNumberTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" &&
+            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "") ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
 
-            return "Please make sure both fields are filled in."
+            return "Please make sure email (or phone #) and password fields are filled in."
         }
 
         //Check if the email is a valid email
@@ -122,10 +123,11 @@ class LoginViewController: UIViewController {
 
     }
     
+    
     @IBAction func loginButtonTapped(_ sender: Any) {
-
         // Clear the error label
         errorLabel.alpha = 0
+        errorLabel.textAlignment = .center
 
         // Validate the fields
         let error = validateFields()
@@ -136,15 +138,14 @@ class LoginViewController: UIViewController {
         } else {
             // TODO: add login user + validation
         }
-
     }
     
     @IBAction func backToHomeButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .home)
     }
     
+    
     private func showError(_ message:String) {
-
         errorLabel.text = message
         errorLabel.alpha = 1
     }

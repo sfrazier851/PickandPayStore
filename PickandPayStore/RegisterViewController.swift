@@ -90,6 +90,7 @@ class RegisterViewController: UIViewController {
     private func setupUI() {
         // hide error label
         errorLabel.alpha = 0
+        errorLabel.textAlignment = .center
         
         Utilities.styleTextField(mobileNumberTextField, placeHolderString: "mobile number")
         Utilities.styleTextField(usernameTextField, placeHolderString: "username")
