@@ -30,48 +30,23 @@ class SQLiteTables {
     
     
     
-    private static var dropDepartmentTable = "DROP TABLE IF EXISTS Department;"
-    private static var createDepartmentTable = """
-             CREATE TABLE IF NOT EXISTS Department
-             (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-             name TEXT NOT NULL,
-             imageName TEXT NOT NULL);
-             """
-    private static var insertIntoDepartmentTable = """
-             INSERT INTO Department ( name, imageName )
-             VALUES ( 'Home & Kitchen', 'imHomeKitchen' ),
-                    ( 'Beauty & Personal Care', 'imBeautyPersonalCare'),
-                    ( 'Clothing, Shoes & Jewelry','imClothingShoesJewelry'),
-                    ( 'Electronics', 'imElectronics' ),
-                    ( 'Video Games','imVideoGames'),
-                    ( 'Pet Supplies', 'imPetSupplies'),
-                    ( 'Sports & Outdoors', 'imSportsOutdoors'),
-                    ( 'Books', 'imBooks'),
-                    ( 'Camera & Photography', 'imCameraPhotography');
-             """
-    static var departmentTableSchemaScripts = [dropDepartmentTable, createDepartmentTable]
-    static var departmentTableInsertScript = insertIntoDepartmentTable
-    
-    
     private static var dropCategoryTable = "DROP TABLE IF EXISTS Category;"
     private static var createCategoryTable = """
              CREATE TABLE IF NOT EXISTS Category
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-             departmentID INTEGER NOT NULL,
              name TEXT NOT NULL,
-             imageName TEXT NOT NULL,
-             FOREIGN KEY(departmentID) REFERENCES Department(ID));
+             imageName TEXT NOT NULL);
              """
     private static var insertIntoCategoryTable = """
-             INSERT INTO Category ( departmentID, name, imageName)
-             VALUES ( 1, 'Kitchen Appliances', 'imKitchenAppliances'),
-                    ( 1, 'Pots & Pans', 'imPotsPans'),
-                    ( 1, 'Plates & Bowls', 'imPlatesBowls'),
-                    ( 2, 'Makeup', 'imMakeup'),
-                    ( 2, 'Skin Care', 'imSkinCare'),
-                    ( 2, 'Bath & Body', 'imBathBody'),
-                    ( 3, "Women's Fashion", 'imWomenFashion'),
-                    ( 3, "Men's Fashion", 'imMenFashion');
+             INSERT INTO Category ( name, imageName)
+             VALUES ( 'Kitchen Appliances', 'imKitchenAppliances'),
+                    ( 'Pots & Pans', 'imPotsPans'),
+                    ( 'Plates & Bowls', 'imPlatesBowls'),
+                    ( 'Makeup', 'imMakeup'),
+                    ( 'Skin Care', 'imSkinCare'),
+                    ( 'Bath & Body', 'imBathBody'),
+                    ( "Women's Fashion", 'imWomenFashion'),
+                    ( "Men's Fashion", 'imMenFashion');
              """
     static var categoryTableSchemaScripts = [dropCategoryTable, createCategoryTable]
     static var categoryTableInsertScript = insertIntoCategoryTable
@@ -82,19 +57,17 @@ class SQLiteTables {
     private static var createProductTable = """
              CREATE TABLE IF NOT EXISTS Product
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-             departmentID INTEGER NOT NULL,
              categoryID INTEGER NOT NULL,
              name TEXT NOT NULL,
              price DECIMAL(10,3) NOT NULL,
              imageName TEXT NOT NULL,
              description TEXT NOT NULL,
-             FOREIGN KEY(departmentID) REFERENCES Department(ID),
              FOREIGN KEY(categoryID) REFERENCES Category(ID));
              """
     private static var insertIntoProductTable = """
-             INSERT INTO Product ( departmentID, categoryID, name, price, imageName, description )
-             VALUES ( 1, 1, 'Microwave', 196.75, 'imMicrowave', "Microwave oven with touch control and stainless steel." ),
-                    ( 2, 2, 'Eyeliner', 12.50, 'imEyeliner', "Gel black and brown lasts for all day with eye liner brush.");
+             INSERT INTO Product ( categoryID, name, price, imageName, description )
+             VALUES ( 1, 'Microwave', 196.75, 'imMicrowave', "Microwave oven with touch control and stainless steel." ),
+                    ( 2, 'Eyeliner', 12.50, 'imEyeliner', "Gel black and brown lasts for all day with eye liner brush.");
              """
     static var productTableSchemaScripts = [dropProductTable, createProductTable]
     static var productTableInsertScript = insertIntoProductTable

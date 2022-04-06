@@ -9,7 +9,6 @@ import Foundation
 
 struct ProductM {
     var id: Int = 0
-    var departmentID: Int = 0
     var categoryID: Int = 0
     var name: String = ""
     var price: Float = 0.0
@@ -26,12 +25,11 @@ struct ProductM {
             
             var product = ProductM()
             product.id = Int(columns[0])!
-            product.departmentID = Int(columns[1])!
-            product.categoryID = Int(columns[2])!
-            product.name = columns[3]
-            product.price = Float(columns[4])!
-            product.imageName = columns[5]
-            product.description = columns[6]
+            product.categoryID = Int(columns[1])!
+            product.name = columns[2]
+            product.price = Float(columns[3])!
+            product.imageName = columns[4]
+            product.description = columns[5]
             
             products.append(product)
         }
@@ -50,7 +48,7 @@ struct ProductM {
         return SQLiteDAL.getProductsByName(name: name)
     }
     
-    static func create(departmentID: Int, categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {
-        return SQLiteDAL.createProduct(departmentID: departmentID, categoryID: categoryID, name: name, price: price, imageName: imageName, description: description)
+    static func create(categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {
+        return SQLiteDAL.createProduct(categoryID: categoryID, name: name, price: price, imageName: imageName, description: description)
     }
 }

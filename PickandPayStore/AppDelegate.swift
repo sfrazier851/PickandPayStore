@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        /*
+        
         //NOTE: this recreates the database if already exists.
         // Comment out after first run.
         let db = SQLiteDatabase.getDatabase()
@@ -38,18 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for user in User.getByUsername(username: "gary")! { print(user) }
         
         print("\n=======================")
-        print("  creating Department  ")
-        print("=======================")
-        Department.create(name: "Arts & Crafts", imageName: "imArtsCrafts")
-        for department in Department.getAll()! { print(department) }
-        
-        print("\nget departments by name")
-        for department in Department.getByName(name: "Electronics")! { print(department) }
-        
-        print("\n=======================")
         print("  creating Category  ")
         print("=======================")
-        CategoryM.create(departmentID: 10, name: "Sewing", imageName: "imSewing")
+        CategoryM.create(name: "Sewing", imageName: "imSewing")
         for category in CategoryM.getAll()! { print(category) }
         
         print("\nget categories by name")
@@ -59,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\n=======================")
         print("  creating Product  ")
         print("=======================")
-        ProductM.create(departmentID: 10, categoryID: 9, name: "Hand Sewing needles (x25)", price: 0.97, imageName: "imHandSewingNeedles", description: "Set of 25 assorted hand needles. Includes betweens, darners, sharps and embroidery needles.")
+        ProductM.create(categoryID: 9, name: "Hand Sewing needles (x25)", price: 0.97, imageName: "imHandSewingNeedles", description: "Set of 25 assorted hand needles. Includes betweens, darners, sharps and embroidery needles.")
         for product in ProductM.getAll()! { print(product) }
         
         print("\nget product by name")
@@ -123,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let product = ProductM.getByID(productID: 1)![0]
         print("\nget all product reviews for product: \(product.name).")
         for review in ProductReview.getByProductID(productID: product.id)! { print(review) }
-        */
+        
         
         
         return true

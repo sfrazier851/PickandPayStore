@@ -40,7 +40,7 @@ class SQLiteDatabase {
                 // Get full path
                 let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 // Define path for database file
-                let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.testDbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
+                let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.dbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
                 print(fileUrl.path)
                 
                 // Connect to db or create if doesn't exist
@@ -67,7 +67,6 @@ class SQLiteDatabase {
     
     static func createTables(database: OpaquePointer?) {
         let scripts = [ SQLiteTables.userTableSchemaScripts.joined(),
-                        SQLiteTables.departmentTableSchemaScripts.joined(),
                         SQLiteTables.categoryTableSchemaScripts.joined(),
                         SQLiteTables.productTableSchemaScripts.joined(),
                         SQLiteTables.productReviewTableSchemaScripts.joined(),
@@ -83,7 +82,6 @@ class SQLiteDatabase {
     
     static func insertData(database: OpaquePointer?) {
         let scripts = [ SQLiteTables.userTableInsertScript,
-                        SQLiteTables.departmentTableInsertScript,
                         SQLiteTables.categoryTableInsertScript,
                         SQLiteTables.productTableInsertScript,
                         SQLiteTables.productReviewTableInsertScript,
