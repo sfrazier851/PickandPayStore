@@ -70,7 +70,7 @@ struct ProductCard: View {
             }*/
         }
     }
-}
+
 
 struct ProductCard_Previews: PreviewProvider {
     static var previews: some View {
