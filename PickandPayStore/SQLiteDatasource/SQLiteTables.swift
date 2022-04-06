@@ -30,29 +30,6 @@ class SQLiteTables {
     
     
     
-    private static var dropDepartmentTable = "DROP TABLE IF EXISTS Department;"
-    private static var createDepartmentTable = """
-             CREATE TABLE IF NOT EXISTS Department
-             (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-             name TEXT NOT NULL,
-             imageName TEXT NOT NULL);
-             """
-    private static var insertIntoDepartmentTable = """
-             INSERT INTO Department ( name, imageName )
-             VALUES ( 'Home & Kitchen', 'imHomeKitchen' ),
-                    ( 'Beauty & Personal Care', 'imBeautyPersonalCare'),
-                    ( 'Clothing, Shoes & Jewelry','imClothingShoesJewelry'),
-                    ( 'Electronics', 'imElectronics' ),
-                    ( 'Video Games','imVideoGames'),
-                    ( 'Pet Supplies', 'imPetSupplies'),
-                    ( 'Sports & Outdoors', 'imSportsOutdoors'),
-                    ( 'Books', 'imBooks'),
-                    ( 'Camera & Photography', 'imCameraPhotography');
-             """
-    static var departmentTableSchemaScripts = [dropDepartmentTable, createDepartmentTable]
-    static var departmentTableInsertScript = insertIntoDepartmentTable
-    
-    
     private static var dropCategoryTable = "DROP TABLE IF EXISTS Category;"
     private static var createCategoryTable = """
              CREATE TABLE IF NOT EXISTS Category

@@ -67,7 +67,6 @@ class SQLiteDatabase {
     
     static func createTables(database: OpaquePointer?) {
         let scripts = [ SQLiteTables.userTableSchemaScripts.joined(),
-                        SQLiteTables.departmentTableSchemaScripts.joined(),
                         SQLiteTables.categoryTableSchemaScripts.joined(),
                         SQLiteTables.productTableSchemaScripts.joined(),
                         SQLiteTables.productReviewTableSchemaScripts.joined(),
@@ -83,7 +82,6 @@ class SQLiteDatabase {
     
     static func insertData(database: OpaquePointer?) {
         let scripts = [ SQLiteTables.userTableInsertScript,
-                        SQLiteTables.departmentTableInsertScript,
                         SQLiteTables.categoryTableInsertScript,
                         SQLiteTables.productTableInsertScript,
                         SQLiteTables.productReviewTableInsertScript,

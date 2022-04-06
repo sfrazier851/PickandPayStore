@@ -38,15 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for user in User.getByUsername(username: "gary")! { print(user) }
         
         print("\n=======================")
-        print("  creating Department  ")
-        print("=======================")
-        Department.create(name: "Arts & Crafts", imageName: "imArtsCrafts")
-        for department in Department.getAll()! { print(department) }
-        
-        print("\nget departments by name")
-        for department in Department.getByName(name: "Electronics")! { print(department) }
-        
-        print("\n=======================")
         print("  creating Category  ")
         print("=======================")
         CategoryM.create(name: "Sewing", imageName: "imSewing")

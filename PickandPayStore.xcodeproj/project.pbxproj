@@ -29,7 +29,6 @@
 		7F5D83E227F3B3AE0063ED40 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83E127F3B3AE0063ED40 /* Constants.swift */; };
 		7F5D83E727F3B5210063ED40 /* SQLiteDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83E627F3B5210063ED40 /* SQLiteDAL.swift */; };
 		7F5D83ED27F3B5620063ED40 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D83EC27F3B5620063ED40 /* User.swift */; };
-		7F5D840A27F3F5810063ED40 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D840927F3F5810063ED40 /* Department.swift */; };
 		7F5D840F27F3F8B50063ED40 /* CategoryM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D840E27F3F8B50063ED40 /* CategoryM.swift */; };
 		7F5D841727F3FCF30063ED40 /* ProductM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D841627F3FCF30063ED40 /* ProductM.swift */; };
 		7F5D841F27F400870063ED40 /* Wishlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D841E27F400870063ED40 /* Wishlist.swift */; };
@@ -92,7 +91,6 @@
 		7F5D83E127F3B3AE0063ED40 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F5D83E627F3B5210063ED40 /* SQLiteDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDAL.swift; sourceTree = "<group>"; };
 		7F5D83EC27F3B5620063ED40 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		7F5D840927F3F5810063ED40 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		7F5D840E27F3F8B50063ED40 /* CategoryM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryM.swift; sourceTree = "<group>"; };
 		7F5D841627F3FCF30063ED40 /* ProductM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductM.swift; sourceTree = "<group>"; };
 		7F5D841E27F400870063ED40 /* Wishlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wishlist.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				7F5D83EC27F3B5620063ED40 /* User.swift */,
-				7F5D840927F3F5810063ED40 /* Department.swift */,
 				7F5D840E27F3F8B50063ED40 /* CategoryM.swift */,
 				7F5D841627F3FCF30063ED40 /* ProductM.swift */,
 				7F5D841E27F400870063ED40 /* Wishlist.swift */,
@@ -434,7 +431,6 @@
 				7F5D842E27F40CEE0063ED40 /* OrderItem.swift in Sources */,
 				7F5D840F27F3F8B50063ED40 /* CategoryM.swift in Sources */,
 				7F0A61A727FC6CDB0028B399 /* RegisterViewController.swift in Sources */,
-				7F5D840A27F3F5810063ED40 /* Department.swift in Sources */,
 				7F0A61B127FC73880028B399 /* Utilities.swift in Sources */,
 				7F5D841727F3FCF30063ED40 /* ProductM.swift in Sources */,
 				7F5D842427F406650063ED40 /* ShoppingCart.swift in Sources */,
