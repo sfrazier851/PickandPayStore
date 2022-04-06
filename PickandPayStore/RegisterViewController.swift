@@ -76,8 +76,6 @@ class RegisterViewController: UIViewController {
             // amount to move the view up
             let moveUpDistance = activeTextField!.convert(activeTextField!.bounds, to: self.view).maxY - (self.view.frame.height - keyboardSize.height)
             
-            //print(moveUpDistance)
-            
             // move the root view up by the distance of keyboard height
             self.view.frame.origin.y = 0 - moveUpDistance
         }
@@ -104,7 +102,7 @@ class RegisterViewController: UIViewController {
     }
     
     // Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
-    func validateFields() -> String? {
+    private func validateFields() -> String? {
 
         // Check that username, email, password and confirm password fields are filled in
         if  usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -163,7 +161,7 @@ class RegisterViewController: UIViewController {
         PresenterManager.shared.show(vc: .home)
     }
     
-    func showError(_ message:String) {
+    private func showError(_ message:String) {
 
         errorLabel.text = message
         errorLabel.alpha = 1

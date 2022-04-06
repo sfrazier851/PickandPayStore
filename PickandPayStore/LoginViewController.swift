@@ -76,6 +76,11 @@ class LoginViewController: UIViewController {
         
     }
     
+    @objc func keyboardWillHide(notification: NSNotification) {
+        // move back the root view origin to zero
+        self.view.frame.origin.y = 0
+    }
+    
     private func setupUI() {
         // hide error label
         errorLabel.alpha = 0
@@ -88,14 +93,60 @@ class LoginViewController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
-        // move back the root view origin to zero
-        self.view.frame.origin.y = 0
+    // Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
+    private func validateFields() -> String? {
+        // Check that email and password fields are filled in
+        if  emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+
+            return "Please make sure both fields are filled in."
+        }
+
+        //Check if the email is a valid email
+        let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if Utilities.isValidEmail(email: cleanedEmail) == false {
+            // email isn't proper format
+            return "Please make sure your email is formatted correctly."
+        }
+
+        // Check if the password is secure
+        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if Utilities.isValidPassword(cleanedPassword) == false {
+            // Password isn't secure enough
+            return "Please make sure your password is at least 8 characters and contains a special character."
+        }
+
+        return nil
+
     }
     
+    @IBAction func loginButtonTapped(_ sender: Any) {
+
+        // Clear the error label
+        errorLabel.alpha = 0
+
+        // Validate the fields
+        let error = validateFields()
+
+        if error != nil {
+            // There's something wrong with the fields, show error message
+            showError(error!)
+        } else {
+            // TODO: add login user + validation
+        }
+
+    }
     
     @IBAction func backToHomeButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .home)
+    }
+    
+    private func showError(_ message:String) {
+
+        errorLabel.text = message
+        errorLabel.alpha = 1
     }
     
 }

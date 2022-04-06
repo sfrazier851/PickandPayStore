@@ -176,6 +176,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJB-qb-JnY" userLabel="Login Button">
                                         <rect key="frame" x="40" y="162" width="234" height="30"/>
                                         <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="loginButtonTapped:" destination="Lge-8j-ZwT" eventType="touchUpInside" id="4LO-0n-oY2"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-vP-fXt" userLabel="Error Label">
                                         <rect key="frame" x="138.5" y="212" width="37.5" height="20.5"/>
@@ -216,7 +219,7 @@
                     <connections>
                         <outlet property="backToHomeButton" destination="k0f-u8-O72" id="0mS-W9-FkU"/>
                         <outlet property="emailTextField" destination="zdD-1P-Z8X" id="hRC-HA-yKD"/>
-                        <outlet property="errorLabel" destination="Glt-vP-fXt" id="nhB-qw-26q"/>
+                        <outlet property="errorLabel" destination="Glt-vP-fXt" id="4i9-eK-0Ic"/>
                         <outlet property="loginButton" destination="OJB-qb-JnY" id="Sx7-5V-qMt"/>
                         <outlet property="mobileNumberTextField" destination="KUO-io-n33" id="c9y-hz-Ut3"/>
                         <outlet property="passwordTextField" destination="pqx-Nd-iWu" id="2D6-dd-RyX"/>
