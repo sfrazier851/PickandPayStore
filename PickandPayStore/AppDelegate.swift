@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("\n=======================")
         print("  creating Product  ")
         print("=======================")
-        ProductM.create(departmentID: 10, categoryID: 9, name: "Hand Sewing needles (x25)", price: 0.97, imageName: "imHandSewingNeedles", description: "Set of 25 assorted hand needles. Includes betweens, darners, sharps and embroidery needles.")
+        ProductM.create(categoryID: 9, name: "Hand Sewing needles (x25)", price: 0.97, imageName: "imHandSewingNeedles", description: "Set of 25 assorted hand needles. Includes betweens, darners, sharps and embroidery needles.")
         for product in ProductM.getAll()! { print(product) }
         
         print("\nget product by name")

@@ -80,19 +80,17 @@ class SQLiteTables {
     private static var createProductTable = """
              CREATE TABLE IF NOT EXISTS Product
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-             departmentID INTEGER NOT NULL,
              categoryID INTEGER NOT NULL,
              name TEXT NOT NULL,
              price DECIMAL(10,3) NOT NULL,
              imageName TEXT NOT NULL,
              description TEXT NOT NULL,
-             FOREIGN KEY(departmentID) REFERENCES Department(ID),
              FOREIGN KEY(categoryID) REFERENCES Category(ID));
              """
     private static var insertIntoProductTable = """
-             INSERT INTO Product ( departmentID, categoryID, name, price, imageName, description )
-             VALUES ( 1, 1, 'Microwave', 196.75, 'imMicrowave', "Microwave oven with touch control and stainless steel." ),
-                    ( 2, 2, 'Eyeliner', 12.50, 'imEyeliner', "Gel black and brown lasts for all day with eye liner brush.");
+             INSERT INTO Product ( categoryID, name, price, imageName, description )
+             VALUES ( 1, 'Microwave', 196.75, 'imMicrowave', "Microwave oven with touch control and stainless steel." ),
+                    ( 2, 'Eyeliner', 12.50, 'imEyeliner', "Gel black and brown lasts for all day with eye liner brush.");
              """
     static var productTableSchemaScripts = [dropProductTable, createProductTable]
     static var productTableInsertScript = insertIntoProductTable
