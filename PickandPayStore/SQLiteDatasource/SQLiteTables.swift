@@ -57,21 +57,19 @@ class SQLiteTables {
     private static var createCategoryTable = """
              CREATE TABLE IF NOT EXISTS Category
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-             departmentID INTEGER NOT NULL,
              name TEXT NOT NULL,
-             imageName TEXT NOT NULL,
-             FOREIGN KEY(departmentID) REFERENCES Department(ID));
+             imageName TEXT NOT NULL);
              """
     private static var insertIntoCategoryTable = """
-             INSERT INTO Category ( departmentID, name, imageName)
-             VALUES ( 1, 'Kitchen Appliances', 'imKitchenAppliances'),
-                    ( 1, 'Pots & Pans', 'imPotsPans'),
-                    ( 1, 'Plates & Bowls', 'imPlatesBowls'),
-                    ( 2, 'Makeup', 'imMakeup'),
-                    ( 2, 'Skin Care', 'imSkinCare'),
-                    ( 2, 'Bath & Body', 'imBathBody'),
-                    ( 3, "Women's Fashion", 'imWomenFashion'),
-                    ( 3, "Men's Fashion", 'imMenFashion');
+             INSERT INTO Category ( name, imageName)
+             VALUES ( 'Kitchen Appliances', 'imKitchenAppliances'),
+                    ( 'Pots & Pans', 'imPotsPans'),
+                    ( 'Plates & Bowls', 'imPlatesBowls'),
+                    ( 'Makeup', 'imMakeup'),
+                    ( 'Skin Care', 'imSkinCare'),
+                    ( 'Bath & Body', 'imBathBody'),
+                    ( "Women's Fashion", 'imWomenFashion'),
+                    ( "Men's Fashion", 'imMenFashion');
              """
     static var categoryTableSchemaScripts = [dropCategoryTable, createCategoryTable]
     static var categoryTableInsertScript = insertIntoCategoryTable

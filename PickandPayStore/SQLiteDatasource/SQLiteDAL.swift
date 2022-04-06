@@ -195,20 +195,19 @@ class SQLiteDAL {
         return CategoryM.convert(categoriesResultSet: categoriesResultSet)
     }
     
-    static func createCategory(departmentID: Int, name: String, imageName: String) -> Bool? {
+    static func createCategory(name: String, imageName: String) -> Bool? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil
         }
         var success = true
-        let insertStatementString = "INSERT INTO Category ( departmentID, name, imageName ) VALUES ( ?, ?, ? )"
+        let insertStatementString = "INSERT INTO Category ( name, imageName ) VALUES ( ?, ?, ? )"
         
         var insertStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             
-            sqlite3_bind_int(insertStatement, 1, Int32(departmentID))
-            sqlite3_bind_text(insertStatement, 2, NSString(string: name).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 3, NSString(string: imageName).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 1, NSString(string: name).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 2, NSString(string: imageName).utf8String, -1, nil)
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\nSuccessfully inserted row.")
