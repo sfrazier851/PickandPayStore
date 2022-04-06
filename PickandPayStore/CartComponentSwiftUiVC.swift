@@ -17,7 +17,7 @@ class CartComponentSwiftUiVC: UIViewController {
         super.viewDidLoad()
         
         // Create the UIHostingController variable.
-        let swiftUIView = UIHostingController(rootView: ContentView())
+        let swiftUIView = UIHostingController(rootView: PickCategoryView())
         addChild(swiftUIView)
         swiftUIView.view.frame = theContainer.bounds
         theContainer.addSubview(swiftUIView.view)
