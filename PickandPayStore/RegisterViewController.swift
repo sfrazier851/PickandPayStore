@@ -13,6 +13,8 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var mobileNumberTextField: UITextField!
     
+    @IBOutlet weak var usernameTextField: UITextField!
+    
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
@@ -33,6 +35,7 @@ class RegisterViewController: UIViewController {
         setupUI()
         
         mobileNumberTextField.delegate = self
+        usernameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -91,6 +94,7 @@ class RegisterViewController: UIViewController {
         errorLabel.alpha = 0
         
         Utilities.styleTextField(mobileNumberTextField, placeHolderString: "mobile number")
+        Utilities.styleTextField(usernameTextField, placeHolderString: "username")
         Utilities.styleTextField(emailTextField, placeHolderString: "email")
         Utilities.styleTextField(passwordTextField, placeHolderString: "password")
         Utilities.styleTextField(confirmPasswordTextField, placeHolderString: "confirm password")
@@ -99,8 +103,70 @@ class RegisterViewController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
+    // Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
+    func validateFields() -> String? {
+
+        // Check that username, email, password and confirm password fields are filled in
+        if  usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+
+            return "Please make sure all fields are filled in."
+        }
+
+        //Check if the email is a valid email
+        let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if Utilities.isValidEmail(email: cleanedEmail) == false {
+            // email isn't proper format
+            return "Please make sure your email is formatted correctly."
+        }
+
+        // Check if the password is secure
+        let password = passwordTextField.text! //.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if Utilities.isValidPassword(password) == false {
+            // Password isn't secure enough
+            return "Please make sure your password is at least 8 characters and contains a special character."
+        }
+
+        // Check that password and confirm password matches
+        let confirmPassword = confirmPasswordTextField.text! //.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if password != confirmPassword {
+            return "Passwords don't match. Please try again."
+        }
+
+        return nil
+    }
+    
+    
+    @IBAction func registerButtonTapped(_ sender: Any) {
+        
+        // Clear the error label
+        errorLabel.alpha = 0
+
+        // Validate the fields
+        let error = validateFields()
+
+        if error != nil {
+
+            // There's something wrong with the fields, show error message
+            showError(error!)
+        } else {
+            // TODO: add register user code + additional validation
+        }
+    }
+    
     @IBAction func backToHomeButtonTapped(_ sender: Any) {
         PresenterManager.shared.show(vc: .home)
+    }
+    
+    func showError(_ message:String) {
+
+        errorLabel.text = message
+        errorLabel.alpha = 1
     }
     
 }
