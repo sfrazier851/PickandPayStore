@@ -154,6 +154,7 @@ class LoginViewController: UIViewController {
                     showError("User with email: \(email), doesn't exist.")
                 } else {
                     if userToLogin?[0].password == password {
+                        UserSessionManager.shared.setLoggedInUser(user: userToLogin![0])
                         PresenterManager.shared.show(vc: .home)
                     } else {
                         showError("Incorrect credentials, please try again.")
