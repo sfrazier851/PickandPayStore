@@ -12,7 +12,7 @@ class SQLiteDAL {
     
     // return array of types, for class properties
     // in order of declaration
-    static func getColumnTypes(modelType: Any) -> [String] {
+    private static func getColumnTypes(modelType: Any) -> [String] {
         let mirror = Mirror(reflecting: modelType)
         var columnTypes = [String]()
         
@@ -25,7 +25,7 @@ class SQLiteDAL {
     // Return latest row id.
     // For getting id of most recently
     // created db entity.
-    static func getLatestInsertId() -> Int? {
+    private static func getLatestInsertId() -> Int? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil
         }
@@ -34,7 +34,7 @@ class SQLiteDAL {
     }
     
     // general purpose query (NOTE: QUERY MUST RETURN ALL FIELDS OF TABLE!)
-    static func query(modelType: Any, queryString: String) -> [[String]]? {
+    private static func query(modelType: Any, queryString: String) -> [[String]]? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil
         }
@@ -140,46 +140,6 @@ class SQLiteDAL {
         return success
     }
     
-    // Department DAL (getAllDepartments, getByDepartmentsByName, createDepartment)
-//    static func getAllDepartments() -> [Department]? {
-//        guard let departmentsResultSet = query(modelType: Department.department, queryString: "SELECT * FROM Department;") else {
-//            return nil
-//        }
-//        return Department.convert(departmentsResultSet: departmentsResultSet)
-//    }
-//    
-//    static func getDepartmentsByName(name: String) -> [Department]? {
-//        guard let departmentsResultSet = query(modelType: Department.department, queryString: "SELECT * FROM Department WHERE name = '\(name)';") else {
-//            return nil
-//        }
-//        return Department.convert(departmentsResultSet: departmentsResultSet)
-//    }
-    
-    static func createDepartment(name: String, imageName: String) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
-            return nil
-        }
-        var success = true
-        let insertStatementString = "INSERT INTO Department ( name, imageName ) VALUES ( ?, ? )"
-        
-        var insertStatement: OpaquePointer?
-        
-        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
-            
-            sqlite3_bind_text(insertStatement, 1, NSString(string: name).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 2, NSString(string: imageName).utf8String, -1, nil)
-            
-            if sqlite3_step(insertStatement) == SQLITE_DONE {
-                print("\nSuccessfully inserted row.")
-            } else {
-                print("\n INSERT statement is not prepared.")
-                success = false
-            }
-            sqlite3_finalize(insertStatement)
-        }
-        return success
-    }
-    
     // Category DAL (getAllCategories, getCategoriesByName, createCategory)
     static func getAllCategories() -> [CategoryM]? {
         guard let categoriesResultSet = query(modelType: CategoryM.category, queryString: "SELECT * FROM Category;") else {
@@ -206,7 +166,6 @@ class SQLiteDAL {
         
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             
-            //sqlite3_bind_int(insertStatement, 1, Int32(departmentID))
             sqlite3_bind_text(insertStatement, 1, NSString(string: name).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 2, NSString(string: imageName).utf8String, -1, nil)
             
@@ -254,7 +213,6 @@ class SQLiteDAL {
         
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             
-           // sqlite3_bind_int(insertStatement, 1, Int32(departmentID))
             sqlite3_bind_int(insertStatement, 1, Int32(categoryID))
             sqlite3_bind_text(insertStatement, 2, NSString(string: name).utf8String, -1, nil)
             sqlite3_bind_double(insertStatement, 3, Double(price))
