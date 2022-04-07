@@ -15,7 +15,7 @@ struct PickCategoryView: View {
         
         NavigationView {
             ScrollView{
-                    Text("Pick a Category").bold()
+                    //Text("Pick a Category").bold()
                     VStack{
                         //Text("Pick a Category")
                         ForEach(productsManager.categories, id: \.id){ category in
@@ -28,12 +28,13 @@ struct PickCategoryView: View {
                     }
                     .padding()
                 }
-                .toolbar(content:{
-                    ToolbarItem(placement: .principal, content: {
-                            Text("Millennium Technologies")
-                            .font(.title).fontWeight(.bold)
-                        })
-                })
+//                .toolbar(content:{
+//                    ToolbarItem(placement: .principal, content: {
+//                            Text("Millennium Technologies")
+//                            .font(.title).fontWeight(.bold)
+//                        })
+//                })
+                .navigationTitle(Text("Categories"))
         }
     }
     
