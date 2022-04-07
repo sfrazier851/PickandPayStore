@@ -39,6 +39,12 @@ class RegisterViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
+        
+        mobileNumberTextField.text = "8888888888"
+        usernameTextField.text = "new_user"
+        emailTextField.text = "newuser@gmail.com"
+        passwordTextField.text = "Password!"
+        confirmPasswordTextField.text = "Password!"
     }
     
     override func viewDidAppear(_ animated: Bool) {

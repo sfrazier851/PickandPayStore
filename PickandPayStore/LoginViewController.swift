@@ -33,6 +33,10 @@ class LoginViewController: UIViewController {
         mobileNumberTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        mobileNumberTextField.text = "3242334560"
+        emailTextField.text = "gary@gmail.com"
+        passwordTextField.text = "Gassword!"
     }
     
     override func viewDidAppear(_ animated: Bool) {
