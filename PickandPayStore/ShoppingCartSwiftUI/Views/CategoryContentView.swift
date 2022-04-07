@@ -27,7 +27,7 @@ struct CategoryContentView: View {
         // Here you iterate over the Product list.
         // Need to add HStack so it won't create a new view controler for each product.
         
-        NavigationView {
+       // NavigationView {
             ScrollView{
                 LazyVGrid(columns: columns, spacing: 20){
                     ForEach(productsList, id: \.id)  { product in
@@ -43,7 +43,7 @@ struct CategoryContentView: View {
                     }
                 }
                 .padding()
-            }
+            //}
             .navigationTitle(Text(category.name))
             .toolbar{
                 //Navigate to the CartView

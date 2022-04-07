@@ -14,9 +14,10 @@ struct ProductDetailView: View {
     var product : ProductM
     var body: some View {
       // ScrollView{
+       
            VStack(alignment: .leading){
-               Text(product.name)
-                   .font(.largeTitle)
+              // Text(product.name)
+                   //.font(.largeTitle)
                     HStack(alignment: .top){
                         Image(product.imageName)
                             .resizable()
@@ -30,7 +31,7 @@ struct ProductDetailView: View {
                     }
                     HStack{
                         Button {
-                            if total != 0{
+                            if total != 1{
                                 total -= 1
                             }
                         } label: {
@@ -99,7 +100,7 @@ struct ProductDetailView: View {
                 }.frame(width: 280.0).border(Color.black)
                 
             }
-           
+           .navigationTitle(Text(product.name))
       // }
     }
 }

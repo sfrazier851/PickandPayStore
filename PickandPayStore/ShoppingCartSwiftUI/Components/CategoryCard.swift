@@ -20,9 +20,10 @@ struct CategoryCard: View {
                 
                 Image(category.imageName)
                     .resizable()
+                    .cornerRadius(10)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 150, height: 150)
-                    .cornerRadius(10)
+                    //.cornerRadius(10)
                     .scaledToFit()
                 Spacer()
                 
