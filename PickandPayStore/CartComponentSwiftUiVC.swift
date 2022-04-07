@@ -22,6 +22,9 @@ class CartComponentSwiftUiVC: UIViewController {
         swiftUIView.view.frame = theContainer.bounds
         theContainer.addSubview(swiftUIView.view)
         
+        if UserSessionManager.shared.getLoggedInUser() != nil {
+            print(UserSessionManager.shared.getLoggedInUser()!)
+        }
     }
     
 

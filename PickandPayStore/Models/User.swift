@@ -52,6 +52,10 @@ struct User {
         return SQLiteDAL.getUsersByUsername(username: username)
     }
     
+    static func getNewlyCreated() -> [User]? {
+        return SQLiteDAL.getNewestUser()
+    }
+    
     static func create(username: String, email: String, password: String, phoneNumber: String
     ) -> Bool? {
         return SQLiteDAL.createUser(username: username, email: email, password: password, phoneNumber: phoneNumber)

@@ -155,7 +155,7 @@ class LoginViewController: UIViewController {
                 } else {
                     if userToLogin?[0].password == password {
                         UserSessionManager.shared.setLoggedInUser(user: userToLogin![0])
-                        PresenterManager.shared.show(vc: .home)
+                        PresenterManager.shared.show(vc: .shop)
                     } else {
                         showError("Incorrect credentials, please try again.")
                     }

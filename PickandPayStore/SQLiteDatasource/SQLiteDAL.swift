@@ -112,6 +112,13 @@ class SQLiteDAL {
         return User.convert(usersResultSet: usersResultSet)
     }
     
+    static func getNewestUser() -> [User]? {
+        guard let newUserID = getLatestInsertId() else {
+            return nil
+        }
+        return SQLiteDAL.getUserByID(userID: newUserID)
+    }
+    
     static func createUser(username: String, email: String, password: String, phoneNumber: String) -> Bool? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil

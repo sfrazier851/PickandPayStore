@@ -170,7 +170,8 @@ class RegisterViewController: UIViewController {
                 // user does not already exist
                 // Create the user
                 User.create(username: username, email: email, password: password, phoneNumber: phonenumber)
-                PresenterManager.shared.show(vc: .home)
+                UserSessionManager.shared.setLoggedInUser(user: User.getNewlyCreated()![0])
+                PresenterManager.shared.show(vc: .shop)
             }
             else {
                 // user email already exists

@@ -16,6 +16,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if UserSessionManager.shared.getLoggedInUser() != nil {
+            print(UserSessionManager.shared.getLoggedInUser()!)
+        }
+        
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
