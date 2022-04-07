@@ -29,7 +29,30 @@ class SQLiteTables {
     static var userTableInsertScript = insertIntoUserTable
     
     
-    
+    /*
+    private static var dropDepartmentTable = "DROP TABLE IF EXISTS Department;"
+    private static var createDepartmentTable = """
+             CREATE TABLE IF NOT EXISTS Department
+             (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+             name TEXT NOT NULL,
+             imageName TEXT NOT NULL);
+             """
+    private static var insertIntoDepartmentTable = """
+             INSERT INTO Department ( name, imageName )
+             VALUES ( 'Home & Kitchen', 'imHomeKitchen' ),
+                    ( 'Beauty & Personal Care', 'imBeautyPersonalCare'),
+                    ( 'Clothing, Shoes & Jewelry','imClothingShoesJewelry'),
+                    ( 'Electronics', 'imElectronics' ),
+                    ( 'Video Games','imVideoGames'),
+                    ( 'Pet Supplies', 'imPetSupplies'),
+                    ( 'Sports & Outdoors', 'imSportsOutdoors'),
+                    ( 'Books', 'imBooks'),
+                    ( 'Camera & Photography', 'imCameraPhotography');
+             """
+    static var departmentTableSchemaScripts = [dropDepartmentTable, createDepartmentTable]
+    static var departmentTableInsertScript = insertIntoDepartmentTable
+    */
+   
     private static var dropCategoryTable = "DROP TABLE IF EXISTS Category;"
     private static var createCategoryTable = """
              CREATE TABLE IF NOT EXISTS Category
@@ -39,14 +62,9 @@ class SQLiteTables {
              """
     private static var insertIntoCategoryTable = """
              INSERT INTO Category ( name, imageName)
-             VALUES ( 'Kitchen Appliances', 'imKitchenAppliances'),
-                    ( 'Pots & Pans', 'imPotsPans'),
-                    ( 'Plates & Bowls', 'imPlatesBowls'),
-                    ( 'Makeup', 'imMakeup'),
-                    ( 'Skin Care', 'imSkinCare'),
-                    ( 'Bath & Body', 'imBathBody'),
-                    ( "Women's Fashion", 'imWomenFashion'),
-                    ( "Men's Fashion", 'imMenFashion');
+             VALUES ( 'Spaceships', 'x-wing' ),
+             ( 'Ground', 'speeder' ),
+             ( 'Droids', 'buddy' );
              """
     static var categoryTableSchemaScripts = [dropCategoryTable, createCategoryTable]
     static var categoryTableInsertScript = insertIntoCategoryTable
@@ -61,13 +79,33 @@ class SQLiteTables {
              name TEXT NOT NULL,
              price DECIMAL(10,3) NOT NULL,
              imageName TEXT NOT NULL,
-             description TEXT NOT NULL,
+             description TEXT,
              FOREIGN KEY(categoryID) REFERENCES Category(ID));
              """
+            //description TEXT NOT NULL,
     private static var insertIntoProductTable = """
              INSERT INTO Product ( categoryID, name, price, imageName, description )
-             VALUES ( 1, 'Microwave', 196.75, 'imMicrowave', "Microwave oven with touch control and stainless steel." ),
-                    ( 2, 'Eyeliner', 12.50, 'imEyeliner', "Gel black and brown lasts for all day with eye liner brush.");
+             VALUES ( 1, 'Falcon', 190008, 'falcon', ''),
+             ( 1, 'Ghost', 95000, 'ghost', ''),
+             ( 1, 'SA-Bomber',86500,'sa-bomber', ''),
+             ( 1, 'Striker',299000,'striker', ''),
+             ( 1, 'Star Destroyer', 179400, 'star-destroyer', ''),
+             ( 1, 'X-Wing', 123400, 'x-wing', ''),
+             ( 1, 'Y-Wing', 111876, 'y-wing', ''),
+             ( 2, 'AT-AT', 54005, 'at-at' , ''),
+             ( 2, 'AT-AP', 35000, 'at-ap', ''),
+             ( 2, 'AT-ST',86500,'at-st', ''),
+             ( 2, 'AT-SW', 99000,'at-sw', ''),
+             ( 2, 'AT-TE', 179409, 'at-te', ''),
+             ( 2, 'Speeder', 23345, 'speeder', ''),
+             ( 2, 'Tank', 111110, 'tank', ''),
+             ( 3, 'Bb8', 196.75, 'bb8', '' ),
+             ( 3, 'Buddy', 9000, 'buddy', ''),
+             ( 3, 'C3po',8000,'c3po', ''),
+             ( 3, 'Death Star Droid',29000,'death-star-droid', ''),
+             ( 3, 'Destroyer', 19400, 'destroyer', ''),
+             ( 3, 'K2so', 3400, 'k2so', ''),
+             ( 3, 'R5d4', 1876, 'r5d4', '');
              """
     static var productTableSchemaScripts = [dropProductTable, createProductTable]
     static var productTableInsertScript = insertIntoProductTable

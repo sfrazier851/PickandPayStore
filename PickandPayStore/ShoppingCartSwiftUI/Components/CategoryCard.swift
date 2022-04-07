@@ -11,14 +11,14 @@ struct CategoryCard: View {
     
     @EnvironmentObject var productsManager : ProductsManager
     // A Category variable.
-    var category: Category
+    var category: CategoryM
     
     var body: some View {
       
         ZStack{
             HStack(spacing: 20){
                 
-                Image(category.image)
+                Image(category.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 150, height: 150)
@@ -45,7 +45,7 @@ struct CategoryCard: View {
 
 struct CategoryCard_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryCard(category: Category(name: "spaceships", image: "y-wing"))
+        CategoryCard(category: CategoryM(name: "spaceships", imageName: "y-wing"))
         .environmentObject(ProductsManager())
     }
 }

@@ -19,7 +19,7 @@ struct PickCategoryView: View {
                     VStack{
                         //Text("Pick a Category")
                         ForEach(productsManager.categories, id: \.id){ category in
-                            NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(categoryName: category.name))
+                            NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
                                     .environmentObject(productsManager))
                                 {
                                     CategoryCard(category: category)

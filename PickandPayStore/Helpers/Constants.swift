@@ -19,6 +19,7 @@ struct K {
         static let loginViewController = "LoginViewController"
         static let registerViewController = "RegisterViewController"
         static let homeViewController = "HomeViewController"
+        static let shop = "ShopViewController"
     }
     
 }

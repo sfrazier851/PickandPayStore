@@ -15,8 +15,8 @@ struct CategoryContentView: View {
     @EnvironmentObject var productsManager: ProductsManager
     
     
-    var category: Category
-    var productsList: [Product]
+    var category: CategoryM
+    var productsList: [ProductM]
     
     // Need this variables for the lazy view grid.
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
@@ -65,7 +65,7 @@ struct CategoryContentView: View {
 
 struct CategoryContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryContentView(category:Category(name: "ground", image: "speeder" ),
+        CategoryContentView(category:CategoryM(name: "ground", imageName: "speeder" ),
         productsList: [])
             .environmentObject(ProductsManager())
     }

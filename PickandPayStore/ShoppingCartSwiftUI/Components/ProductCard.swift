@@ -14,13 +14,13 @@ struct ProductCard: View {
     @EnvironmentObject var productsManager: ProductsManager
     
     // It displays a Product object.
-    var product: Product
+    var product: ProductM
     
     var body: some View {
         
         ZStack(alignment: .topTrailing) {
             VStack{
-                Image(product.image)
+                Image(product.imageName)
                     .resizable()
                     .cornerRadius(10)
                     .frame(width: 180)
@@ -75,7 +75,7 @@ struct ProductCard: View {
 struct ProductCard_Previews: PreviewProvider {
     static var previews: some View {
         // You pass the argument that needs to be displayed here.
-        ProductCard(product: Product(name: "bb8", category: "droids", image: "bb8", price: 19000))
+        ProductCard(product: ProductM(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
             .environmentObject(CartManager())
     }
 }

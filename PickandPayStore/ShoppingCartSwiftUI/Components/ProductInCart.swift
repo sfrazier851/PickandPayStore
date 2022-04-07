@@ -12,11 +12,11 @@ struct ProductInCart: View {
     @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var productsManager: ProductsManager
 
-    var product: Product
+    var product: ProductM
     
     var body: some View {
         HStack(spacing: 20){
-            Image(product.image)
+            Image(product.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 80)
@@ -47,7 +47,7 @@ struct ProductInCart: View {
 struct ProductInCart_Previews: PreviewProvider {
     
     static var previews: some View {
-        ProductInCart(product: Product(name: "bb8", category: "droids", image: "bb8", price: 19000))
+        ProductInCart(product: ProductM(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
             .environmentObject(CartManager())
             .environmentObject(ProductsManager())
     }

@@ -21,6 +21,6 @@ class LoadingViewController: UIViewController {
     }
     
     private func showInitialView() {
-        PresenterManager.shared.show(vc: .home)
+        PresenterManager.shared.show(vc: .shop)
     }
 }

@@ -17,6 +17,7 @@ class PresenterManager {
         case login
         case register
         case home
+        case shop
     }
     
     func show(vc: VC) {
@@ -33,6 +34,8 @@ class PresenterManager {
         
         case .home:
             viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.homeViewController)
+        case .shop:
+            viewController = UIStoryboard(name: K.StoryboardID.main, bundle: nil).instantiateViewController(identifier: K.StoryboardID.shop)
         
         }
         
