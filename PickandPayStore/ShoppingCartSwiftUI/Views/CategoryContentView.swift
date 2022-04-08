@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct CategoryContentView: View {
+    
+    @State var searchText = ""
+    @State var searching = false
+    @State var pastSearches = [String]()
     
     // Instance of CartManager and ProductsManager so you can access its functions and //properties.
     // Added cartManager to ProductCart and CartView.
@@ -27,10 +32,14 @@ struct CategoryContentView: View {
         // Here you iterate over the Product list.
         // Need to add HStack so it won't create a new view controler for each product.
         
-       // NavigationView {
+       
+        SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
             ScrollView{
+                
                 LazyVGrid(columns: columns, spacing: 20){
-                    ForEach(productsList, id: \.id)  { product in
+                    ForEach(productsList.filter({ (product: ProductM) -> Bool in
+                        return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
+                    }), id: \.id)  { product in
                         NavigationLink(destination: ProductDetailView(product: product)
                                         .environmentObject(cartManager)
                                         .environmentObject(productsManager))
@@ -43,9 +52,19 @@ struct CategoryContentView: View {
                     }
                 }
                 .padding()
-            //}
+            
+               
             .navigationTitle(Text(category.name))
             .toolbar{
+                if searching{
+                    Button("Cancel Search"){
+                        searchText = ""
+                        withAnimation{
+                            searching = false
+                            UIApplication.shared.dismissKeyboard()
+                        }
+                    }
+                }
                 //Navigate to the CartView
                 NavigationLink {
                     // This is the destination.
@@ -66,7 +85,7 @@ struct CategoryContentView: View {
 struct CategoryContentView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryContentView(category:CategoryM(name: "ground", imageName: "speeder" ),
-        productsList: [])
+                            productsList: ProductsManager().getProductsOfCategory(category: 1))
             .environmentObject(ProductsManager())
     }
 }
