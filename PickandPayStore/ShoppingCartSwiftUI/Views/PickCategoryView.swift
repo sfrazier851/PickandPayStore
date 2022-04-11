@@ -40,7 +40,7 @@ struct PickCategoryView: View {
 //                        }
                         //Text("Pick a Category")
                         ForEach(productsManager.categories.filter({ (category: CategoryM) -> Bool in
-                            return category.name.lowercased().hasPrefix(searchText) || searchText == ""
+                            return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                         }), id: \.id){ category in
                             NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
                                     .environmentObject(productsManager))
