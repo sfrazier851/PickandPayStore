@@ -10,6 +10,7 @@ import MapKit
 
 struct PickCategoryView: View {
     
+    //State variables for searchbar
     @State var searchText = ""
     @State var searching = false
     @State var pastSearches = [String]()
@@ -23,22 +24,11 @@ struct PickCategoryView: View {
                 
                 ScrollView{
                 
-                    //Text("Pick a Category").bold()
+                    
                     VStack{
+                        //Create search bar at top of Vstack
                         SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
 
-//                        if searching{
-//                            List{
-//                               // Section{
-//                                Text("Words")
-//                                ForEach(pastSearches, id: \.self){ text in
-//                                    Text(text)
-//
-//                                }
-//                                }
-//                            //}.frame(width: 280.0).border(Color.black)
-//                        }
-                        //Text("Pick a Category")
                         ForEach(productsManager.categories.filter({ (category: CategoryM) -> Bool in
                             return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                         }), id: \.id){ category in
@@ -64,19 +54,6 @@ struct PickCategoryView: View {
                     }
                 .navigationTitle(Text("Categories"))
                 }
-                
-//                if searching{
-//                    List{
-//                        
-//                        ForEach(pastSearches, id: \.self){ text in
-//                            Text(text).onTapGesture{
-//                                searchText = text
-//                                
-//                            }
-//
-//                        }
-//                    }.frame(height: 100*CGFloat(pastSearches.count)).padding(.top, 0)
-//                }
                 
             }
     }

@@ -10,6 +10,7 @@ import MapKit
 
 struct CategoryContentView: View {
     
+    //State variables for searchbar
     @State var searchText = ""
     @State var searching = false
     @State var pastSearches = [String]()
@@ -28,18 +29,20 @@ struct CategoryContentView: View {
     
     var body: some View {
         
-        
-        // Here you iterate over the Product list.
-        // Need to add HStack so it won't create a new view controler for each product.
-        
-       
+       //Create SearchBar outside of scrollview so it always shows on top
         SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
+        
             ScrollView{
                 
+                // Here you iterate over the Product list.
                 LazyVGrid(columns: columns, spacing: 20){
+                    
+                    //Filter list based on text in search bar
                     ForEach(productsList.filter({ (product: ProductM) -> Bool in
                         return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                     }), id: \.id)  { product in
+                        
+                        //Add a navigation link to each product card
                         NavigationLink(destination: ProductDetailView(product: product)
                                         .environmentObject(cartManager)
                                         .environmentObject(productsManager))
@@ -55,6 +58,8 @@ struct CategoryContentView: View {
             
                
             .navigationTitle(Text(category.name))
+                
+            //If using the search bar, add a cancel search button
             .toolbar{
                 if searching{
                     Button("Cancel Search"){
