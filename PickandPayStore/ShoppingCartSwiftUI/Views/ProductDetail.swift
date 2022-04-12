@@ -11,34 +11,38 @@ struct ProductDetailView: View {
     @Environment(\.defaultMinListRowHeight) var minRowheight
     @EnvironmentObject var cartManager: CartManager
     @State var total : Int = 1
+    @State var goNext: Int?
+    @Binding var udWishlist: [String:Int]
     var product : ProductM
     var body: some View {
       // ScrollView{
        
-           VStack(alignment: .leading){
-              // Text(product.name)
-                   //.font(.largeTitle)
-                    HStack(alignment: .top){
-                        Image(product.imageName)
+        
+        
+        VStack(){
+            Text(product.name)
+                .font(.largeTitle.bold())
+                .frame(width: 320, alignment: .leading)
+            Text("$\(product.price, specifier: "%.2f")")
+                .frame(width: 320, alignment: .leading)
+            
+            Image(product.imageName)
                             .resizable()
-                            .frame(width: 280, height: 280)
-                        VStack(alignment: .leading){
-                            
-                            Text("$\(product.price, specifier: "%.2f")")
-                           
-                        }
-                        
+                            .cornerRadius(10)
+                            .frame(width: 320)
+                            .scaledToFit()
+                     
+            HStack(){
+                
+                Button {
+                    if total != 1{
+                        total -= 1
                     }
-                    HStack{
-                        Button {
-                            if total != 1{
-                                total -= 1
-                            }
-                        } label: {
-                            Image(systemName: "minus")
-                                .foregroundColor(.black)
+                    } label: {
+                        Image(systemName: "minus")
+                            .foregroundColor(.black)
                                 //available only in IOS 15 .background(.black)
-                                .frame(width: 30, height: 30)
+                            .frame(width: 30, height: 30)
                         }
                         .background(Color.gray)
                         .cornerRadius(5)
@@ -59,30 +63,37 @@ struct ProductDetailView: View {
                         }
                         .background(Color.gray)
                         .cornerRadius(5)
-                    }
-                    .padding(.leading, 90.0)
+                    Spacer()
+            }.padding(.leading, 160)
+                    
                 Button{
                     cartManager.addToCart(product: product, count: total)
                 }label: {
                     Text("Add To Cart")
-                        .frame(width: 280, height: 20, alignment: .center)
+                        .frame(width: 320, height: 20, alignment: .center)
                         .foregroundColor(.black)
                 }
                 .background(Color.gray)
                 .cornerRadius(5)
+            
                 Button{
-                    
-                }label: {
+                       udWishlist[product.name] = 1
+                    print(udWishlist)
+                        
+                    UserDefaults.standard.set(udWishlist, forKey: "Wishlist")
+                    self.goNext = 1
+                }
+                label: {
                     Text("Add To Wishlist")
-                        .frame(width: 280, height: 20, alignment: .center)
+                        .frame(width: 320, height: 20, alignment: .center)
                         .foregroundColor(.black)
                 }
-                .background(Color.gray)
-                .cornerRadius(5)
-                //Text("Reviews")
-                   // .font(.largeTitle)
-                    //.padding(.leading, 80)
-                    
+                        .background(Color.gray)
+                        .cornerRadius(5)
+        
+        NavigationLink(destination: WishlistView(udWishlist: $udWishlist), tag: 1, selection: $goNext, label:{EmptyView()})
+                
+                
                 List{
                     Section{
                     let p = SQLiteDAL.getReviewsByProductID(productID: product.id)
@@ -97,17 +108,25 @@ struct ProductDetailView: View {
                         Text("Reviews")
                     }
                     
-                }.frame(width: 280.0).border(Color.black)
-                
-            }
-           .navigationTitle(Text(product.name))
-      // }
+                }.frame(width: 320.0).border(Color.black)
+               Button{
+                   
+               }label: {
+                   Text("Add A Review")
+                       .frame(width: 320, height: 20, alignment: .center)
+                       .foregroundColor(.black)
+               }
+               .background(Color.gray)
+               .cornerRadius(5)
+             Spacer()
+        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+           
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailView(product: ProductM(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
-            .environmentObject(CartManager())
-    }
-}
+//struct SwiftUIView_Previews: PreviewProvider {
+ //   static var previews: some View {
+       // ProductDetailView(product: ProductM(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
+           // .environmentObject(CartManager())
+ //   }
+//}

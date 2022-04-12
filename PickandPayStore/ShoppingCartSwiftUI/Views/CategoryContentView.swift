@@ -10,6 +10,8 @@ import MapKit
 
 struct CategoryContentView: View {
     
+    @State var udWishlist: [String:Int] = UserDefaults.standard.object(forKey: "Wishlist") as? [String:Int] ?? [:]
+    
     //State variables for searchbar
     @State var searchText = ""
     @State var searching = false
@@ -43,7 +45,7 @@ struct CategoryContentView: View {
                     }), id: \.id)  { product in
                         
                         //Add a navigation link to each product card
-                        NavigationLink(destination: ProductDetailView(product: product)
+                        NavigationLink(destination: ProductDetailView(udWishlist: $udWishlist, product: product)
                                         .environmentObject(cartManager)
                                         .environmentObject(productsManager))
                         {
