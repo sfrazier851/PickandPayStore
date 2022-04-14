@@ -11,10 +11,12 @@ import SQLite3
 class PurchaseOrderDAL: SQLiteDAL {
     
     private let purchaseorder = PurchaseOrder()
+    private let db: OpaquePointer?
     private let convert: (_ purchaseOrderResultSet: [[String]]) -> [PurchaseOrder]?
     
     init(db: OpaquePointer?, convert: @escaping (_ purchaseOrderResultSet: [[String]]) -> [PurchaseOrder]?) {
         self.convert = convert
+        self.db = db
         super.init(db: db)
     }
     
@@ -41,7 +43,7 @@ class PurchaseOrderDAL: SQLiteDAL {
     }
     
     func createPurchaseOrder(userID: Int, paymentType: String) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = self.db else {
             return nil
         }
         var success = true

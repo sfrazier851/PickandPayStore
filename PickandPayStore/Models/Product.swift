@@ -15,12 +15,13 @@ struct Product {
     var imageName: String = ""
     var description: String = ""
     
-    static let productDAL = { () -> ProductDAL? in
+    private static let productDAL = { () -> ProductDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return ProductDAL(db: db, convert: convert)
         }
         return nil
     }()
+    
     // Convert query result set to Array of Product
     static func convert(productsResultSet: [[String]]) -> [Product]? {
         var products = [Product]()

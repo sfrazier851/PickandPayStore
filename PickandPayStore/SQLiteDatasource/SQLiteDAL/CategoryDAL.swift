@@ -11,10 +11,12 @@ import SQLite3
 class CategoryDAL: SQLiteDAL {
         
     private let category = Category()
+    private let db: OpaquePointer?
     private let convert: (_ categoryResultSet: [[String]]) -> [Category]?
     
     init(db: OpaquePointer?, convert: @escaping (_ categoryResultSet: [[String]]) -> [Category]?) {
         self.convert = convert
+        self.db = db
         super.init(db: db)
     }
     
@@ -34,7 +36,7 @@ class CategoryDAL: SQLiteDAL {
     }
     
     func createCategory(name: String, imageName: String) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = self.db else {
             return nil
         }
         var success = true

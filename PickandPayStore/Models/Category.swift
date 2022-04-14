@@ -12,7 +12,7 @@ struct Category {
     var name: String = ""
     var imageName: String = ""
         
-    static let categoryDAL = { () -> CategoryDAL? in
+    private static let categoryDAL = { () -> CategoryDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return CategoryDAL(db: db, convert: convert)
         }

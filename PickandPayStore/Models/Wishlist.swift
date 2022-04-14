@@ -13,7 +13,7 @@ struct Wishlist {
     var productID: Int = 0
     var date_added: String = ""
     
-    static let wishlistDAL = { () -> WishlistDAL? in
+    private static let wishlistDAL = { () -> WishlistDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return WishlistDAL(db: db, convert: convert)
         }

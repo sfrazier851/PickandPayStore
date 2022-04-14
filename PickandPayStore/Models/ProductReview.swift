@@ -13,7 +13,7 @@ struct ProductReview {
     var productID: Int = 0
     var review: String = ""
     
-    static let productReviewDAL = { () -> ProductReviewDAL? in
+    private static let productReviewDAL = { () -> ProductReviewDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return ProductReviewDAL(db: db, convert: convert)
         }

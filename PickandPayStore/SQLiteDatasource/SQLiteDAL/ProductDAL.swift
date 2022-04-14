@@ -11,10 +11,12 @@ import SQLite3
 class ProductDAL: SQLiteDAL {
         
     private let product = Product()
+    private let db: OpaquePointer?
     private let convert: (_ productsResultSet: [[String]]) -> [Product]?
     
     init(db: OpaquePointer?, convert: @escaping (_ productsResultSet: [[String]]) -> [Product]?) {
         self.convert = convert
+        self.db = db
         super.init(db: db)
     }
 
@@ -41,7 +43,7 @@ class ProductDAL: SQLiteDAL {
     }
 
     func createProduct(categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = self.db else {
             return nil
         }
         var success = true

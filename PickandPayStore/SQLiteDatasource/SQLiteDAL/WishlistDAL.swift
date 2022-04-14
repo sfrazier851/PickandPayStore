@@ -11,10 +11,12 @@ import SQLite3
 class WishlistDAL: SQLiteDAL {
         
     private let wishlist = Wishlist()
+    private let db: OpaquePointer?
     private let convert: (_ wishlistResultSet: [[String]]) -> [Wishlist]?
     
     init(db: OpaquePointer?, convert: @escaping (_ wishlistResultSet: [[String]]) -> [Wishlist]?) {
         self.convert = convert
+        self.db = db
         super.init(db: db)
     }
 
@@ -34,7 +36,7 @@ class WishlistDAL: SQLiteDAL {
     }
     
     func createWishlistProduct(userID: Int, productID: Int) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = self.db else {
             return nil
         }
         var success = true

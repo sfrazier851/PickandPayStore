@@ -20,8 +20,8 @@ struct CategoryContentView: View {
     @EnvironmentObject var productsManager: ProductsManager
     
     
-    var category: CategoryM
-    var productsList: [ProductM]
+    var category: Category
+    var productsList: [Product]
     
     // Need this variables for the lazy view grid.
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
@@ -37,7 +37,7 @@ struct CategoryContentView: View {
             ScrollView{
                 
                 LazyVGrid(columns: columns, spacing: 20){
-                    ForEach(productsList.filter({ (product: ProductM) -> Bool in
+                    ForEach(productsList.filter({ (product: Product) -> Bool in
                         return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                     }), id: \.id)  { product in
                         NavigationLink(destination: ProductDetailView(product: product)
@@ -84,7 +84,7 @@ struct CategoryContentView: View {
 
 struct CategoryContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryContentView(category:CategoryM(name: "ground", imageName: "speeder" ),
+        CategoryContentView(category:Category(name: "ground", imageName: "speeder" ),
                             productsList: ProductsManager().getProductsOfCategory(category: 1))
             .environmentObject(ProductsManager())
     }

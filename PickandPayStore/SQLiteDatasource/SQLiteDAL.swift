@@ -10,10 +10,10 @@ import SQLite3
 
 class SQLiteDAL {
     
-    private let db: OpaquePointer?
+    private static var db: OpaquePointer?
     
     init(db: OpaquePointer?) {
-        self.db = db
+        SQLiteDAL.db = db
     }
     
     // return array of types, for class properties
@@ -32,7 +32,7 @@ class SQLiteDAL {
     // For getting id of most recently
     // created db entity.
     static func protectedGetLatestInsertId() -> Int? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = db else {
             return nil
         }
         let lastRowId = sqlite3_last_insert_rowid(db)
@@ -41,7 +41,7 @@ class SQLiteDAL {
     
     // general purpose query (NOTE: QUERY MUST RETURN ALL FIELDS OF TABLE!)
     static func protectedQuery(modelType: Any, queryString: String) -> [[String]]? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = db else {
             return nil
         }
         

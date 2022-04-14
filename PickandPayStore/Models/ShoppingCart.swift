@@ -13,7 +13,7 @@ struct ShoppingCart {
     var productID: Int = 0
     var date_added: String = ""
     
-    static let shoppingCartDAL = { () -> ShoppingCartDAL? in
+    private static let shoppingCartDAL = { () -> ShoppingCartDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return ShoppingCartDAL(db: db, convert: convert)
         }

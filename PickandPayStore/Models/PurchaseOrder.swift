@@ -13,7 +13,7 @@ struct PurchaseOrder {
     var paymentType: String = ""
     var date_purchased: String = ""
     
-    static let purchaseOrderDAL = { () -> PurchaseOrderDAL? in
+    private static let purchaseOrderDAL = { () -> PurchaseOrderDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return PurchaseOrderDAL(db: db, convert: convert)
         }

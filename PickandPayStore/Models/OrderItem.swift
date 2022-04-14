@@ -13,7 +13,7 @@ struct OrderItem {
     var productID: Int = 0
     var purchasePrice: Float = 0.0
     
-    static let orderItemDAL = { () -> OrderItemDAL? in
+    private static let orderItemDAL = { () -> OrderItemDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return OrderItemDAL(db: db, convert: convert)
         }

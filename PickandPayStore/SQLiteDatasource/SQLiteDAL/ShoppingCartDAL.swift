@@ -11,10 +11,12 @@ import SQLite3
 class ShoppingCartDAL: SQLiteDAL {
         
     private let shoppingcart = ShoppingCart()
+    private let db: OpaquePointer?
     private let convert: (_ shoppingCartResultSet: [[String]]) -> [ShoppingCart]?
     
     init(db: OpaquePointer?, convert: @escaping (_ shoppingCartResultSet: [[String]]) -> [ShoppingCart]?) {
         self.convert = convert
+        self.db = db
         super.init(db: db)
     }
 
@@ -34,7 +36,7 @@ class ShoppingCartDAL: SQLiteDAL {
     }
     
     func createShoppingCartProduct(userID: Int, productID: Int) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = self.db else {
             return nil
         }
         var success = true

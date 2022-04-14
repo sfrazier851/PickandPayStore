@@ -15,7 +15,7 @@ struct User {
     var phoneNumber: String = ""
     var balance: Float = 0.0
     
-    static let userDAL = { () -> UserDAL? in
+    private static let userDAL = { () -> UserDAL? in
         if let db = SQLiteDatabase.getDatabase() {
             return UserDAL(db: db, convert: convert)
         }

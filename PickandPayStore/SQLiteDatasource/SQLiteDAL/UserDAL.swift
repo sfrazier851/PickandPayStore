@@ -11,10 +11,12 @@ import SQLite3
 class UserDAL: SQLiteDAL {
         
     private let user = User()
+    private let db: OpaquePointer?
     private let convert: (_ usersResultSet: [[String]]) -> [User]?
     
     init(db: OpaquePointer?, convert: @escaping (_ usersResultSet: [[String]]) -> [User]?) {
         self.convert = convert
+        self.db = db
         super.init(db: db)
     }
     
@@ -48,7 +50,7 @@ class UserDAL: SQLiteDAL {
     }
     
     func createUser(username: String, email: String, password: String, phoneNumber: String) -> User? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = self.db else {
             return nil
         }
         let insertStatementString = "INSERT INTO User ( username, email, password, phone_number, balance ) VALUES ( ?, ?, ?, ?, ? )"

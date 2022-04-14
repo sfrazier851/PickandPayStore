@@ -11,10 +11,12 @@ import SQLite3
 class ProductReviewDAL: SQLiteDAL {
         
     private let productreview = ProductReview()
+    private let db: OpaquePointer?
     private let convert: (_ productReviewResultSet: [[String]]) -> [ProductReview]?
     
     init(db: OpaquePointer?, convert: @escaping (_ productReviewResultSet: [[String]]) -> [ProductReview]?) {
         self.convert = convert
+        self.db = db
         super.init(db: db)
     }
 
@@ -34,7 +36,7 @@ class ProductReviewDAL: SQLiteDAL {
     }
 
     func createProductReview(userID: Int, productID: Int, review: String) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
+        guard let db = self.db else {
             return nil
         }
         var success = true

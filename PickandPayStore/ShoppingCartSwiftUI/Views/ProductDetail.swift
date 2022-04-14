@@ -11,7 +11,7 @@ struct ProductDetailView: View {
     @Environment(\.defaultMinListRowHeight) var minRowheight
     @EnvironmentObject var cartManager: CartManager
     @State var total : Int = 1
-    var product : ProductM
+    var product : Product
     var body: some View {
       // ScrollView{
        
