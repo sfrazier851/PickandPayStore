@@ -42,20 +42,29 @@ struct PickCategoryView: View {
                     .padding()
                 }
                     .toolbar{
-                        if searching{
-                            Button("Cancel Search"){
-                                searchText = ""
-                                withAnimation{
-                                    searching = false
-                                    UIApplication.shared.dismissKeyboard()
+                        ToolbarItem {
+                            if searching {
+                                Button("Cancel Search"){
+                                    searchText = ""
+                                    withAnimation{
+                                        searching = false
+                                        UIApplication.shared.dismissKeyboard()
+                                    }
                                 }
+                                .foregroundColor(.black)
+                                .padding()
                             }
+                            
+                        }
+                        ToolbarItem(placement: .navigationBarLeading){
+                            
+                            MenuButton()
                         }
                     }
-                .navigationTitle(Text("Categories"))
+                    .navigationTitle(Text("Categories"))
                 }
                 
-            }
+        }
     }
         
 }
