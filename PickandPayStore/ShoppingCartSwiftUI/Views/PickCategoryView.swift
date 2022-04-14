@@ -16,7 +16,7 @@ struct PickCategoryView: View {
     @State var pastSearches = [String]()
     
     // State variable for site menu.
-    @State var showMenu = false
+    @State var showMenu = true
     
     // Observable objects.
     @StateObject var cartManager: CartManager = CartManager()
@@ -26,58 +26,66 @@ struct PickCategoryView: View {
         
         NavigationView {
             ZStack{
-                Color(.green)
-            ScrollView{
-                    VStack{
-                        //Create search bar at top of Vstack
-                        SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
+                
+                if showMenu {
+                    SideMenuView(isShowing: $showMenu)
+                }
+                ScrollView{
+                    ZStack {
+                        Color(.green)
+                        VStack{
+                                //Create search bar at top of Vstack
+                                SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
 
-                        ForEach(productsManager.categories.filter({ (category: CategoryM) -> Bool in
-                            return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
-                        }), id: \.id){ category in
-                            NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
-                                    .environmentObject(productsManager)
-                                    .environmentObject(cartManager))
-                                {
-                                    CategoryCard(category: category)
-                                        .environmentObject(productsManager)
-                            }
-                    }
-                    .padding()
-                }
-                    .toolbar{
-                        ToolbarItem {
-                            if searching {
-                                Button("Cancel Search"){
-                                    searchText = ""
-                                    withAnimation{
-                                        searching = false
-                                        UIApplication.shared.dismissKeyboard()
+                                ForEach(productsManager.categories.filter({ (category: CategoryM) -> Bool in
+                                    return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
+                                }), id: \.id){ category in
+                                    NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
+                                            .environmentObject(productsManager)
+                                            .environmentObject(cartManager))
+                                        {
+                                            CategoryCard(category: category)
+                                                .environmentObject(productsManager)
                                     }
+                            }
+                            .padding()
+                        }
+                            .toolbar{
+                                ToolbarItem {
+                                    if searching {
+                                        Button("Cancel Search"){
+                                            searchText = ""
+                                            withAnimation{
+                                                searching = false
+                                                UIApplication.shared.dismissKeyboard()
+                                            }
+                                        }
+                                        .foregroundColor(.black)
+                                        .padding()
+                                    }
+                                    
+                                    //Navigate to the CartView
+                                    NavigationLink {
+                                        // This is the destination.
+                                        CartView()
+                                            .environmentObject(cartManager)
+                                    } label: {
+                                        //On CartButton click go to CartView.
+                                        CartButton(numberOfProducts: cartManager.products.count)
+                                    }
+                                    
                                 }
-                                .foregroundColor(.black)
-                                .padding()
+                                ToolbarItem(placement: .navigationBarLeading){
+                                    
+                                    MenuButton()
+                                }
                             }
-                            
-                            //Navigate to the CartView
-                            NavigationLink {
-                                // This is the destination.
-                                CartView()
-                                    .environmentObject(cartManager)
-                            } label: {
-                                //On CartButton click go to CartView.
-                                CartButton(numberOfProducts: cartManager.products.count)
-                            }
-                            
-                        }
-                        ToolbarItem(placement: .navigationBarLeading){
-                            
-                            MenuButton()
-                        }
+                        .navigationTitle(Text("Categories"))
                     }
-                    .navigationTitle(Text("Categories"))
+                    }
+                    .offset(x: showMenu ? 200 : 0, y: 0)
                 }
-            }
+            
             
             
         }
