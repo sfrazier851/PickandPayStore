@@ -10,6 +10,12 @@ import SQLite3
 
 class SQLiteDAL {
     
+    private let db: OpaquePointer?
+    
+    init(db: OpaquePointer?) {
+        self.db = db
+    }
+    
     // return array of types, for class properties
     // in order of declaration
     private static func getColumnTypes(modelType: Any) -> [String] {
@@ -25,7 +31,7 @@ class SQLiteDAL {
     // Return latest row id.
     // For getting id of most recently
     // created db entity.
-    private static func getLatestInsertId() -> Int? {
+    static func protectedGetLatestInsertId() -> Int? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil
         }
@@ -34,7 +40,7 @@ class SQLiteDAL {
     }
     
     // general purpose query (NOTE: QUERY MUST RETURN ALL FIELDS OF TABLE!)
-    private static func query(modelType: Any, queryString: String) -> [[String]]? {
+    static func protectedQuery(modelType: Any, queryString: String) -> [[String]]? {
         guard let db = SQLiteDatabase.getDatabase() else {
             return nil
         }
@@ -83,73 +89,9 @@ class SQLiteDAL {
         return rowsArr
     }
     
-    // User DAL (getAllUsers, getUsersByEmail, createUser)
-    static func getAllUsers() -> [User]? {
-        guard let usersResultSet = query(modelType: User.user, queryString: "SELECT * FROM User;") else {
-            return nil
-        }
-        return User.convert(usersResultSet: usersResultSet)
-    }
-    
-    static func getUserByID(userID: Int) -> [User]? {
-        guard let usersResultSet = query(modelType: User.user, queryString: "SELECT * FROM User WHERE ID = '\(userID)';") else {
-            return nil
-        }
-        return User.convert(usersResultSet: usersResultSet)
-    }
-    
-    static func getUsersByEmail(email: String) -> [User]? {
-        guard let usersResultSet = query(modelType: User.user, queryString: "SELECT * FROM User WHERE email = '\(email)';") else {
-            return nil
-        }
-        return User.convert(usersResultSet: usersResultSet)
-    }
-    
-    static func getUsersByUsername(username: String) -> [User]? {
-        guard let usersResultSet = query(modelType: User.user, queryString: "SELECT * FROM User WHERE username = '\(username)';") else {
-            return nil
-        }
-        return User.convert(usersResultSet: usersResultSet)
-    }
-    
-    static func getNewestUser() -> [User]? {
-        guard let newUserID = getLatestInsertId() else {
-            return nil
-        }
-        return SQLiteDAL.getUserByID(userID: newUserID)
-    }
-    
-    static func createUser(username: String, email: String, password: String, phoneNumber: String) -> Bool? {
-        guard let db = SQLiteDatabase.getDatabase() else {
-            return nil
-        }
-        var success = true
-        let insertStatementString = "INSERT INTO User ( username, email, password, phone_number, balance ) VALUES ( ?, ?, ?, ?, ? )"
-        
-        var insertStatement: OpaquePointer?
-        
-        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
-            
-            sqlite3_bind_text(insertStatement, 1, NSString(string: username).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 2, NSString(string: email).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 3, NSString(string: password).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 4, NSString(string: phoneNumber).utf8String, -1, nil)
-            sqlite3_bind_double(insertStatement, 5, Double(0.0))
-            
-            if sqlite3_step(insertStatement) == SQLITE_DONE {
-                print("\nSuccessfully inserted row.")
-            } else {
-                print("\nINSERT statement is not prepared.")
-                success = false
-            }
-            sqlite3_finalize(insertStatement)
-        }
-        return success
-    }
-    
     // Category DAL (getAllCategories, getCategoriesByName, createCategory)
     static func getAllCategories() -> [CategoryM]? {
-        guard let categoriesResultSet = query(modelType: CategoryM.category, queryString: "SELECT * FROM Category;") else {
+        guard let categoriesResultSet = SQLiteDAL.query(modelType: CategoryM.category, queryString: "SELECT * FROM Category;") else {
             return nil
         }
         return CategoryM.convert(categoriesResultSet: categoriesResultSet)
@@ -445,5 +387,4 @@ class SQLiteDAL {
         }
         return success
     }
-
 }

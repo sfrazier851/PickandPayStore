@@ -13,7 +13,10 @@ class SQLiteDatabase {
     private static let sharedInstance = SQLiteDatabase(testing: false)
     private var database: OpaquePointer?
     static func getDatabase() -> OpaquePointer? {
-        return sharedInstance.database
+        guard let db = sharedInstance.database else {
+            return nil
+        }
+        return db
     }
     
     // testing database instance

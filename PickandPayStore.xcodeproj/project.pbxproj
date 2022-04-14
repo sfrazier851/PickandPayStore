@@ -38,6 +38,8 @@
 		7F5D842927F4090B0063ED40 /* PurchaseOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D842827F4090B0063ED40 /* PurchaseOrder.swift */; };
 		7F5D842E27F40CEE0063ED40 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D842D27F40CEE0063ED40 /* OrderItem.swift */; };
 		7FCA678927FF8F2D00DB46ED /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA678827FF8F2D00DB46ED /* SessionManager.swift */; };
+		7FCA67982802B55400DB46ED /* SQLiteDbUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA67972802B55400DB46ED /* SQLiteDbUserTests.swift */; };
+		7FCA67AF2808868B00DB46ED /* UserDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA67AE2808868B00DB46ED /* UserDAL.swift */; };
 		84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84699DCF27FA899B00AE497D /* ProductDetail.swift */; };
 		84E250AA27FDFE8900EA997A /* CategoryContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4B27FC914000AC8DD2 /* CategoryContentView.swift */; };
 		84E250AB27FDFE8B00EA997A /* PickCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4927FC7C7E00AC8DD2 /* PickCategoryView.swift */; };
@@ -108,6 +110,8 @@
 		7F5D842827F4090B0063ED40 /* PurchaseOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseOrder.swift; sourceTree = "<group>"; };
 		7F5D842D27F40CEE0063ED40 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7FCA678827FF8F2D00DB46ED /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		7FCA67972802B55400DB46ED /* SQLiteDbUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDbUserTests.swift; sourceTree = "<group>"; };
+		7FCA67AE2808868B00DB46ED /* UserDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAL.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		84E250AD27FFAD3300EA997A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		AC16E9A927F62F980037743F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -197,8 +201,8 @@
 		45355FC127F3A2FD00ABFDC8 /* PickandPayStoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				7FCA67962802B51200DB46ED /* SQLiteDbTests */,
 				45355FC227F3A2FD00ABFDC8 /* PickandPayStoreTests.swift */,
-				7F0A614127F80A970028B399 /* SQLiteDbTests.swift */,
 			);
 			path = PickandPayStoreTests;
 			sourceTree = "<group>";
@@ -236,6 +240,7 @@
 				7F5D83D627F3B3420063ED40 /* SQLiteTables.swift */,
 				7F5D83DB27F3B3720063ED40 /* SQLiteDatabase.swift */,
 				7F5D83E627F3B5210063ED40 /* SQLiteDAL.swift */,
+				7FCA67AE2808868B00DB46ED /* UserDAL.swift */,
 			);
 			path = SQLiteDatasource;
 			sourceTree = "<group>";
@@ -263,6 +268,15 @@
 				7F0A613627F78B950028B399 /* ProductReview.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7FCA67962802B51200DB46ED /* SQLiteDbTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F0A614127F80A970028B399 /* SQLiteDbTests.swift */,
+				7FCA67972802B55400DB46ED /* SQLiteDbUserTests.swift */,
+			);
+			path = SQLiteDbTests;
 			sourceTree = "<group>";
 		};
 		AC16E9A527F62E8D0037743F /* ShoppingCartSwiftUI */ = {
@@ -457,6 +471,7 @@
 				84E250AC27FDFEB000EA997A /* CategoryCard.swift in Sources */,
 				45C0762E27FBF69A009B4221 /* TrackOrderView.swift in Sources */,
 				AC16E9BB27F637060037743F /* CartManager.swift in Sources */,
+				7FCA67AF2808868B00DB46ED /* UserDAL.swift in Sources */,
 				AC16E9AA27F62F980037743F /* ContentView.swift in Sources */,
 				7F0A61A227FC690C0028B399 /* HomeViewController.swift in Sources */,
 				7F0A613727F78B950028B399 /* ProductReview.swift in Sources */,
@@ -497,6 +512,7 @@
 			files = (
 				45355FC327F3A2FD00ABFDC8 /* PickandPayStoreTests.swift in Sources */,
 				7F0A614227F80A970028B399 /* SQLiteDbTests.swift in Sources */,
+				7FCA67982802B55400DB46ED /* SQLiteDbUserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
