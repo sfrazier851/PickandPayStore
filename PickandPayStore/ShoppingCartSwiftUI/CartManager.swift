@@ -11,12 +11,12 @@ import SwiftUI
 class CartManager: ObservableObject {
     
     // Add the private(set) to variables, so they can be set only within this class.
-    @Published private(set) var products: [ProductM] = []
+    @Published private(set) var products: [Product] = []
     @Published private(set) var total: Float = 0
-    private(set) var productsToBeRemoved: [ProductM] = []
+    private(set) var productsToBeRemoved: [Product] = []
     
    // Add to cart.
-    func addToCart(product: ProductM, count: Int){
+    func addToCart(product: Product, count: Int){
         for _ in 1...count{
             products.append(product)
             total += product.price
@@ -25,7 +25,7 @@ class CartManager: ObservableObject {
     }
     
     // Remove from cart.
-    func removeFromCart(product: ProductM){
+    func removeFromCart(product: Product){
 
         // Isolate the product that need to be removed. The cart could contain more than one product of the same type.
         productsToBeRemoved = products.filter{ $0.id == product.id}

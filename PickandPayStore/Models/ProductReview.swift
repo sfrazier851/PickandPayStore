@@ -13,7 +13,12 @@ struct ProductReview {
     var productID: Int = 0
     var review: String = ""
     
-    static let productreview = ProductReview()
+    private static let productReviewDAL = { () -> ProductReviewDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return ProductReviewDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     
     // Convert query result set to Array of ProductReview
     static func convert(productReviewsResultSet: [[String]]) -> [ProductReview]? {
@@ -33,14 +38,23 @@ struct ProductReview {
     }
     
     static func getAll() -> [ProductReview]? {
-        return SQLiteDAL.getAllProductReviews()
+        guard let productReviewDAL = productReviewDAL else {
+            return nil
+        }
+        return productReviewDAL.getAllProductReviews()
     }
     
     static func getByProductID(productID: Int) -> [ProductReview]? {
-        return SQLiteDAL.getReviewsByProductID(productID: productID)
+        guard let productReviewDAL = productReviewDAL else {
+            return nil
+        }
+        return productReviewDAL.getReviewsByProductID(productID: productID)
     }
     
     static func create(userID: Int, productID: Int, review: String) -> Bool? {
-        return SQLiteDAL.createProductReview(userID: userID, productID: productID, review: review)
+        guard let productReviewDAL = productReviewDAL else {
+            return nil
+        }
+        return productReviewDAL.createProductReview(userID: userID, productID: productID, review: review)
     }
 }

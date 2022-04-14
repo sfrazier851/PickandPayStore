@@ -15,10 +15,15 @@ struct User {
     var phoneNumber: String = ""
     var balance: Float = 0.0
     
-    static let user = User()
+    private static let userDAL = { () -> UserDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return UserDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     
     // Convert user result set to Array of User
-    static func convert(usersResultSet: [[String]]) -> [User]? {
+    private static func convert(usersResultSet: [[String]]) -> [User]? {
         var users = [User]()
         for user_row in usersResultSet {
             let columns = user_row
@@ -37,27 +42,38 @@ struct User {
     }
     
     static func getAll() -> [User]? {
-        return SQLiteDAL.getAllUsers()
+        guard let userDAL = userDAL else {
+            return nil
+        }
+        return userDAL.getAllUsers()
     }
     
     static func getByID(userID: Int) -> [User]? {
-        return SQLiteDAL.getUserByID(userID: userID)
+        guard let userDAL = userDAL else {
+            return nil
+        }
+        return userDAL.getUserByID(userID: userID)
     }
     
     static func getByEmail(email: String) -> [User]? {
-        return SQLiteDAL.getUsersByEmail(email: email)
+        guard let userDAL = userDAL else {
+            return nil
+        }
+        return userDAL.getUsersByEmail(email: email)
     }
     
     static func getByUsername(username: String) -> [User]? {
-        return SQLiteDAL.getUsersByUsername(username: username)
-    }
-    
-    static func getNewlyCreated() -> [User]? {
-        return SQLiteDAL.getNewestUser()
+        guard let userDAL = userDAL else {
+            return nil
+        }
+        return userDAL.getUsersByUsername(username: username)
     }
     
     static func create(username: String, email: String, password: String, phoneNumber: String
-    ) -> Bool? {
-        return SQLiteDAL.createUser(username: username, email: email, password: password, phoneNumber: phoneNumber)
+    ) -> User? {
+        guard let userDAL = userDAL else {
+            return nil
+        }
+        return userDAL.createUser(username: username, email: email, password: password, phoneNumber: phoneNumber)
     }
 }

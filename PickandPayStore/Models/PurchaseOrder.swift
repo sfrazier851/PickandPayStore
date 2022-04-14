@@ -13,7 +13,12 @@ struct PurchaseOrder {
     var paymentType: String = ""
     var date_purchased: String = ""
     
-    static let purchaseorder = PurchaseOrder()
+    private static let purchaseOrderDAL = { () -> PurchaseOrderDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return PurchaseOrderDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     
     // Convert query result set to Array of PurchaseOrder
     static func convert(purchaseOrderResultSet: [[String]]) -> [PurchaseOrder]? {
@@ -33,18 +38,30 @@ struct PurchaseOrder {
     }
     
     static func getAll() -> [PurchaseOrder]? {
-        return SQLiteDAL.getAllPurchaseOrders()
+        guard let purchaseOrderDAL = purchaseOrderDAL else {
+            return nil
+        }
+        return purchaseOrderDAL.getAllPurchaseOrders()
     }
     
     static func getByID(purchaseOrderID: Int) -> [PurchaseOrder]? {
-        return SQLiteDAL.getPurchaseOrderByID(purchaseOrderID: purchaseOrderID)
+        guard let purchaseOrderDAL = purchaseOrderDAL else {
+            return nil
+        }
+        return purchaseOrderDAL.getPurchaseOrderByID(purchaseOrderID: purchaseOrderID)
     }
     
     static func getByUserID(userID: Int) -> [PurchaseOrder]? {
-        return SQLiteDAL.getPurchaseOrdersByUserID(userID: userID)
+        guard let purchaseOrderDAL = purchaseOrderDAL else {
+            return nil
+        }
+        return purchaseOrderDAL.getPurchaseOrdersByUserID(userID: userID)
     }
     
     static func create(userID: Int, paymentType: String) -> Bool? {
-        return SQLiteDAL.createPurchaseOrder(userID: userID, paymentType: paymentType)
+        guard let purchaseOrderDAL = purchaseOrderDAL else {
+            return nil
+        }
+        return purchaseOrderDAL.createPurchaseOrder(userID: userID, paymentType: paymentType)
     }
 }

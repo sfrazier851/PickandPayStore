@@ -23,7 +23,7 @@ class UserSessionManager {
         guard let user = UserSessionManager.loggedInUser else {
             return nil
         }
-        return UserSessionManager.loggedInUser
+        return user
     }
     
 }
