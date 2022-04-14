@@ -29,7 +29,7 @@ struct PickCategoryView: View {
                         //Create search bar at top of Vstack
                         SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
 
-                        ForEach(productsManager.categories.filter({ (category: CategoryM) -> Bool in
+                        ForEach(productsManager.categories.filter({ (category: Category) -> Bool in
                             return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                         }), id: \.id){ category in
                             NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
