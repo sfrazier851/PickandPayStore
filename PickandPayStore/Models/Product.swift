@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductM {
+struct Product {
     var id: Int = 0
     var categoryID: Int = 0
     var name: String = ""
@@ -22,12 +22,12 @@ struct ProductM {
         return nil
     }()
     // Convert query result set to Array of Product
-    static func convert(productsResultSet: [[String]]) -> [ProductM]? {
-        var products = [ProductM]()
+    static func convert(productsResultSet: [[String]]) -> [Product]? {
+        var products = [Product]()
         for product_row in productsResultSet {
             let columns = product_row
             
-            var product = ProductM()
+            var product = Product()
             product.id = Int(columns[0])!
             product.categoryID = Int(columns[1])!
             product.name = columns[2]
@@ -40,21 +40,21 @@ struct ProductM {
         return products
     }
     
-    static func getAll() -> [ProductM]? {
+    static func getAll() -> [Product]? {
         guard let productDAL = productDAL else {
             return nil
         }
         return productDAL.getAllProducts()
     }
     
-    static func getByID(productID: Int) -> [ProductM]? {
+    static func getByID(productID: Int) -> [Product]? {
         guard let productDAL = productDAL else {
             return nil
         }
         return productDAL.getProductByID(productID: productID)
     }
     
-    static func getByName(name: String) -> [ProductM]? {
+    static func getByName(name: String) -> [Product]? {
         guard let productDAL = productDAL else {
             return nil
         }

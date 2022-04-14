@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryM {
+struct Category {
     var id: Int = 0
     var name: String = ""
     var imageName: String = ""
@@ -20,12 +20,12 @@ struct CategoryM {
     }()
     
     // Convert query result set to Array of Category
-    static func convert(categoriesResultSet: [[String]]) -> [CategoryM]? {
-        var categories = [CategoryM]()
+    static func convert(categoriesResultSet: [[String]]) -> [Category]? {
+        var categories = [Category]()
         for category_row in categoriesResultSet {
             let columns = category_row
             
-            var category = CategoryM()
+            var category = Category()
             category.id = Int(columns[0])!
             category.name = columns[1]
             category.imageName = columns[2]
@@ -35,14 +35,14 @@ struct CategoryM {
         return categories
     }
     
-    static func getAll() -> [CategoryM]? {
+    static func getAll() -> [Category]? {
         guard let categoryDAL = categoryDAL else {
             return nil
         }
         return categoryDAL.getAllCategories()
     }
     
-    static func getByName(name: String) -> [CategoryM]? {
+    static func getByName(name: String) -> [Category]? {
         guard let categoryDAL = categoryDAL else {
             return nil
         }

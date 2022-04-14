@@ -13,7 +13,12 @@ struct ShoppingCart {
     var productID: Int = 0
     var date_added: String = ""
     
-    static let shoppingcart = ShoppingCart()
+    static let shoppingCartDAL = { () -> ShoppingCartDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return ShoppingCartDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     
     // Convert query result set to Array of Wishlist
     static func convert(shoppingCartResultSet: [[String]]) -> [ShoppingCart]? {
@@ -33,14 +38,23 @@ struct ShoppingCart {
     }
     
     static func getAll() -> [ShoppingCart]? {
-        return SQLiteDAL.getAllShoppingCartProducts()
+        guard let shoppingCartDAL = shoppingCartDAL else {
+            return nil
+        }
+        return shoppingCartDAL.getAllShoppingCartProducts()
     }
     
     static func getByUserID(userID: Int) -> [ShoppingCart]? {
-        return SQLiteDAL.getShoppingCartByUserID(userID: userID)
+        guard let shoppingCartDAL = shoppingCartDAL else {
+            return nil
+        }
+        return shoppingCartDAL.getShoppingCartByUserID(userID: userID)
     }
     
     static func create(userID: Int, productID: Int) -> Bool? {
-        return SQLiteDAL.createShoppingCartProduct(userID: userID, productID: productID)
+        guard let shoppingCartDAL = shoppingCartDAL else {
+            return nil
+        }
+        return shoppingCartDAL.createShoppingCartProduct(userID: userID, productID: productID)
     }
 }

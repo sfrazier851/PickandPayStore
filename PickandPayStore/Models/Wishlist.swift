@@ -13,7 +13,12 @@ struct Wishlist {
     var productID: Int = 0
     var date_added: String = ""
     
-    static let wishlist = Wishlist()
+    static let wishlistDAL = { () -> WishlistDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return WishlistDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     
     // Convert query result set to Array of Wishlist
     static func convert(wishlistResultSet: [[String]]) -> [Wishlist]? {
@@ -33,14 +38,23 @@ struct Wishlist {
     }
     
     static func getAll() -> [Wishlist]? {
-        return SQLiteDAL.getAllWishlistProducts()
+        guard let wishlistDAL = wishlistDAL else {
+            return nil
+        }
+        return wishlistDAL.getAllWishlistProducts()
     }
     
     static func getByUserID(userID: Int) -> [Wishlist]? {
-        return SQLiteDAL.getWishlistByUserID(userID: userID)
+        guard let wishlistDAL = wishlistDAL else {
+            return nil
+        }
+        return wishlistDAL.getWishlistByUserID(userID: userID)
     }
     
     static func create(userID: Int, productID: Int) -> Bool? {
-        return SQLiteDAL.createWishlistProduct(userID: userID, productID: productID)
+        guard let wishlistDAL = wishlistDAL else {
+            return nil
+        }
+        return wishlistDAL.createWishlistProduct(userID: userID, productID: productID)
     }
 }

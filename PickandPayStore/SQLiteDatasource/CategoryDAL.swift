@@ -10,23 +10,23 @@ import SQLite3
 
 class CategoryDAL: SQLiteDAL {
         
-    private let category = CategoryM()
-    private let convert: (_ categoryResultSet: [[String]]) -> [CategoryM]?
+    private let category = Category()
+    private let convert: (_ categoryResultSet: [[String]]) -> [Category]?
     
-    init(db: OpaquePointer?, convert: @escaping (_ categoryResultSet: [[String]]) -> [CategoryM]?) {
+    init(db: OpaquePointer?, convert: @escaping (_ categoryResultSet: [[String]]) -> [Category]?) {
         self.convert = convert
         super.init(db: db)
     }
     
     // Category DAL (getAllCategories, getCategoriesByName, createCategory)
-    func getAllCategories() -> [CategoryM]? {
+    func getAllCategories() -> [Category]? {
         guard let categoriesResultSet = CategoryDAL.protectedQuery(modelType: category, queryString: "SELECT * FROM Category;") else {
             return nil
         }
         return self.convert(categoriesResultSet)
     }
     
-    func getCategoriesByName(name: String) -> [CategoryM]? {
+    func getCategoriesByName(name: String) -> [Category]? {
         guard let categoriesResultSet = CategoryDAL.protectedQuery(modelType: category, queryString: "SELECT * FROM Category WHERE name = '\(name)';") else {
             return nil
         }

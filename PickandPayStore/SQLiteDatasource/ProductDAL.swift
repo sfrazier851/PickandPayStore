@@ -10,31 +10,31 @@ import SQLite3
 
 class ProductDAL: SQLiteDAL {
         
-    private let product = ProductM()
-    private let convert: (_ productsResultSet: [[String]]) -> [ProductM]?
+    private let product = Product()
+    private let convert: (_ productsResultSet: [[String]]) -> [Product]?
     
-    init(db: OpaquePointer?, convert: @escaping (_ productsResultSet: [[String]]) -> [ProductM]?) {
+    init(db: OpaquePointer?, convert: @escaping (_ productsResultSet: [[String]]) -> [Product]?) {
         self.convert = convert
         super.init(db: db)
     }
 
     // Product DAL (getAllProducts, getProductsByName, createProduct)
-    func getAllProducts() -> [ProductM]? {
+    func getAllProducts() -> [Product]? {
         guard let productsResultSet = ProductDAL.protectedQuery(modelType: product, queryString: "SELECT * FROM Product;") else {
             return nil
         }
         return self.convert(productsResultSet)
     }
 
-    func getProductByID(productID: Int) -> [ProductM]? {
-        guard let productsResultSet = ProductDAL.protectedQuery(modelType: ProductM.product, queryString: "SELECT * FROM Product WHERE ID = '\(productID)';") else {
+    func getProductByID(productID: Int) -> [Product]? {
+        guard let productsResultSet = ProductDAL.protectedQuery(modelType: product, queryString: "SELECT * FROM Product WHERE ID = '\(productID)';") else {
             return nil
         }
         return self.convert(productsResultSet)
     }
 
-    func getProductsByName(name: String) -> [ProductM]? {
-        guard let productsResultSet = ProductDAL.protectedQuery(modelType: ProductM.product, queryString: "SELECT * FROM Product WHERE name = '\(name)';") else {
+    func getProductsByName(name: String) -> [Product]? {
+        guard let productsResultSet = ProductDAL.protectedQuery(modelType: product, queryString: "SELECT * FROM Product WHERE name = '\(name)';") else {
             return nil
         }
         return self.convert(productsResultSet)

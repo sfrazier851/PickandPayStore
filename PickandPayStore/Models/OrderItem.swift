@@ -13,7 +13,12 @@ struct OrderItem {
     var productID: Int = 0
     var purchasePrice: Float = 0.0
     
-    static let orderitem = OrderItem()
+    static let orderItemDAL = { () -> OrderItemDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return OrderItemDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     
     // Convert query result set to Array of OrderItem
     static func convert(orderItemsResultSet: [[String]]) -> [OrderItem]? {
@@ -33,14 +38,23 @@ struct OrderItem {
     }
     
     static func getAll() -> [OrderItem]? {
-        return SQLiteDAL.getAllOrderItems()
+        guard let orderItemDAL = orderItemDAL else {
+            return nil
+        }
+        return orderItemDAL.getAllOrderItems()
     }
     
     static func getByPurchaseOrderID(purchaseOrderID: Int) -> [OrderItem]? {
-        return SQLiteDAL.getOrderItemByPurchaseOrderID(purchaseOrderID: purchaseOrderID)
+        guard let orderItemDAL = orderItemDAL else {
+            return nil
+        }
+        return orderItemDAL.getOrderItemByPurchaseOrderID(purchaseOrderID: purchaseOrderID)
     }
     
     static func create(purchaseOrderID: Int, productID: Int, purchasePrice: Float) -> Bool? {
-        return SQLiteDAL.createOrderItem(purchaseOrderID: purchaseOrderID, productID: productID, purchasePrice: purchasePrice)
+        guard let orderItemDAL = orderItemDAL else {
+            return nil
+        }
+        return orderItemDAL.createOrderItem(purchaseOrderID: purchaseOrderID, productID: productID, purchasePrice: purchasePrice)
     }
 }
