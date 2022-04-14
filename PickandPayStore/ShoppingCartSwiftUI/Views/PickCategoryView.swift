@@ -15,6 +15,7 @@ struct PickCategoryView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
+    @StateObject var cartManager: CartManager = CartManager()
     @StateObject var productsManager: ProductsManager = ProductsManager()
     
     var body: some View {
@@ -33,7 +34,8 @@ struct PickCategoryView: View {
                             return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                         }), id: \.id){ category in
                             NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
-                                    .environmentObject(productsManager))
+                                    .environmentObject(productsManager)
+                                    .environmentObject(cartManager))
                                 {
                                     CategoryCard(category: category)
                                         .environmentObject(productsManager)
@@ -53,6 +55,16 @@ struct PickCategoryView: View {
                                 }
                                 .foregroundColor(.black)
                                 .padding()
+                            }
+                            
+                            //Navigate to the CartView
+                            NavigationLink {
+                                // This is the destination.
+                                CartView()
+                                    .environmentObject(cartManager)
+                            } label: {
+                                //On CartButton click go to CartView.
+                                CartButton(numberOfProducts: cartManager.products.count)
                             }
                             
                         }

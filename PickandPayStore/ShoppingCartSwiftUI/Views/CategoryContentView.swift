@@ -17,7 +17,7 @@ struct CategoryContentView: View {
     
     // Instance of CartManager and ProductsManager so you can access its functions and //properties.
     // Added cartManager to ProductCart and CartView.
-    @StateObject var cartManager = CartManager()
+    @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var productsManager: ProductsManager
     
     
