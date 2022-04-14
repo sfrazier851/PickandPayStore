@@ -15,8 +15,12 @@ struct ProductM {
     var imageName: String = ""
     var description: String = ""
     
-    static let product = ProductM()
-    
+    static let productDAL = { () -> ProductDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return ProductDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     // Convert query result set to Array of Product
     static func convert(productsResultSet: [[String]]) -> [ProductM]? {
         var products = [ProductM]()
@@ -37,18 +41,30 @@ struct ProductM {
     }
     
     static func getAll() -> [ProductM]? {
-        return SQLiteDAL.getAllProducts()
+        guard let productDAL = productDAL else {
+            return nil
+        }
+        return productDAL.getAllProducts()
     }
     
     static func getByID(productID: Int) -> [ProductM]? {
-        return SQLiteDAL.getProductByID(productID: productID)
+        guard let productDAL = productDAL else {
+            return nil
+        }
+        return productDAL.getProductByID(productID: productID)
     }
     
     static func getByName(name: String) -> [ProductM]? {
-        return SQLiteDAL.getProductsByName(name: name)
+        guard let productDAL = productDAL else {
+            return nil
+        }
+        return productDAL.getProductsByName(name: name)
     }
     
     static func create(categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {
-        return SQLiteDAL.createProduct(categoryID: categoryID, name: name, price: price, imageName: imageName, description: description)
+        guard let productDAL = productDAL else {
+            return nil
+        }
+        return productDAL.createProduct(categoryID: categoryID, name: name, price: price, imageName: imageName, description: description)
     }
 }

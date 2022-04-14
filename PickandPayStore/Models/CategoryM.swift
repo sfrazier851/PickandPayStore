@@ -11,8 +11,13 @@ struct CategoryM {
     var id: Int = 0
     var name: String = ""
     var imageName: String = ""
-    
-    static let category = CategoryM()
+        
+    static let categoryDAL = { () -> CategoryDAL? in
+        if let db = SQLiteDatabase.getDatabase() {
+            return CategoryDAL(db: db, convert: convert)
+        }
+        return nil
+    }()
     
     // Convert query result set to Array of Category
     static func convert(categoriesResultSet: [[String]]) -> [CategoryM]? {
@@ -31,14 +36,23 @@ struct CategoryM {
     }
     
     static func getAll() -> [CategoryM]? {
-        return SQLiteDAL.getAllCategories()
+        guard let categoryDAL = categoryDAL else {
+            return nil
+        }
+        return categoryDAL.getAllCategories()
     }
     
     static func getByName(name: String) -> [CategoryM]? {
-        return SQLiteDAL.getCategoriesByName(name: name)
+        guard let categoryDAL = categoryDAL else {
+            return nil
+        }
+        return categoryDAL.getCategoriesByName(name: name)
     }
     
     static func create(name: String, imageName: String) -> Bool? {
-        return SQLiteDAL.createCategory(name: name, imageName: imageName)
+        guard let categoryDAL = categoryDAL else {
+            return nil
+        }
+        return categoryDAL.createCategory(name: name, imageName: imageName)
     }
 }
