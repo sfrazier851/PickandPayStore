@@ -15,6 +15,10 @@ struct PickCategoryView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
+    // State variable for site menu.
+    @State var showMenu = false
+    
+    // Observable objects.
     @StateObject var cartManager: CartManager = CartManager()
     @StateObject var productsManager: ProductsManager = ProductsManager()
     
@@ -22,10 +26,8 @@ struct PickCategoryView: View {
         
         NavigationView {
             ZStack{
-                
-                ScrollView{
-                
-                    
+                Color(.green)
+            ScrollView{
                     VStack{
                         //Create search bar at top of Vstack
                         SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
@@ -75,11 +77,11 @@ struct PickCategoryView: View {
                     }
                     .navigationTitle(Text("Categories"))
                 }
-                
+            }
+            
+            
         }
     }
-        
-}
 }
 
 struct PickCategoryView_Previews: PreviewProvider {
