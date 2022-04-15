@@ -11,6 +11,8 @@ struct K {
     struct SQLiteDatabase {
         static let dbFilename = "PickandPayStore-IOS"
         static let dbFileExtension = "sqlite3"
+        
+        static let testDbFilename = "TESTING-PickandPayStore-IOS"
     }
     
     struct StoryboardID {

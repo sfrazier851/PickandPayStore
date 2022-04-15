@@ -16,7 +16,7 @@ class SQLiteDAL {
         SQLiteDAL.db = db
     }
     
-    // return array of types, for class properties
+    // return array of types, for struct properties
     // in order of declaration
     private static func getColumnTypes(modelType: Any) -> [String] {
         let mirror = Mirror(reflecting: modelType)

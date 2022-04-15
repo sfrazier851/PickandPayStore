@@ -28,6 +28,13 @@ class CategoryDAL: SQLiteDAL {
         return self.convert(categoriesResultSet)
     }
     
+    func getCategoryByID(categoryID: Int) -> [Category]? {
+        guard let categoriesResultSet = CategoryDAL.protectedQuery(modelType: category, queryString: "SELECT * FROM Category WHERE ID = '\(categoryID)';") else {
+            return nil
+        }
+        return self.convert(categoriesResultSet)
+    }
+    
     func getCategoriesByName(name: String) -> [Category]? {
         guard let categoriesResultSet = CategoryDAL.protectedQuery(modelType: category, queryString: "SELECT * FROM Category WHERE name = '\(name)';") else {
             return nil
@@ -35,11 +42,10 @@ class CategoryDAL: SQLiteDAL {
         return self.convert(categoriesResultSet)
     }
     
-    func createCategory(name: String, imageName: String) -> Bool? {
+    func createCategory(name: String, imageName: String) -> Category? {
         guard let db = self.db else {
             return nil
         }
-        var success = true
         let insertStatementString = "INSERT INTO Category ( name, imageName ) VALUES ( ?, ? )"
         
         var insertStatement: OpaquePointer?
@@ -53,11 +59,12 @@ class CategoryDAL: SQLiteDAL {
                 print("\nSuccessfully inserted row.")
             } else {
                 print("\n INSERT statement is not prepared.")
-                success = false
             }
             sqlite3_finalize(insertStatement)
         }
-        return success
+        
+        let newCategoryID = CategoryDAL.protectedGetLatestInsertId()!
+        return Category.getByID(categoryID: newCategoryID)![0]
     }
     
 }

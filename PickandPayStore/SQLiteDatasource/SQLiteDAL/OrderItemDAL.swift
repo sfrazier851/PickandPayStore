@@ -28,6 +28,13 @@ class OrderItemDAL: SQLiteDAL {
         return self.convert(orderItemsResultSet)
     }
     
+    func getOrderItemByID(orderItemID: Int) -> [OrderItem]? {
+        guard let orderItemsResultSet = OrderItemDAL.protectedQuery(modelType: orderitem, queryString: "SELECT * FROM OrderItem WHERE ID = '\(orderItemID)';") else {
+            return nil
+        }
+        return self.convert(orderItemsResultSet)
+    }
+    
     func getOrderItemByPurchaseOrderID(purchaseOrderID: Int) -> [OrderItem]? {
         guard let orderItemsResultSet = OrderItemDAL.protectedQuery(modelType: orderitem, queryString: "SELECT * FROM OrderItem WHERE purchaseOrderID = '\(purchaseOrderID)';") else {
             return nil
@@ -35,11 +42,10 @@ class OrderItemDAL: SQLiteDAL {
         return self.convert(orderItemsResultSet)
     }
     
-    func createOrderItem(purchaseOrderID: Int, productID: Int, purchasePrice: Float) -> Bool? {
+    func createOrderItem(purchaseOrderID: Int, productID: Int, purchasePrice: Float) -> OrderItem? {
         guard let db = self.db else {
             return nil
         }
-        var success = true
         let insertStatementString = "INSERT INTO OrderItem ( purchaseOrderID, productID, purchasePrice ) VALUES ( ?, ?, ?)"
         
         var insertStatement: OpaquePointer?
@@ -54,10 +60,11 @@ class OrderItemDAL: SQLiteDAL {
                 print("\nSuccessfully inserted row.")
             } else {
                 print("\n INSERT statement is not prepared.")
-                success = false
             }
             sqlite3_finalize(insertStatement)
         }
-        return success
+        
+        let newOrderItemID = OrderItemDAL.protectedGetLatestInsertId()!
+        return OrderItem.getByID(orderItemID: newOrderItemID)![0]
     }
 }

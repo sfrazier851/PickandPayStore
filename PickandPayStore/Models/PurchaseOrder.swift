@@ -7,15 +7,24 @@
 
 import Foundation
 
-struct PurchaseOrder {
+struct PurchaseOrder: Equatable {
     var id: Int = 0
     var userID: Int = 0
     var paymentType: String = ""
     var date_purchased: String = ""
     
+    private static var testing: Bool = false
+    static func setTestingTrue() { PurchaseOrder.testing = true }
+
     private static let purchaseOrderDAL = { () -> PurchaseOrderDAL? in
-        if let db = SQLiteDatabase.getDatabase() {
-            return PurchaseOrderDAL(db: db, convert: convert)
+        if PurchaseOrder.testing == true {
+            if let db = SQLiteDatabase.getUnitTestDatabase() {
+                return PurchaseOrderDAL(db: db, convert: convert)
+            }
+        } else {
+            if let db = SQLiteDatabase.getDatabase() {
+                return PurchaseOrderDAL(db: db, convert: convert)
+            }
         }
         return nil
     }()
@@ -58,7 +67,7 @@ struct PurchaseOrder {
         return purchaseOrderDAL.getPurchaseOrdersByUserID(userID: userID)
     }
     
-    static func create(userID: Int, paymentType: String) -> Bool? {
+    static func create(userID: Int, paymentType: String) -> PurchaseOrder? {
         guard let purchaseOrderDAL = purchaseOrderDAL else {
             return nil
         }

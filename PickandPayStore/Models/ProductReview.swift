@@ -7,15 +7,24 @@
 
 import Foundation
 
-struct ProductReview {
+struct ProductReview: Equatable {
     var id: Int = 0
     var userID: Int = 0
     var productID: Int = 0
     var review: String = ""
     
+    private static var testing: Bool = false
+    static func setTestingTrue() { ProductReview.testing = true }
+    
     private static let productReviewDAL = { () -> ProductReviewDAL? in
-        if let db = SQLiteDatabase.getDatabase() {
-            return ProductReviewDAL(db: db, convert: convert)
+        if ProductReview.testing == true {
+            if let db = SQLiteDatabase.getUnitTestDatabase() {
+                return ProductReviewDAL(db: db, convert: convert)
+            }
+        } else {
+            if let db = SQLiteDatabase.getDatabase() {
+                return ProductReviewDAL(db: db, convert: convert)
+            }
         }
         return nil
     }()
@@ -44,6 +53,13 @@ struct ProductReview {
         return productReviewDAL.getAllProductReviews()
     }
     
+    static func getByID(productReviewID: Int) -> [ProductReview]? {
+        guard let productReviewDAL = productReviewDAL else {
+            return nil
+        }
+        return productReviewDAL.getProductReviewByID(productReviewID: productReviewID)
+    }
+    
     static func getByProductID(productID: Int) -> [ProductReview]? {
         guard let productReviewDAL = productReviewDAL else {
             return nil
@@ -51,7 +67,7 @@ struct ProductReview {
         return productReviewDAL.getReviewsByProductID(productID: productID)
     }
     
-    static func create(userID: Int, productID: Int, review: String) -> Bool? {
+    static func create(userID: Int, productID: Int, review: String) -> ProductReview? {
         guard let productReviewDAL = productReviewDAL else {
             return nil
         }

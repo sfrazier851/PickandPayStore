@@ -28,6 +28,13 @@ class WishlistDAL: SQLiteDAL {
         return self.convert(wishlistProductsResultSet)
     }
     
+    func getWishlistByID(wishlistID: Int) -> [Wishlist]? {
+        guard let wishlistProductsResultSet = WishlistDAL.protectedQuery(modelType: wishlist, queryString: "SELECT * FROM Wishlist WHERE ID = '\(wishlistID)';") else {
+            return nil
+        }
+        return self.convert(wishlistProductsResultSet)
+    }
+    
     func getWishlistByUserID(userID: Int) -> [Wishlist]? {
         guard let wishlistProductsResultSet = WishlistDAL.protectedQuery(modelType: wishlist, queryString: "SELECT * FROM Wishlist WHERE userID = '\(userID)';") else {
             return nil
@@ -35,11 +42,10 @@ class WishlistDAL: SQLiteDAL {
         return self.convert(wishlistProductsResultSet)
     }
     
-    func createWishlistProduct(userID: Int, productID: Int) -> Bool? {
+    func createWishlistProduct(userID: Int, productID: Int) -> Wishlist? {
         guard let db = self.db else {
             return nil
         }
-        var success = true
         let insertStatementString = "INSERT INTO Wishlist ( userID, productID ) VALUES ( ?, ? )"
         
         var insertStatement: OpaquePointer?
@@ -53,10 +59,11 @@ class WishlistDAL: SQLiteDAL {
                 print("\nSuccessfully inserted row.")
             } else {
                 print("\n INSERT statement is not prepared.")
-                success = false
             }
             sqlite3_finalize(insertStatement)
         }
-        return success
+
+        let newWishlistID = WishlistDAL.protectedGetLatestInsertId()!
+        return Wishlist.getByID(wishlistID: newWishlistID)![0]
     }
 }
