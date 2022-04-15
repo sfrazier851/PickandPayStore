@@ -46,6 +46,7 @@
 		7FCA681F28089CD200DB46ED /* PurchaseOrderDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA681E28089CD200DB46ED /* PurchaseOrderDAL.swift */; };
 		7FCA68242808A04500DB46ED /* ProductReviewDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA68232808A04500DB46ED /* ProductReviewDAL.swift */; };
 		7FCA682F2808A28F00DB46ED /* OrderItemDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA682E2808A28F00DB46ED /* OrderItemDAL.swift */; };
+		7FCA68CD2809F06B00DB46ED /* DbIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA68CC2809F06B00DB46ED /* DbIntegration.swift */; };
 		84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84699DCF27FA899B00AE497D /* ProductDetail.swift */; };
 		84E250AA27FDFE8900EA997A /* CategoryContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4B27FC914000AC8DD2 /* CategoryContentView.swift */; };
 		84E250AB27FDFE8B00EA997A /* PickCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4927FC7C7E00AC8DD2 /* PickCategoryView.swift */; };
@@ -122,6 +123,7 @@
 		7FCA681E28089CD200DB46ED /* PurchaseOrderDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseOrderDAL.swift; sourceTree = "<group>"; };
 		7FCA68232808A04500DB46ED /* ProductReviewDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewDAL.swift; sourceTree = "<group>"; };
 		7FCA682E2808A28F00DB46ED /* OrderItemDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemDAL.swift; sourceTree = "<group>"; };
+		7FCA68CC2809F06B00DB46ED /* DbIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbIntegration.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		84E250AD27FFAD3300EA997A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		AC16E9A927F62F980037743F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		7FCA68C82809E53800DB46ED /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				7FCA68CC2809F06B00DB46ED /* DbIntegration.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45355FC327F3A2FD00ABFDC8 /* PickandPayStoreTests.swift in Sources */,
+				7FCA68CD2809F06B00DB46ED /* DbIntegration.swift in Sources */,
 				7F0A614227F80A970028B399 /* UserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
