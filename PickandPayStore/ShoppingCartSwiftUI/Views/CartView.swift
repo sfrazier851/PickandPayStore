@@ -18,11 +18,6 @@ struct CartView: View {
             
             if cartManager.products.count > 0
             {
-                ForEach(cartManager.products, id: \.id){
-                    product in
-                    ProductInCart(product: product)
-                }
-                
                 HStack {
                     Text("Your cart total is")
                     Spacer()
@@ -30,6 +25,12 @@ struct CartView: View {
                         .bold()
                 }
                 .padding()
+                
+                ForEach(cartManager.products, id: \.id){
+                    product in
+                    ProductInCart(product: product)
+                }
+        
             }
             else
             {
