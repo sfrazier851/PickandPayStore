@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ProductDetailView: View {
     
-    @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var wishlistManager: WishlistManager
     
     @State var total : Int = 1
     @State var goNext: Int?
+    
+    @Binding var numberInCart : Int
    
     var product : Product
     var body: some View {
@@ -69,7 +70,8 @@ struct ProductDetailView: View {
             }.padding(.leading, 160)
                     
                 Button{
-                    cartManager.addToCart(product: product, count: total)
+                    CartManager.sharedCart.addToCart(product: product, count: total)
+                    numberInCart += total
                 }label: {
                     Text("Add To Cart")
                         .frame(width: 320, height: 20, alignment: .center)
