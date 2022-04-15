@@ -15,7 +15,7 @@ struct ProductDetailView: View {
     @State var total : Int = 1
     @State var goNext: Int?
    
-    var product : ProductM
+    var product : Product
     var body: some View {
       // ScrollView{
        
@@ -109,8 +109,8 @@ struct ProductDetailView: View {
                 
                 List{
                     Section{
-                    let p = SQLiteDAL.getReviewsByProductID(productID: product.id)
-                            ForEach(p!, id: \.id){ productreview in
+                    let p = ProductReview.getByProductID(productID: product.id)
+                            ForEach(p! , id: \.id){ productreview in
                                 Text(productreview.review)
                                 }
                         
@@ -144,3 +144,4 @@ struct ProductDetailView: View {
            // .environmentObject(CartManager())
  //   }
 //}
+

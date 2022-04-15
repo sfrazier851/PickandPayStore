@@ -11,7 +11,7 @@ struct CategoryCard: View {
     
     @EnvironmentObject var productsManager : ProductsManager
     // A Category variable.
-    var category: CategoryM
+    var category: Category
     
     var body: some View {
       
@@ -30,6 +30,7 @@ struct CategoryCard: View {
                 Text(category.name)
                     .font(.headline)
                     .fontWeight(.heavy)
+                    .foregroundColor(.black)
                     
                 Spacer()
             }
@@ -46,7 +47,7 @@ struct CategoryCard: View {
 
 struct CategoryCard_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryCard(category: CategoryM(name: "spaceships", imageName: "y-wing"))
+        CategoryCard(category: Category(name: "spaceships", imageName: "y-wing"))
         .environmentObject(ProductsManager())
     }
 }

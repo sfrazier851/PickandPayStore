@@ -11,19 +11,19 @@ import SwiftUI
 
 class ProductsManager: ObservableObject{
     
-    @Published var productList = [ProductM]()
-    @Published var categories = [CategoryM]()
+    @Published var productList = [Product]()
+    @Published var categories = [Category]()
     
     // The init fills the entire products array. This is done for UI testing purposes only.
     // When the UI gets connected to the database the majority of the functions in this class will be re-written.
     // All the queries to the database that are related to the products should be written in this class.
     init(){
-        if let p = SQLiteDAL.getAllProducts(){
+        if let p = Product.getAll(){
             for product in p{
                 productList.append(product)
             }
         }
-        if let c = SQLiteDAL.getAllCategories(){
+        if let c = Category.getAll(){
             for category in c{
                 categories.append(category)
             }
@@ -71,18 +71,18 @@ class ProductsManager: ObservableObject{
     
     
     // Get products by category name.
-    func getProductsOfCategory(category: Int) -> [ProductM]{
+    func getProductsOfCategory(category: Int) -> [Product]{
         let productsOfCategory = productList.filter{$0.categoryID == category}
         return productsOfCategory
     }
     
     // Get the products list.
-    func getProductsList() -> [ProductM]{
+    func getProductsList() -> [Product]{
         return self.productList
     }
     
     // Get The categories list.
-    func getCategoriesList() -> [CategoryM]{
+    func getCategoriesList() -> [Category]{
         return self.categories
     }
 }

@@ -169,8 +169,8 @@ class RegisterViewController: UIViewController {
             if User.getByEmail(email: email)!.count == 0 {
                 // user does not already exist
                 // Create the user
-                User.create(username: username, email: email, password: password, phoneNumber: phonenumber)
-                UserSessionManager.shared.setLoggedInUser(user: User.getNewlyCreated()![0])
+                let newUser = User.create(username: username, email: email, password: password, phoneNumber: phonenumber)
+                UserSessionManager.shared.setLoggedInUser(user: newUser!)
                 PresenterManager.shared.show(vc: .shop)
             }
             else {

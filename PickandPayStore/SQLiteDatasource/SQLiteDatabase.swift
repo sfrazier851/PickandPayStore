@@ -9,47 +9,79 @@ import Foundation
 import SQLite3
 
 class SQLiteDatabase {
+    
+    private enum testing {
+        case none
+        case unit
+        case integration
+    }
+    
     // application database instance
-    private static let sharedInstance = SQLiteDatabase(testing: false)
+    private static let sharedInstance = SQLiteDatabase(testing: .none)
     private var database: OpaquePointer?
     static func getDatabase() -> OpaquePointer? {
-        return sharedInstance.database
+        guard let db = sharedInstance.database else {
+            return nil
+        }
+        return db
     }
     
-    // testing database instance
-    private static let testInstance = SQLiteDatabase(testing: true)
-    private var testDatabase: OpaquePointer?
-    static func getTestDatabase() -> OpaquePointer? {
-        return testInstance.testDatabase
+    // integration testing database instance
+    private static let integrationTestInstance = SQLiteDatabase(testing: .integration)
+    private var integrationTestDatabase: OpaquePointer?
+    static func getIntegrationTestDatabase() -> OpaquePointer? {
+        return integrationTestInstance.integrationTestDatabase
     }
     
-    private init(testing: Bool) {
+    // unit testing database instance
+    private static let unitTestInstance = SQLiteDatabase(testing: .unit)
+    private var unitTestDatabase: OpaquePointer?
+    static func getUnitTestDatabase() -> OpaquePointer? {
+        return unitTestInstance.unitTestDatabase
+    }
+    
+    private init(testing: testing) {
         // Create a connection to the database
-        do {
-            if (testing == true) {
-                // Create and connect to in-memory database
-                if sqlite3_open("file::memory:", &testDatabase) != SQLITE_OK {
+        switch testing {
+            case .unit:
+                // Create and connect to in-memory database for unit tests
+                if sqlite3_open("file::memory:", &unitTestDatabase) != SQLITE_OK {
                     print("error opening database")
                 } else {
                     print("\n==============")
                     print("test db opened")
                     print("==============\n")
                 }
-                
-            } else {
-                // Get full path
-                let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                // Define path for database file
-                let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.dbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
-                print(fileUrl.path)
-                
-                // Connect to db or create if doesn't exist
-                if sqlite3_open(fileUrl.path, &database) != SQLITE_OK {
-                    print("error opening database")
+            case .integration:
+                do {
+                    // Get full path
+                    let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                    // Define path for database file
+                    let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.testDbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
+                    print(fileUrl.path)
+                    
+                    // Connect to db or create if doesn't exist for integration tests
+                    if sqlite3_open(fileUrl.path, &integrationTestDatabase) != SQLITE_OK {
+                        print("error opening database")
+                    }
+                } catch {
+                    print("Error connecting to the database: \(error)")
                 }
-            }
-        } catch {
-            print("Error connecting to the database: \(error)")
+            case .none:
+                do {
+                    // Get full path
+                    let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                    // Define path for database file
+                    let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.dbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
+                    print(fileUrl.path)
+                    
+                    // Connect to db or create if doesn't exist for application
+                    if sqlite3_open(fileUrl.path, &database) != SQLITE_OK {
+                        print("error opening database")
+                    }
+                } catch {
+                    print("Error connecting to the database: \(error)")
+                }
         }
     }
     
