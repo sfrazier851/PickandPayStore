@@ -27,49 +27,39 @@ struct ProductCard: View {
                     .scaledToFit()
                 
                 // This VStack contains the name and price of the toy.
+                HStack {
                     VStack(alignment: .leading){
-                        Text(product.name)
-                            .bold()
-                        
-                        Text("$\(product.price, specifier: "%.2f")")
-                            .font(.caption)
-                    }
-                    .padding()
-                    .frame(width: 150, alignment: .leading)
-                // Only for IOS 15 and above.
-                //.background(.ultraThinMaterial)
-                .cornerRadius(20)
-                    
+                            Text(product.name)
+                                .bold()
+                            
+                            Text("$\(product.price, specifier: "%.2f")")
+                                .font(.caption)
+                        }
+                        .padding()
+                        .frame(width: 150, alignment: .leading)
+                    // Only for IOS 15 and above.
+                    //.background(.ultraThinMaterial)
+                    .cornerRadius(20)
                     Button {
-                        cartManager.addToCart(product: product, count: 1)
-                        cartManager.printManager()
-                    } label: {
-                        Image(systemName: "plus")
-                            .padding(5)
-                            .foregroundColor(.red)
-                            //available only in IOS 15 .background(.black)
-                            .cornerRadius(50)
-                            //.padding()
-                    }
+                         cartManager.addToCart(product: product, count: 1)
+                         cartManager.printManager()
+                     } label: {
+                         Image(systemName: "plus")
+                             .padding(5)
+                             .foregroundColor(.black)
+                             //available only in IOS 15 .background(.black)
+                             .cornerRadius(50)
+                             //.padding()
+                     }
+                    
                 }
-            
             }
-            .frame(width: 200, height: 250)
-            .shadow(radius: 3)
             
-           /* Button {
-                cartManager.addToCart(product: product, count: 1)
-                cartManager.printManager()
-            } label: {
-                Image(systemName: "plus")
-                    .padding(10)
-                    .foregroundColor(.red)
-                    //available only in IOS 15 .background(.black)
-                    .cornerRadius(50)
-                    .padding()
-            }*/
         }
+        .frame(width: 200, height: 250)
+        .shadow(radius: 3)
     }
+}
 
 
 struct ProductCard_Previews: PreviewProvider {

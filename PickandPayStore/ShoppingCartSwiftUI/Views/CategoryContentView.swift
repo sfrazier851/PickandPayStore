@@ -15,9 +15,12 @@ struct CategoryContentView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
+    // State variables for site menu.
+    @State var showMenu = true
+    
     // Instance of CartManager and ProductsManager so you can access its functions and //properties.
     // Added cartManager to ProductCart and CartView.
-    @StateObject var cartManager = CartManager()
+    @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var productsManager: ProductsManager
     
     
@@ -32,54 +35,80 @@ struct CategoryContentView: View {
        //Create SearchBar outside of scrollview so it always shows on top
         SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
         
-            ScrollView{
+        ZStack {
                 
+            if showMenu {
+                SideMenuView(isShowing: $showMenu)
+            }
+            ScrollView {
+                    
                 // Here you iterate over the Product list.
                 LazyVGrid(columns: columns, spacing: 20){
                     ForEach(productsList.filter({ (product: Product) -> Bool in
                         return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                     }), id: \.id)  { product in
                         
-                        //Add a navigation link to each product card
-                        NavigationLink(destination: ProductDetailView(product: product)
-                                        .environmentObject(cartManager)
-                                        .environmentObject(productsManager))
-                        {
-                        ProductCard(product: product)
-                            .environmentObject(cartManager)
+                        //Filter list based on text in search bar
+                        ForEach(productsList.filter({ (product: Product) -> Bool in
+                            return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
+                        }), id: \.id)  { product in
                             
+                            //Add a navigation link to each product card
+                            NavigationLink(destination: ProductDetailView(product: product)
+                                            .environmentObject(cartManager)
+                                            .environmentObject(productsManager))
+                            {
+                            ProductCard(product: product)
+                                .environmentObject(cartManager)
+                                
+                            }
+                                
                         }
-                            
                     }
-                }
-                .padding()
-            
-               
-            .navigationTitle(Text(category.name))
+                    .padding()
                 
-            //If using the search bar, add a cancel search button
-            .toolbar{
-                if searching{
-                    Button("Cancel Search"){
-                        searchText = ""
-                        withAnimation{
-                            searching = false
-                            UIApplication.shared.dismissKeyboard()
+                   
+                .navigationTitle(Text(category.name))
+                    
+                //If using the search bar, add a cancel search button
+                .toolbar{
+                    ToolbarItem{
+                        if searching{
+                            Button("Cancel Search"){
+                                searchText = ""
+                                withAnimation{
+                                    searching = false
+                                    UIApplication.shared.dismissKeyboard()
+                                }
+                            }
+                        }
+                        //Navigate to the CartView
+                        NavigationLink {
+                            // This is the destination.
+                            CartView()
+                                .environmentObject(cartManager)
+                        } label: {
+                            //On CartButton click go to CartView.
+                            CartButton(numberOfProducts: cartManager.products.count)
                         }
                     }
-                }
-                //Navigate to the CartView
-                NavigationLink {
-                    // This is the destination.
-                    CartView()
-                        .environmentObject(cartManager)
-                } label: {
-                    //On CartButton click go to CartView.
-                    CartButton(numberOfProducts: cartManager.products.count)
+                    
+                    ToolbarItem (placement: .navigationBarLeading){
+                        MenuButton(isOpen: $showMenu).onTapGesture {
+                            withAnimation(.spring())
+                            {
+                                showMenu.toggle()
+                            }
+                        }
+                    }
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .offset(x: showMenu ? 200 : 0, y: 0)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(){
+            showMenu = false
+        }
     }
 }
 
@@ -90,6 +119,8 @@ struct CategoryContentView_Previews: PreviewProvider {
         CategoryContentView(category:Category(name: "ground", imageName: "speeder" ),
                             productsList: ProductsManager().getProductsOfCategory(category: 1))
             .environmentObject(ProductsManager())
+                .environmentObject(CartManager())
     }
 }
 
+}
