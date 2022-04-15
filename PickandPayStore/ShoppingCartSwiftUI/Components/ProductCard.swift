@@ -14,7 +14,7 @@ struct ProductCard: View {
     @EnvironmentObject var productsManager: ProductsManager
     
     // It displays a Product object.
-    var product: ProductM
+    var product: Product
     
     var body: some View {
         
@@ -65,7 +65,7 @@ struct ProductCard: View {
 struct ProductCard_Previews: PreviewProvider {
     static var previews: some View {
         // You pass the argument that needs to be displayed here.
-        ProductCard(product: ProductM(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
+        ProductCard(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
             .environmentObject(CartManager())
     }
 }

@@ -11,7 +11,7 @@ struct ProductDetailView: View {
     @Environment(\.defaultMinListRowHeight) var minRowheight
     @EnvironmentObject var cartManager: CartManager
     @State var total : Int = 1
-    var product : ProductM
+    var product : Product
     var body: some View {
       // ScrollView{
        
@@ -85,8 +85,8 @@ struct ProductDetailView: View {
                     
                 List{
                     Section{
-                    let p = SQLiteDAL.getReviewsByProductID(productID: product.id)
-                            ForEach(p!, id: \.id){ productreview in
+                    let p = ProductReview.getByProductID(productID: product.id)
+                            ForEach(p! , id: \.id){ productreview in
                                 Text(productreview.review)
                                 }
                         
@@ -107,7 +107,7 @@ struct ProductDetailView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(product: ProductM(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
+        ProductDetailView(product: Product(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
             .environmentObject(CartManager())
     }
 }
