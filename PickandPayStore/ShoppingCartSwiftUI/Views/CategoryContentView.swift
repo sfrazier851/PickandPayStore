@@ -92,6 +92,7 @@ struct CategoryContentView_Previews: PreviewProvider {
         CategoryContentView(category:CategoryM(name: "ground", imageName: "speeder" ),
                             productsList: ProductsManager().getProductsOfCategory(category: 1))
             .environmentObject(ProductsManager())
+                .environmentObject(CartManager())
     }
 }
 

@@ -30,6 +30,7 @@ struct CategoryCard: View {
                 Text(category.name)
                     .font(.headline)
                     .fontWeight(.heavy)
+                    .foregroundColor(.black)
                     
                 Spacer()
             }

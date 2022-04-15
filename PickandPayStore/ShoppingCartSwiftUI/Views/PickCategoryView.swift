@@ -32,7 +32,7 @@ struct PickCategoryView: View {
                 }
                 ScrollView{
                     ZStack {
-                        Color(.green)
+                        Color(.white)
                         VStack{
                                 //Create search bar at top of Vstack
                                 SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
