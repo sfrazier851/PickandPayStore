@@ -165,7 +165,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func backToHomeButtonTapped(_ sender: Any) {
-        PresenterManager.shared.show(vc: .home)
+        PresenterManager.shared.show(vc: .shop)
     }
     
     

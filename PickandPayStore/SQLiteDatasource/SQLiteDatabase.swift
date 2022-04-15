@@ -19,6 +19,8 @@ class SQLiteDatabase {
     // application database instance
     private static let sharedInstance = SQLiteDatabase(testing: .none)
     private var database: OpaquePointer?
+    private static var dbPath: String = getDbFilePath(dbFilename: K.SQLiteDatabase.dbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
+    static func getDbPath() -> String { return dbPath }
     static func getDatabase() -> OpaquePointer? {
         guard let db = sharedInstance.database else {
             return nil
@@ -29,6 +31,8 @@ class SQLiteDatabase {
     // integration testing database instance
     private static let integrationTestInstance = SQLiteDatabase(testing: .integration)
     private var integrationTestDatabase: OpaquePointer?
+    private static var integrationDbPath: String = ""
+    static func getIntegrationTestDbPath() -> String { return integrationDbPath }
     static func getIntegrationTestDatabase() -> OpaquePointer? {
         return integrationTestInstance.integrationTestDatabase
     }
@@ -53,38 +57,39 @@ class SQLiteDatabase {
                     print("==============\n")
                 }
             case .integration:
-                do {
-                    // Get full path
-                    let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                    // Define path for database file
-                    let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.testDbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
-                    print(fileUrl.path)
-                    
-                    // Connect to db or create if doesn't exist for integration tests
-                    if sqlite3_open(fileUrl.path, &integrationTestDatabase) != SQLITE_OK {
-                        print("error opening database")
-                    }
-                } catch {
-                    print("Error connecting to the database: \(error)")
+                // Get integration test db file path
+                let dbFilePath = SQLiteDatabase.getDbFilePath(dbFilename: K.SQLiteDatabase.testDbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
+                SQLiteDatabase.integrationDbPath = dbFilePath
+                print(dbFilePath)
+                // Connect to db or create if doesn't exist for integration tests
+                if sqlite3_open(dbFilePath, &integrationTestDatabase) != SQLITE_OK {
+                    print("error opening database")
                 }
             case .none:
-                do {
-                    // Get full path
-                    let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                    // Define path for database file
-                    let fileUrl = documentDirectory.appendingPathComponent(K.SQLiteDatabase.dbFilename).appendingPathExtension(K.SQLiteDatabase.dbFileExtension)
-                    print(fileUrl.path)
-                    
-                    // Connect to db or create if doesn't exist for application
-                    if sqlite3_open(fileUrl.path, &database) != SQLITE_OK {
-                        print("error opening database")
-                    }
-                } catch {
-                    print("Error connecting to the database: \(error)")
+                // Get application db file path
+                let dbFilePath = SQLiteDatabase.getDbFilePath(dbFilename: K.SQLiteDatabase.dbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
+                SQLiteDatabase.dbPath = dbFilePath
+                print(dbFilePath)
+                // Connect to db or create if doesn't exist for application
+                if sqlite3_open(dbFilePath, &database) != SQLITE_OK {
+                    print("error opening database")
                 }
         }
     }
     
+    private static func getDbFilePath(dbFilename: String, dbFileExtension: String) -> String {
+        do {
+            // Get full path
+            let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            // Define path for database file
+            let fileUrl = documentDirectory.appendingPathComponent(dbFilename).appendingPathExtension(dbFileExtension)
+            
+            return fileUrl.path
+        } catch {
+            print("Error getting db file path: \(error)")
+        }
+        return ""
+    }
     
     private static func runSqlScript(sqlScript: String, database: OpaquePointer?) {
         if let db = database {
