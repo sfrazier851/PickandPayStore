@@ -15,8 +15,8 @@ struct PickCategoryView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
-    // State variable for site menu.
-    @State var showMenu = true
+    // State variables for site menu.
+    @State var showMenu = false
     
     // Observable objects.
     @StateObject var cartManager: CartManager = CartManager()
@@ -77,7 +77,12 @@ struct PickCategoryView: View {
                                 }
                                 ToolbarItem(placement: .navigationBarLeading){
                                     
-                                    MenuButton()
+                                    MenuButton(isOpen: $showMenu).onTapGesture {
+                                        withAnimation(.spring())
+                                        {
+                                            showMenu.toggle()
+                                        }
+                                    }
                                 }
                             }
                         .navigationTitle(Text("Categories"))

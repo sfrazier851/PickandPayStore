@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct MenuButton: View {
+
+    @Binding var isOpen: Bool
+    
     var body: some View {
-        Image(systemName: "line.3.horizontal")
-            .foregroundColor(.black)
+        if isOpen
+        {
+            Image(systemName: "xmark")
+                .foregroundColor(.black)
+        }
+        else
+        {
+            Image(systemName: "line.3.horizontal")
+        }
     }
 }
 
 struct MenuButton_Previews: PreviewProvider {
     static var previews: some View {
-        MenuButton()
+        MenuButton(isOpen: .constant(false))
     }
 }
