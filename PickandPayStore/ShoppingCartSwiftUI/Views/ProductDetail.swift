@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    @Environment(\.defaultMinListRowHeight) var minRowheight
+    
     @EnvironmentObject var cartManager: CartManager
+    @EnvironmentObject var wishlistManager: WishlistManager
+    
     @State var total : Int = 1
     @State var goNext: Int?
-    @Binding var udWishlist: [String:Int]
+   
     var product : ProductM
     var body: some View {
       // ScrollView{
        
         
         
-        VStack(){
+        VStack{
             Text(product.name)
                 .font(.largeTitle.bold())
                 .frame(width: 320, alignment: .leading)
@@ -32,7 +34,7 @@ struct ProductDetailView: View {
                             .frame(width: 320)
                             .scaledToFit()
                      
-            HStack(){
+            HStack{
                 
                 Button {
                     if total != 1{
@@ -77,21 +79,32 @@ struct ProductDetailView: View {
                 .cornerRadius(5)
             
                 Button{
-                       udWishlist[product.name] = 1
-                    print(udWishlist)
-                        
-                    UserDefaults.standard.set(udWishlist, forKey: "Wishlist")
+                    
+                    if wishlistManager.getWishlist().contains(product.name){
+                        wishlistManager.removeFromWishlist(productName: product.name)
+                    }
+                    else{
+                        wishlistManager.addToWishlist(productName: product.name)
+                    }
+                    
+                    
+                    
                     self.goNext = 1
                 }
                 label: {
-                    Text("Add To Wishlist")
-                        .frame(width: 320, height: 20, alignment: .center)
-                        .foregroundColor(.black)
-                }
-                        .background(Color.gray)
-                        .cornerRadius(5)
+                    if wishlistManager.getWishlist().contains(product.name){
+                        Text("Remove From Wishlist")
+                            .frame(width: 320, height: 20, alignment: .center)
+                            .foregroundColor(.black)
+                    }
+                    else{
+                        Text("Add To Wishlist")
+                            .frame(width: 320, height: 20, alignment: .center)
+                            .foregroundColor(.black)
+                    }
+                }.background(Color.gray).cornerRadius(5)
         
-        NavigationLink(destination: WishlistView(udWishlist: $udWishlist), tag: 1, selection: $goNext, label:{EmptyView()})
+        
                 
                 
                 List{
@@ -118,9 +131,10 @@ struct ProductDetailView: View {
                }
                .background(Color.gray)
                .cornerRadius(5)
+            NavigationLink(destination: WishlistView().environmentObject(wishlistManager), tag: 1, selection: $goNext, label:{EmptyView()})
              Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-           
+        
     }
 }
 

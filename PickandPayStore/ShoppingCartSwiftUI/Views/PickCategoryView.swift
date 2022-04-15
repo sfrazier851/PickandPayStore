@@ -16,6 +16,7 @@ struct PickCategoryView: View {
     @State var pastSearches = [String]()
     
     @StateObject var productsManager: ProductsManager = ProductsManager()
+    @StateObject var wishlistManager: WishlistManager = WishlistManager()
     
     var body: some View {
         
