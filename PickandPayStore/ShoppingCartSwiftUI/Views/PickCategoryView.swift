@@ -84,15 +84,15 @@ struct PickCategoryView: View {
                                         }
                                     }
                                 }
-                            }
+                        }
                         .navigationTitle(Text("Categories"))
                     }
-                    }
-                    .offset(x: showMenu ? 200 : 0, y: 0)
                 }
-            
-            
-            
+                .offset(x: showMenu ? 200 : 0, y: 0)
+            }
+            .onAppear(){
+                showMenu = false
+            }
         }
     }
 }

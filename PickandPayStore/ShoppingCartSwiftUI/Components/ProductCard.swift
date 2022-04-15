@@ -53,37 +53,13 @@ struct ProductCard: View {
                      }
                     
                 }
-                    
-                   /* Button {
-                        cartManager.addToCart(product: product, count: 1)
-                        cartManager.printManager()
-                    } label: {
-                        Image(systemName: "plus")
-                            .padding(5)
-                            .foregroundColor(.red)
-                            //available only in IOS 15 .background(.black)
-                            .cornerRadius(50)
-                            //.padding()
-                    }*/
-                }
-            
             }
-            .frame(width: 200, height: 250)
-            .shadow(radius: 3)
             
-           /* Button {
-                cartManager.addToCart(product: product, count: 1)
-                cartManager.printManager()
-            } label: {
-                Image(systemName: "plus")
-                    .padding(10)
-                    .foregroundColor(.red)
-                    //available only in IOS 15 .background(.black)
-                    .cornerRadius(50)
-                    .padding()
-            }*/
         }
+        .frame(width: 200, height: 250)
+        .shadow(radius: 3)
     }
+}
 
 
 struct ProductCard_Previews: PreviewProvider {
