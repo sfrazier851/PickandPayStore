@@ -15,6 +15,9 @@ class UserTests: XCTestCase {
     
     // called before each test case
     override func setUpWithError() throws {
+        print("\n==============================")
+        print("dropping and recreating tables")
+        print("==============================")
         // Drop all tables then recreate tables for test database
         SQLiteDatabase.createTables(database: UserTests.unitTestDB)
         // Set static var to use unit test db
@@ -34,23 +37,6 @@ class UserTests: XCTestCase {
             print("==============\n")
         }
     }
-
-    /*
-    static func getAll() -> [User]? {
-
-    
-    static func getByID(userID: Int) -> [User]? {
-
-    
-    static func getByEmail(email: String) -> [User]? {
-
-    
-    static func getByUsername(username: String) -> [User]? {
-
-    
-    static func create(username: String, email: String, password: String, phoneNumber: String
-    ) -> User? {
-    */
     
     func testUserCreate() throws {
         //Given
@@ -65,6 +51,80 @@ class UserTests: XCTestCase {
         
         //Then
         XCTAssert(confirm_user == new_user, "\(confirm_user) and \(String(describing: new_user)) should be equal")
+    }
+    
+    func testUserGetByUsername() throws {
+        //Given
+        let user_query_id = 3
+        var confirm_user: User = User()
+        let user_count = 3
+        for x in 1...user_count {
+            if(x == user_query_id) {
+                confirm_user = User.create(username: "username\(x)", email: "email\(x)", password: "password\(x)", phoneNumber: "phonenumber\(x)")!
+            } else {
+                User.create(username: "username\(x)", email: "email\(x)", password: "password\(x)", phoneNumber: "phonenumber\(x)")
+            }
+        }
+        
+        //When
+        let query_user = User.getByUsername(username: "username\(user_query_id)")![0]
+        
+        //Then
+        XCTAssert(confirm_user == query_user, "\(confirm_user) and \(String(describing: query_user)) should be equal")
+    }
+    
+    func testUserGetByEmail() throws {
+        //Given
+        let user_query_id = 3
+        var confirm_user: User = User()
+        let user_count = 3
+        for x in 1...user_count {
+            if(x == user_query_id) {
+                confirm_user = User.create(username: "username\(x)", email: "email\(x)", password: "password\(x)", phoneNumber: "phonenumber\(x)")!
+            } else {
+                User.create(username: "username\(x)", email: "email\(x)", password: "password\(x)", phoneNumber: "phonenumber\(x)")
+            }
+        }
+        
+        //When
+        let query_user = User.getByEmail(email: "email\(user_query_id)")![0]
+        
+        //Then
+        XCTAssert(confirm_user == query_user, "\(confirm_user) and \(String(describing: query_user)) should be equal")
+    }
+    
+    func testUserGetByID() throws {
+        //Given
+        let user_query_id = 3
+        var confirm_user: User = User()
+        let user_count = 3
+        for x in 1...user_count {
+            if(x == user_query_id) {
+                confirm_user = User.create(username: "username\(x)", email: "email\(x)", password: "password\(x)", phoneNumber: "phonenumber\(x)")!
+            } else {
+                User.create(username: "username\(x)", email: "email\(x)", password: "password\(x)", phoneNumber: "phonenumber\(x)")
+            }
+        }
+        
+        //When
+        let query_user = User.getByID(userID: user_query_id)![0]
+        
+        //Then
+        XCTAssert(confirm_user == query_user, "\(confirm_user) and \(String(describing: query_user)) should be equal")
+    }
+    
+    func testUserGetAll() throws {
+        //Given
+        let user_count = 3
+        for x in 1...user_count {
+            User.create(username: "username\(x)", email: "email\(x)", password: "password\(x)", phoneNumber: "phonenumber\(x)")
+        }
+        
+        //When
+        let query_count = User.getAll()!.count
+        
+        //Then
+        XCTAssert(user_count == query_count, "\(query_count) and \(user_count) should be equal")
     }
 
     func testPerformanceExample() throws {

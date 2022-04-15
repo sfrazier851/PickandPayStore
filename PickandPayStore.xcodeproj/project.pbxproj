@@ -281,6 +281,7 @@
 		7FCA67962802B51200DB46ED /* SQLiteDbTests */ = {
 			isa = PBXGroup;
 			children = (
+				7FCA68C82809E53800DB46ED /* IntegrationTests */,
 				7FCA68972809871F00DB46ED /* UnitTests */,
 			);
 			path = SQLiteDbTests;
@@ -307,6 +308,13 @@
 				7F0A614127F80A970028B399 /* UserTests.swift */,
 			);
 			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		7FCA68C82809E53800DB46ED /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IntegrationTests;
 			sourceTree = "<group>";
 		};
 		AC16E9A527F62E8D0037743F /* ShoppingCartSwiftUI */ = {
