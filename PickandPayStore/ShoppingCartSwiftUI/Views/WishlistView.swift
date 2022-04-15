@@ -17,7 +17,7 @@ struct WishlistView: View {
             {
                 ForEach(wishlistManager.udWishlist, id: \.self){
                     product in
-                    ProductInWL(product: (SQLiteDAL.getProductsByName(name: product)?[0])!)
+                    ProductInWL(product: (Product.getByName(name: product)?[0])!)
                         .environmentObject(wishlistManager)
                 }
                 

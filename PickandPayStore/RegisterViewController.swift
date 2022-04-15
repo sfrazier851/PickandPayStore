@@ -181,7 +181,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func backToHomeButtonTapped(_ sender: Any) {
-        PresenterManager.shared.show(vc: .home)
+        PresenterManager.shared.show(vc: .shop)
     }
     
     private func showError(_ message:String) {

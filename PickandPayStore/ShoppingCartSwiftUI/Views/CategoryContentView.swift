@@ -58,20 +58,6 @@ struct CategoryContentView: View {
                         ProductCard(product: product)
                             .environmentObject(cartManager)
                         //Filter list based on text in search bar
-                        ForEach(productsList.filter({ (product: Product) -> Bool in
-                            return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
-                        }), id: \.id)  { product in
-                            
-                            //Add a navigation link to each product card
-                            NavigationLink(destination: ProductDetailView(product: product)
-                                            .environmentObject(cartManager)
-                                            .environmentObject(productsManager))
-                            {
-                            ProductCard(product: product)
-                                .environmentObject(cartManager)
-                                
-                            }
-                                
                         }
                     }
                     .padding()
