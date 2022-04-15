@@ -18,8 +18,11 @@ struct PickCategoryView: View {
     // State variables for site menu.
     @State var showMenu = false
     
+    //State variable for cart
+    @State var numberInCart = 0
+    @State var products = CartManager.sharedCart.products
+    
     // Observable objects.
-    @StateObject var cartManager: CartManager = CartManager()
     @StateObject var productsManager: ProductsManager = ProductsManager()
     @StateObject var wishlistManager: WishlistManager = WishlistManager()
     
@@ -41,9 +44,9 @@ struct PickCategoryView: View {
                                 ForEach(productsManager.categories.filter({ (category: Category) -> Bool in
                                     return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                                 }), id: \.id){ category in
-                                    NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
+                                    NavigationLink(destination: CategoryContentView(numberInCart: $numberInCart, products: $products, category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
                                             .environmentObject(productsManager)
-                                            .environmentObject(cartManager))
+                                                                                                .environmentObject(wishlistManager))
                                         {
                                             CategoryCard(category: category)
                                                 .environmentObject(productsManager)
@@ -68,11 +71,11 @@ struct PickCategoryView: View {
                                     //Navigate to the CartView
                                     NavigationLink {
                                         // This is the destination.
-                                        CartView()
-                                            .environmentObject(cartManager)
+                                        CartView(productsInCart: $products, numberInCart: $numberInCart)
+                                            
                                     } label: {
                                         //On CartButton click go to CartView.
-                                        CartButton(numberOfProducts: cartManager.products.count)
+                                        CartButton(numberInCart: $numberInCart)
                                     }
                                     
                                 }

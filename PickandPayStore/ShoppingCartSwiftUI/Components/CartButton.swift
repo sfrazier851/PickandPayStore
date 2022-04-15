@@ -10,7 +10,7 @@ import SwiftUI
 struct CartButton: View {
     
     // This variable holds the number of products in the cart.
-    var numberOfProducts: Int
+    @Binding var numberInCart : Int
     
     var body: some View {
         
@@ -20,9 +20,9 @@ struct CartButton: View {
                 .foregroundColor(.red)
             
             // Check if the cart has one or more items in it.
-            if(numberOfProducts > 0)
+            if(numberInCart > 0)
             {
-                Text("\(numberOfProducts)")
+                Text("\(numberInCart)")
                     .font(.caption2).bold()
                     .foregroundColor(.black)
                     .frame(width: 25, height: 25)
@@ -31,9 +31,9 @@ struct CartButton: View {
     }
 }
 
-struct CartButton_Previews: PreviewProvider {
-    static var previews: some View {
-        // Pass the numberOfProducts variable here.
-        CartButton(numberOfProducts: 1)
-    }
-}
+//struct CartButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Pass the numberOfProducts variable here.
+//        CartButton()
+//    }
+//}

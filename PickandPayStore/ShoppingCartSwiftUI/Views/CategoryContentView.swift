@@ -18,9 +18,12 @@ struct CategoryContentView: View {
     // State variables for site menu.
     @State var showMenu = true
     
+    //Binding for number of items in cart
+    @Binding var numberInCart: Int
+    @Binding var products: [Product]
+    
     // Instance of CartManager and ProductsManager so you can access its functions and //properties.
     // Added cartManager to ProductCart and CartView.
-    @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var productsManager: ProductsManager
     @StateObject var wishlistManager: WishlistManager = WishlistManager()
     
@@ -50,13 +53,11 @@ struct CategoryContentView: View {
                     }), id: \.id)  { product in
                         
                         //Add a navigation link to each product card
-                        NavigationLink(destination: ProductDetailView(product: product)
-                                        .environmentObject(cartManager)
+                        NavigationLink(destination: ProductDetailView(numberInCart: $numberInCart, product: product)
                                         .environmentObject(productsManager)
                                         .environmentObject(wishlistManager))
                         {
-                        ProductCard(product: product)
-                            .environmentObject(cartManager)
+                            ProductCard(product: product, numberInCart: $numberInCart, products: $products)
                         //Filter list based on text in search bar
                         }
                     }
@@ -80,11 +81,10 @@ struct CategoryContentView: View {
                         //Navigate to the CartView
                         NavigationLink {
                             // This is the destination.
-                            CartView()
-                                .environmentObject(cartManager)
+                            CartView(productsInCart: $products, numberInCart: $numberInCart)
                         } label: {
                             //On CartButton click go to CartView.
-                            CartButton(numberOfProducts: cartManager.products.count)
+                            CartButton(numberInCart: $numberInCart)
                         }
                     }
                     
@@ -109,13 +109,12 @@ struct CategoryContentView: View {
 
 
 
-struct CategoryContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryContentView(category:Category(name: "ground", imageName: "speeder" ),
-                            productsList: ProductsManager().getProductsOfCategory(category: 1))
-            .environmentObject(ProductsManager())
-                .environmentObject(CartManager())
-    }
-}
+//struct CategoryContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CategoryContentView(category:Category(name: "ground", imageName: "speeder" ),
+//                            productsList: ProductsManager().getProductsOfCategory(category: 1))
+//            .environmentObject(ProductsManager())
+//    }
+//}
 
 }

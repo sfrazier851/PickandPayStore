@@ -84,7 +84,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		45355FA827F3A2FC00ABFDC8 /* PickandPayStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = PickandPayStore.app; path = "/Users/admin/Desktop/PickandPayStore/build/Debug-iphoneos/PickandPayStore.app"; sourceTree = "<absolute>"; };
 		45355FAB27F3A2FC00ABFDC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45355FAD27F3A2FC00ABFDC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		45355FB227F3A2FC00ABFDC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		84652B9A28061A3000166D28 /* ProductInWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInWL.swift; sourceTree = "<group>"; };
 		84652B9C28061A9600166D28 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistManager.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
+		84BB3C44280A0D600040A928 /* PickandPayStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickandPayStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E250AD27FFAD3300EA997A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		84E250AF2804D04C00EA997A /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
 		AC16E9A927F62F980037743F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 				45355FAA27F3A2FC00ABFDC8 /* PickandPayStore */,
 				45355FC127F3A2FD00ABFDC8 /* PickandPayStoreTests */,
 				45355FCB27F3A2FD00ABFDC8 /* PickandPayStoreUITests */,
+				84BB3C44280A0D600040A928 /* PickandPayStore.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -365,7 +366,7 @@
 			);
 			name = PickandPayStore;
 			productName = PickandPayStore;
-			productReference = 45355FA827F3A2FC00ABFDC8 /* PickandPayStore.app */;
+			productReference = 84BB3C44280A0D600040A928 /* PickandPayStore.app */;
 			productType = "com.apple.product-type.application";
 		};
 		45355FBD27F3A2FD00ABFDC8 /* PickandPayStoreTests */ = {
@@ -635,7 +636,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -689,7 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

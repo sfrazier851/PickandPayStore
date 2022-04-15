@@ -8,8 +8,11 @@
 import Foundation
 import SwiftUI
 
-class CartManager: ObservableObject {
+class CartManager {
     
+    static let sharedCart = CartManager()
+    
+    private init(){}
     // Add the private(set) to variables, so they can be set only within this class.
     @Published private(set) var products: [Product] = []
     @Published private(set) var total: Float = 0

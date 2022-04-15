@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProductInCart: View {
     // Environment object modifier of CartManager, and ProductsManager type.
-    @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var productsManager: ProductsManager
-
+    @Binding var productsInCart : [Product]
+    @Binding var numberInCart: Int
     var product: Product
     
     var body: some View {
@@ -33,8 +33,10 @@ struct ProductInCart: View {
             Image(systemName: "trash")
                 .foregroundColor(.red)
                 .onTapGesture {
-                    cartManager.removeFromCart(product: product)
-                    cartManager.printManager()
+                    CartManager.sharedCart.removeFromCart(product: product)
+                    productsInCart = CartManager.sharedCart.products
+                    numberInCart -= 1
+                    CartManager.sharedCart.printManager()
                 }
             
         }
@@ -44,12 +46,11 @@ struct ProductInCart: View {
     
 }
 
-struct ProductInCart_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        ProductInCart(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
-            .environmentObject(CartManager())
-            .environmentObject(ProductsManager())
-    }
-    
-}
+//struct ProductInCart_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        ProductInCart(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
+//            .environmentObject(ProductsManager())
+//    }
+//    
+//}
