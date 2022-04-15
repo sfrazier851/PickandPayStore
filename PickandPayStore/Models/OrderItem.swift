@@ -7,15 +7,24 @@
 
 import Foundation
 
-struct OrderItem {
+struct OrderItem: Equatable {
     var id: Int = 0
     var purchaseOrderID: Int = 0
     var productID: Int = 0
     var purchasePrice: Float = 0.0
     
+    private static var testing: Bool = false
+    static func setTestingTrue() { OrderItem.testing = true }
+
     private static let orderItemDAL = { () -> OrderItemDAL? in
-        if let db = SQLiteDatabase.getDatabase() {
-            return OrderItemDAL(db: db, convert: convert)
+        if OrderItem.testing == true {
+            if let db = SQLiteDatabase.getUnitTestDatabase() {
+                return OrderItemDAL(db: db, convert: convert)
+            }
+        } else {
+            if let db = SQLiteDatabase.getDatabase() {
+                return OrderItemDAL(db: db, convert: convert)
+            }
         }
         return nil
     }()
@@ -44,6 +53,13 @@ struct OrderItem {
         return orderItemDAL.getAllOrderItems()
     }
     
+    static func getByID(orderItemID: Int) -> [OrderItem]? {
+        guard let orderItemDAL = orderItemDAL else {
+            return nil
+        }
+        return orderItemDAL.getOrderItemByID(orderItemID: orderItemID)
+    }
+    
     static func getByPurchaseOrderID(purchaseOrderID: Int) -> [OrderItem]? {
         guard let orderItemDAL = orderItemDAL else {
             return nil
@@ -51,7 +67,7 @@ struct OrderItem {
         return orderItemDAL.getOrderItemByPurchaseOrderID(purchaseOrderID: purchaseOrderID)
     }
     
-    static func create(purchaseOrderID: Int, productID: Int, purchasePrice: Float) -> Bool? {
+    static func create(purchaseOrderID: Int, productID: Int, purchasePrice: Float) -> OrderItem? {
         guard let orderItemDAL = orderItemDAL else {
             return nil
         }

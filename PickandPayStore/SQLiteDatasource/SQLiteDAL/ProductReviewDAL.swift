@@ -27,6 +27,13 @@ class ProductReviewDAL: SQLiteDAL {
         }
         return self.convert(productReviewsResultSet)
     }
+    
+    func getProductReviewByID(productReviewID: Int) -> [ProductReview]? {
+        guard let productReviewsResultSet = ProductReviewDAL.protectedQuery(modelType: productreview, queryString: "SELECT * FROM ProductReview WHERE ID = '\(productReviewID)';") else {
+            return nil
+        }
+        return self.convert(productReviewsResultSet)
+    }
 
     func getReviewsByProductID(productID: Int) -> [ProductReview]? {
         guard let productReviewsResultSet = ProductReviewDAL.protectedQuery(modelType: productreview, queryString: "SELECT * FROM ProductReview WHERE productID = '\(productID)';") else {
@@ -35,11 +42,10 @@ class ProductReviewDAL: SQLiteDAL {
         return self.convert(productReviewsResultSet)
     }
 
-    func createProductReview(userID: Int, productID: Int, review: String) -> Bool? {
+    func createProductReview(userID: Int, productID: Int, review: String) -> ProductReview? {
         guard let db = self.db else {
             return nil
         }
-        var success = true
         let insertStatementString = "INSERT INTO ProductReview ( userID, productID, review ) VALUES ( ?, ?, ? )"
         
         var insertStatement: OpaquePointer?
@@ -54,10 +60,11 @@ class ProductReviewDAL: SQLiteDAL {
                 print("\nSuccessfully inserted row.")
             } else {
                 print("\n INSERT statement is not prepared.")
-                success = false
             }
             sqlite3_finalize(insertStatement)
         }
-        return success
+        
+        let newProductReviewID = ProductReviewDAL.protectedGetLatestInsertId()!
+        return ProductReview.getByID(productReviewID: newProductReviewID)![0]
     }
 }

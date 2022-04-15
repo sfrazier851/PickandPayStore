@@ -28,6 +28,13 @@ class ShoppingCartDAL: SQLiteDAL {
         return self.convert(shoppingCartResultSet)
     }
     
+    func getShoppingCartByID(shoppingCartID: Int) -> [ShoppingCart]? {
+        guard let shoppingCartResultSet = ShoppingCartDAL.protectedQuery(modelType: shoppingcart, queryString: "SELECT * FROM ShoppingCart WHERE ID = '\(shoppingCartID)';") else {
+            return nil
+        }
+        return self.convert(shoppingCartResultSet)
+    }
+    
     func getShoppingCartByUserID(userID: Int) -> [ShoppingCart]? {
         guard let shoppingCartResultSet = ShoppingCartDAL.protectedQuery(modelType: shoppingcart, queryString: "SELECT * FROM ShoppingCart WHERE userID = '\(userID)';") else {
             return nil
@@ -35,11 +42,10 @@ class ShoppingCartDAL: SQLiteDAL {
         return self.convert(shoppingCartResultSet)
     }
     
-    func createShoppingCartProduct(userID: Int, productID: Int) -> Bool? {
+    func createShoppingCartProduct(userID: Int, productID: Int) -> ShoppingCart? {
         guard let db = self.db else {
             return nil
         }
-        var success = true
         let insertStatementString = "INSERT INTO ShoppingCart ( userID, productID ) VALUES ( ?, ? )"
         
         var insertStatement: OpaquePointer?
@@ -53,10 +59,11 @@ class ShoppingCartDAL: SQLiteDAL {
                 print("\nSuccessfully inserted row.")
             } else {
                 print("\n INSERT statement is not prepared.")
-                success = false
             }
             sqlite3_finalize(insertStatement)
         }
-        return success
+        
+        let newShoppingCartID = ShoppingCartDAL.protectedGetLatestInsertId()!
+        return ShoppingCart.getByID(shoppingCartID: newShoppingCartID)![0]
     }
 }

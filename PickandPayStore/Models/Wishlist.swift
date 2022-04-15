@@ -7,15 +7,24 @@
 
 import Foundation
 
-struct Wishlist {
+struct Wishlist: Equatable {
     var id: Int = 0
     var userID: Int = 0
     var productID: Int = 0
     var date_added: String = ""
     
+    private static var testing: Bool = false
+    static func setTestingTrue() { Wishlist.testing = true }
+
     private static let wishlistDAL = { () -> WishlistDAL? in
-        if let db = SQLiteDatabase.getDatabase() {
-            return WishlistDAL(db: db, convert: convert)
+        if Wishlist.testing == true {
+            if let db = SQLiteDatabase.getUnitTestDatabase() {
+                return WishlistDAL(db: db, convert: convert)
+            }
+        } else {
+            if let db = SQLiteDatabase.getDatabase() {
+                return WishlistDAL(db: db, convert: convert)
+            }
         }
         return nil
     }()
@@ -44,6 +53,13 @@ struct Wishlist {
         return wishlistDAL.getAllWishlistProducts()
     }
     
+    static func getByID(wishlistID: Int) -> [Wishlist]? {
+        guard let wishlistDAL = wishlistDAL else {
+            return nil
+        }
+        return wishlistDAL.getWishlistByID(wishlistID: wishlistID)
+    }
+    
     static func getByUserID(userID: Int) -> [Wishlist]? {
         guard let wishlistDAL = wishlistDAL else {
             return nil
@@ -51,7 +67,7 @@ struct Wishlist {
         return wishlistDAL.getWishlistByUserID(userID: userID)
     }
     
-    static func create(userID: Int, productID: Int) -> Bool? {
+    static func create(userID: Int, productID: Int) -> Wishlist? {
         guard let wishlistDAL = wishlistDAL else {
             return nil
         }

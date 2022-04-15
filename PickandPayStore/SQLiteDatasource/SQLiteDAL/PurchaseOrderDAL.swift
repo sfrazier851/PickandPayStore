@@ -42,11 +42,10 @@ class PurchaseOrderDAL: SQLiteDAL {
         return self.convert(purchaseOrderResultSet)
     }
     
-    func createPurchaseOrder(userID: Int, paymentType: String) -> Bool? {
+    func createPurchaseOrder(userID: Int, paymentType: String) -> PurchaseOrder? {
         guard let db = self.db else {
             return nil
         }
-        var success = true
         let insertStatementString = "INSERT INTO PurchaseOrder ( userID, paymentType ) VALUES ( ?, ? )"
         
         var insertStatement: OpaquePointer?
@@ -60,10 +59,11 @@ class PurchaseOrderDAL: SQLiteDAL {
                 print("\nSuccessfully inserted row.")
             } else {
                 print("\n INSERT statement is not prepared.")
-                success = false
             }
             sqlite3_finalize(insertStatement)
         }
-        return success
+        
+        let newPurchaseOrderID = PurchaseOrderDAL.protectedGetLatestInsertId()!
+        return PurchaseOrder.getByID(purchaseOrderID: newPurchaseOrderID)![0]
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct User: Equatable {
     var id: Int = 0
     var username: String = ""
     var email: String = ""
@@ -15,9 +15,18 @@ struct User {
     var phoneNumber: String = ""
     var balance: Float = 0.0
     
+    private static var testing: Bool = false
+    static func setTestingTrue() { User.testing = true }
+    
     private static let userDAL = { () -> UserDAL? in
-        if let db = SQLiteDatabase.getDatabase() {
-            return UserDAL(db: db, convert: convert)
+        if User.testing == true {
+            if let db = SQLiteDatabase.getUnitTestDatabase() {
+                return UserDAL(db: db, convert: convert)
+            }
+        } else {
+            if let db = SQLiteDatabase.getDatabase() {
+                return UserDAL(db: db, convert: convert)
+            }
         }
         return nil
     }()

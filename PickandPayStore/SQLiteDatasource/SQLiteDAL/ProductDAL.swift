@@ -42,11 +42,10 @@ class ProductDAL: SQLiteDAL {
         return self.convert(productsResultSet)
     }
 
-    func createProduct(categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Bool? {
+    func createProduct(categoryID: Int, name: String, price: Float, imageName: String, description: String) -> Product? {
         guard let db = self.db else {
             return nil
         }
-        var success = true
         let insertStatementString = "INSERT INTO Product ( categoryID, name, price, imageName, description ) VALUES ( ?, ?, ?, ?, ?)"
         
         var insertStatement: OpaquePointer?
@@ -63,10 +62,11 @@ class ProductDAL: SQLiteDAL {
                 print("\nSuccessfully inserted row.")
             } else {
                 print("\n INSERT statement is not prepared.")
-                success = false
             }
             sqlite3_finalize(insertStatement)
         }
-        return success
+        
+        let newProductID = ProductDAL.protectedGetLatestInsertId()!
+        return Product.getByID(productID: newProductID)![0]
     }
 }
