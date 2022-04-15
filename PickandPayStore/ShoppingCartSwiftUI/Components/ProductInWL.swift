@@ -12,7 +12,7 @@ struct ProductInWL: View {
     
     @EnvironmentObject var wishlistManager: WishlistManager 
 
-    var product: ProductM
+    var product: Product
     
     var body: some View {
         HStack(spacing: 20){
@@ -49,7 +49,7 @@ struct ProductInWL: View {
 struct ProductInWL_Previews: PreviewProvider {
     
     static var previews: some View {
-        ProductInWL(product: ProductM(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
+        ProductInWL(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
     }
     
 }
