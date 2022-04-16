@@ -22,7 +22,6 @@
 		7F0A619227FC60300028B399 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A619127FC60300028B399 /* LoadingViewController.swift */; };
 		7F0A619727FC60CB0028B399 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A619627FC60CB0028B399 /* Helper.swift */; };
 		7F0A619D27FC60F10028B399 /* PresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A619C27FC60F10028B399 /* PresenterManager.swift */; };
-		7F0A61A227FC690C0028B399 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61A127FC690C0028B399 /* HomeViewController.swift */; };
 		7F0A61A727FC6CDB0028B399 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */; };
 		7F0A61AC27FC6D990028B399 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61AB27FC6D990028B399 /* LoginViewController.swift */; };
 		7F0A61B127FC73880028B399 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61B027FC73870028B399 /* Utilities.swift */; };
@@ -102,7 +101,6 @@
 		7F0A619127FC60300028B399 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		7F0A619627FC60CB0028B399 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		7F0A619C27FC60F10028B399 /* PresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterManager.swift; sourceTree = "<group>"; };
-		7F0A61A127FC690C0028B399 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F0A61AB27FC6D990028B399 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F0A61B027FC73870028B399 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				45355FB927F3A2FD00ABFDC8 /* Info.plist */,
 				AC16E9A527F62E8D0037743F /* ShoppingCartSwiftUI */,
 				7F0A619127FC60300028B399 /* LoadingViewController.swift */,
-				7F0A61A127FC690C0028B399 /* HomeViewController.swift */,
 				7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */,
 				7F0A61AB27FC6D990028B399 /* LoginViewController.swift */,
 			);
@@ -508,7 +505,6 @@
 				7FCA682F2808A28F00DB46ED /* OrderItemDAL.swift in Sources */,
 				7FCA67AF2808868B00DB46ED /* UserDAL.swift in Sources */,
 				AC16E9AA27F62F980037743F /* ContentView.swift in Sources */,
-				7F0A61A227FC690C0028B399 /* HomeViewController.swift in Sources */,
 				7F0A613727F78B950028B399 /* ProductReview.swift in Sources */,
 				7FCA681228089A8700DB46ED /* WishlistDAL.swift in Sources */,
 				7F5D841F27F400870063ED40 /* Wishlist.swift in Sources */,
