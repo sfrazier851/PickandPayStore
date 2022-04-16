@@ -24,9 +24,7 @@ struct CategoryContentView: View {
     
     // Instance of CartManager and ProductsManager so you can access its functions and //properties.
     // Added cartManager to ProductCart and CartView.
-    @EnvironmentObject var productsManager: ProductsManager
-    @StateObject var wishlistManager: WishlistManager = WishlistManager()
-    
+    @EnvironmentObject var productsManager: ProductsManager    
     
     var category: Category
     var productsList: [Product]
@@ -42,7 +40,7 @@ struct CategoryContentView: View {
         ZStack {
                 
             if showMenu {
-                SideMenuView(isShowing: $showMenu).environmentObject(wishlistManager)
+                SideMenuView(isShowing: $showMenu)
             }
             ZStack{
                 
@@ -58,8 +56,7 @@ struct CategoryContentView: View {
                         
                         //Add a navigation link to each product card
                         NavigationLink(destination: ProductDetailView(numberInCart: $numberInCart, products: $products, product: product)
-                                        .environmentObject(productsManager)
-                                        .environmentObject(wishlistManager))
+                                        .environmentObject(productsManager))
                         {
                             ProductCard(product: product, numberInCart: $numberInCart, products: $products)
                         //Filter list based on text in search bar

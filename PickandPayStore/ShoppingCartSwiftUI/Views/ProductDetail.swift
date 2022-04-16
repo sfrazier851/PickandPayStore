@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    
-    @EnvironmentObject var wishlistManager: WishlistManager
+
     
     @State var total : Int = 1
+    @State var inWishlist: Bool = false
     
     @Binding var numberInCart : Int
     @Binding var products: [Product]
@@ -83,16 +83,19 @@ struct ProductDetailView: View {
             
                 Button{
                     
-                    if wishlistManager.getWishlist().contains(product.name){
-                        wishlistManager.removeFromWishlist(productName: product.name)
+                    if inWishlist {
+                        WishlistManager.sharedWishlist.removeFromWishlist(productName: product.name)
                     }
                     else{
-                        wishlistManager.addToWishlist(productName: product.name)
+                        WishlistManager.sharedWishlist.addToWishlist(productName: product.name)
                     }
-                    
+                    inWishlist.toggle()
+                    print(inWishlist)
+                    print(WishlistManager.sharedWishlist.getWishlist())
                 }
                 label: {
-                    if wishlistManager.getWishlist().contains(product.name){
+                    
+                    if inWishlist {
                         Text("Remove From Wishlist")
                             .frame(width: 320, height: 20, alignment: .center)
                             .foregroundColor(.black)
@@ -134,13 +137,15 @@ struct ProductDetailView: View {
             
              Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        
+            .onAppear(){
+                inWishlist = WishlistManager.sharedWishlist.getWishlist().contains(product.name)
+            }
     }
 }
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(numberInCart: .constant(1), products: .constant([]), product: Product(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
+        ProductDetailView(inWishlist: true, numberInCart: .constant(1), products: .constant([]), product: Product(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
             
     }
 }
