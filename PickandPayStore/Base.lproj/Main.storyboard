@@ -127,14 +127,14 @@
         <!--Login View Controller-->
         <scene sceneID="IL8-nK-lUU">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="Lge-8j-ZwT" userLabel="Login View Controller" customClass="LoginViewController" customModule="PickandPayStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="overCurrentContext" id="Lge-8j-ZwT" userLabel="Login View Controller" customClass="LoginViewController" customModule="PickandPayStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jV-xy-soJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-u8-O72">
-                                <rect key="frame" x="20" y="44" width="34" height="30"/>
-                                <state key="normal" title="Back">
+                                <rect key="frame" x="20" y="44" width="30" height="30"/>
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -142,19 +142,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Millennium Technologies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHI-3z-9Of">
-                                <rect key="frame" x="67.5" y="380" width="279" height="30"/>
+                                <rect key="frame" x="67.5" y="319" width="279" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Falcon_ships_b" translatesAutoresizingMaskIntoConstraints="NO" id="rj7-IM-3Hh">
-                                <rect key="frame" x="37" y="104" width="340" height="290"/>
+                                <rect key="frame" x="37" y="44" width="340" height="290"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="290" id="QK9-8h-iQa"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5X8-bg-Mty">
-                                <rect key="frame" x="50" y="437" width="314" height="232.5"/>
+                                <rect key="frame" x="50" y="376" width="314" height="232.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KUO-io-n33" userLabel="Mobile Number TextField">
                                         <rect key="frame" x="10" y="0.0" width="294" height="34"/>
@@ -200,12 +200,12 @@
                         <viewLayoutGuide key="safeArea" id="fpa-89-Qwo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="MHI-3z-9Of" firstAttribute="top" secondItem="fpa-89-Qwo" secondAttribute="top" constant="336" id="1dZ-Ub-9sq"/>
+                            <constraint firstItem="MHI-3z-9Of" firstAttribute="top" secondItem="rj7-IM-3Hh" secondAttribute="bottom" constant="-15" id="1dZ-Ub-9sq"/>
                             <constraint firstItem="5X8-bg-Mty" firstAttribute="leading" secondItem="fpa-89-Qwo" secondAttribute="leading" constant="50" id="1ra-Re-QcZ"/>
                             <constraint firstItem="fpa-89-Qwo" firstAttribute="trailing" secondItem="5X8-bg-Mty" secondAttribute="trailing" constant="50" id="F2T-jk-YAP"/>
                             <constraint firstItem="k0f-u8-O72" firstAttribute="top" secondItem="fpa-89-Qwo" secondAttribute="top" id="LXC-5b-vlw"/>
                             <constraint firstItem="5X8-bg-Mty" firstAttribute="centerX" secondItem="rj7-IM-3Hh" secondAttribute="centerX" id="Our-2k-wLk"/>
-                            <constraint firstItem="rj7-IM-3Hh" firstAttribute="top" secondItem="fpa-89-Qwo" secondAttribute="top" constant="60" id="Rjf-u8-9XV"/>
+                            <constraint firstItem="rj7-IM-3Hh" firstAttribute="top" secondItem="fpa-89-Qwo" secondAttribute="top" id="Rjf-u8-9XV"/>
                             <constraint firstItem="rj7-IM-3Hh" firstAttribute="leading" secondItem="fpa-89-Qwo" secondAttribute="leading" constant="37" id="VQi-Dl-cKz"/>
                             <constraint firstItem="5X8-bg-Mty" firstAttribute="centerX" secondItem="MHI-3z-9Of" secondAttribute="centerX" id="WqH-zh-lNM"/>
                             <constraint firstItem="5X8-bg-Mty" firstAttribute="centerX" secondItem="9jV-xy-soJ" secondAttribute="centerX" id="dGy-sO-ZrG"/>
@@ -213,6 +213,7 @@
                             <constraint firstItem="k0f-u8-O72" firstAttribute="leading" secondItem="9jV-xy-soJ" secondAttribute="leadingMargin" id="kuL-gy-Tim"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backToHomeButton" destination="k0f-u8-O72" id="eGz-QL-WkP"/>
                         <outlet property="emailTextField" destination="zdD-1P-Z8X" id="q4q-N3-WqM"/>
@@ -247,15 +248,14 @@
         <!--Register View Controller-->
         <scene sceneID="zje-ak-afJ">
             <objects>
-                <viewController storyboardIdentifier="RegisterViewController" id="xWe-Qk-nEZ" userLabel="Register View Controller" customClass="RegisterViewController" customModule="PickandPayStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" extendedLayoutIncludesOpaqueBars="YES" id="xWe-Qk-nEZ" userLabel="Register View Controller" customClass="RegisterViewController" customModule="PickandPayStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sty-iL-7p0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHo-NK-DkU">
-                                <rect key="frame" x="20" y="44" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHo-NK-DkU">
+                                <rect key="frame" x="20" y="44" width="30" height="30"/>
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -263,19 +263,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Millennium Technologies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8c-gQ-vue">
-                                <rect key="frame" x="67.5" y="379" width="279" height="30"/>
+                                <rect key="frame" x="67.5" y="319" width="279" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Falcon_ships_b" translatesAutoresizingMaskIntoConstraints="NO" id="Aly-aB-BfT">
-                                <rect key="frame" x="37" y="103" width="340" height="290"/>
+                                <rect key="frame" x="37" y="44" width="340" height="290"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="290" id="rGS-ED-n2K"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="gFw-QO-ly8">
-                                <rect key="frame" x="50" y="436" width="314" height="382.5"/>
+                                <rect key="frame" x="50" y="376" width="314" height="382.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iih-OM-K1y" userLabel="Mobile Number TextField">
                                         <rect key="frame" x="10" y="0.0" width="294" height="34"/>
@@ -337,15 +337,18 @@
                         <constraints>
                             <constraint firstItem="o8c-gQ-vue" firstAttribute="centerX" secondItem="gFw-QO-ly8" secondAttribute="centerX" id="0ow-k6-Q9C"/>
                             <constraint firstItem="gFw-QO-ly8" firstAttribute="centerX" secondItem="sty-iL-7p0" secondAttribute="centerX" id="C1x-SJ-35G"/>
-                            <constraint firstItem="Aly-aB-BfT" firstAttribute="top" secondItem="i9P-G7-NQ3" secondAttribute="top" constant="59" id="G29-Bi-lyW"/>
+                            <constraint firstItem="Aly-aB-BfT" firstAttribute="top" secondItem="i9P-G7-NQ3" secondAttribute="top" id="G29-Bi-lyW"/>
                             <constraint firstItem="o8c-gQ-vue" firstAttribute="centerX" secondItem="Aly-aB-BfT" secondAttribute="centerX" id="IMa-HZ-dyq"/>
                             <constraint firstItem="gFw-QO-ly8" firstAttribute="top" secondItem="o8c-gQ-vue" secondAttribute="bottom" constant="27" id="Jkn-Rd-ShQ"/>
+                            <constraint firstItem="lHo-NK-DkU" firstAttribute="leading" secondItem="i9P-G7-NQ3" secondAttribute="leading" constant="20" id="SK9-Ue-EfS"/>
                             <constraint firstItem="gFw-QO-ly8" firstAttribute="leading" secondItem="i9P-G7-NQ3" secondAttribute="leading" constant="50" id="erS-j1-yCg"/>
                             <constraint firstItem="i9P-G7-NQ3" firstAttribute="trailing" secondItem="gFw-QO-ly8" secondAttribute="trailing" constant="50" id="hvy-OZ-6EO"/>
-                            <constraint firstItem="o8c-gQ-vue" firstAttribute="top" secondItem="i9P-G7-NQ3" secondAttribute="top" constant="335" id="lcb-pb-kaE"/>
+                            <constraint firstItem="o8c-gQ-vue" firstAttribute="top" secondItem="Aly-aB-BfT" secondAttribute="bottom" constant="-15" id="lcb-pb-kaE"/>
+                            <constraint firstItem="lHo-NK-DkU" firstAttribute="top" secondItem="i9P-G7-NQ3" secondAttribute="top" id="pj2-HQ-Y65"/>
                             <constraint firstItem="Aly-aB-BfT" firstAttribute="leading" secondItem="i9P-G7-NQ3" secondAttribute="leading" constant="37" id="tZR-ka-2UA"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backToHomeButton" destination="lHo-NK-DkU" id="ooh-SC-saE"/>
                         <outlet property="confirmPasswordTextField" destination="qcX-Ct-SWZ" id="eFL-By-NKD"/>

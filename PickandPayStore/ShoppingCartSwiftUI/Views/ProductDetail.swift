@@ -12,9 +12,9 @@ struct ProductDetailView: View {
     @EnvironmentObject var wishlistManager: WishlistManager
     
     @State var total : Int = 1
-    @State var goNext: Int?
     
     @Binding var numberInCart : Int
+    @Binding var products: [Product]
    
     var product : Product
     var body: some View {
@@ -72,6 +72,7 @@ struct ProductDetailView: View {
                 Button{
                     CartManager.sharedCart.addToCart(product: product, count: total)
                     numberInCart += total
+                    products = CartManager.sharedCart.products
                 }label: {
                     Text("Add To Cart")
                         .frame(width: 320, height: 20, alignment: .center)
@@ -89,9 +90,6 @@ struct ProductDetailView: View {
                         wishlistManager.addToWishlist(productName: product.name)
                     }
                     
-                    
-                    
-                    self.goNext = 1
                 }
                 label: {
                     if wishlistManager.getWishlist().contains(product.name){
@@ -133,17 +131,17 @@ struct ProductDetailView: View {
                }
                .background(Color.gray)
                .cornerRadius(5)
-            NavigationLink(destination: WishlistView().environmentObject(wishlistManager), tag: 1, selection: $goNext, label:{EmptyView()})
+            
              Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         
     }
 }
 
-//struct SwiftUIView_Previews: PreviewProvider {
- //   static var previews: some View {
-       // ProductDetailView(product: ProductM(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
-           // .environmentObject(CartManager())
- //   }
-//}
+struct SwiftUIView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProductDetailView(numberInCart: .constant(1), products: .constant([]), product: Product(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
+            
+    }
+}
 

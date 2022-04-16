@@ -16,7 +16,7 @@ struct CategoryContentView: View {
     @State var pastSearches = [String]()
     
     // State variables for site menu.
-    @State var showMenu = true
+    @State var showMenu = false
     
     //Binding for number of items in cart
     @Binding var numberInCart: Int
@@ -37,23 +37,27 @@ struct CategoryContentView: View {
     var body: some View {
         
        //Create SearchBar outside of scrollview so it always shows on top
-        SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
+        
         
         ZStack {
                 
             if showMenu {
-                SideMenuView(isShowing: $showMenu)
+                SideMenuView(isShowing: $showMenu).environmentObject(wishlistManager)
             }
+            ZStack{
+                
+            
             ScrollView {
-                    
+                SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
                 // Here you iterate over the Product list.
                 LazyVGrid(columns: columns, spacing: 20){
+                    
                     ForEach(productsList.filter({ (product: Product) -> Bool in
                         return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                     }), id: \.id)  { product in
                         
                         //Add a navigation link to each product card
-                        NavigationLink(destination: ProductDetailView(numberInCart: $numberInCart, product: product)
+                        NavigationLink(destination: ProductDetailView(numberInCart: $numberInCart, products: $products, product: product)
                                         .environmentObject(productsManager)
                                         .environmentObject(wishlistManager))
                         {
@@ -61,6 +65,7 @@ struct CategoryContentView: View {
                         //Filter list based on text in search bar
                         }
                     }
+                }
                     .padding()
                 
                    

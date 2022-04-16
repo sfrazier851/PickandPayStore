@@ -32,11 +32,11 @@ struct PickCategoryView: View {
             ZStack{
                 
                 if showMenu {
-                    SideMenuView(isShowing: $showMenu)
+                    SideMenuView(isShowing: $showMenu).environmentObject(wishlistManager)
                 }
                 ScrollView{
                     ZStack {
-                        Color(.white)
+                       
                         VStack{
                                 //Create search bar at top of Vstack
                                 SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)

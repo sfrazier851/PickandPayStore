@@ -34,8 +34,8 @@ struct WishlistView: View {
     }
 }
 
-//struct WishlistView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WishlistView()
-//    }
-//}
+struct WishlistView_Previews: PreviewProvider {
+    static var previews: some View {
+        WishlistView()
+    }
+}
