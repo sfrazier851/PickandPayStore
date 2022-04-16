@@ -7,8 +7,12 @@
 
 import SwiftUI
 
-class WishlistManager: ObservableObject {
+class WishlistManager {
     @Published private(set) var udWishlist: [String] = UserDefaults.standard.object(forKey: "Wishlist") as? [String] ?? []
+    
+    static let sharedWishlist = WishlistManager()
+    
+    private init(){}
     
     func addToWishlist(productName: String){
         udWishlist.append(productName)
@@ -25,6 +29,7 @@ class WishlistManager: ObservableObject {
     }
     
     func getWishlist() -> [String]{
+        //udWishlist = UserDefaults.standard.object(forKey: "Wishlist") as? [String] ?? []
         return udWishlist
     }
 }

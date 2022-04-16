@@ -24,7 +24,7 @@ struct PickCategoryView: View {
     
     // Observable objects.
     @StateObject var productsManager: ProductsManager = ProductsManager()
-    @StateObject var wishlistManager: WishlistManager = WishlistManager()
+   
     
     var body: some View {
         
@@ -32,7 +32,7 @@ struct PickCategoryView: View {
             ZStack{
                 
                 if showMenu {
-                    SideMenuView(isShowing: $showMenu).environmentObject(wishlistManager)
+                    SideMenuView(isShowing: $showMenu)
                 }
                 ScrollView{
                     ZStack {
@@ -45,8 +45,7 @@ struct PickCategoryView: View {
                                     return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                                 }), id: \.id){ category in
                                     NavigationLink(destination: CategoryContentView(numberInCart: $numberInCart, products: $products, category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
-                                            .environmentObject(productsManager)
-                                                                                                .environmentObject(wishlistManager))
+                                            .environmentObject(productsManager))
                                         {
                                             CategoryCard(category: category)
                                                 .environmentObject(productsManager)

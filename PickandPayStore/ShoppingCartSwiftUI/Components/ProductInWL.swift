@@ -10,9 +10,11 @@ import SwiftUI
 struct ProductInWL: View {
     // Environment object modifier of CartManager, and ProductsManager type.
     
-    @EnvironmentObject var wishlistManager: WishlistManager 
 
     var product: Product
+    
+    @Binding var products: [String]
+    @Binding var count: Int
     
     var body: some View {
         HStack(spacing: 20){
@@ -33,10 +35,9 @@ struct ProductInWL: View {
             Image(systemName: "trash")
                 .foregroundColor(.red)
                 .onTapGesture {
-                    print(product.name)
-                    print(wishlistManager.udWishlist)
-                    wishlistManager.removeFromWishlist(productName: product.name)
-                    print(wishlistManager.udWishlist)
+                    WishlistManager.sharedWishlist.removeFromWishlist(productName: product.name)
+                    products.removeAll{ $0 == product.name }
+                    count -= 1
                 }
             
         }
@@ -49,7 +50,7 @@ struct ProductInWL: View {
 struct ProductInWL_Previews: PreviewProvider {
     
     static var previews: some View {
-        ProductInWL(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
+        ProductInWL(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"), products: .constant(["Ghost"]), count: .constant(1))
     }
     
 }

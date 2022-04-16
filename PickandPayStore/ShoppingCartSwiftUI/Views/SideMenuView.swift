@@ -11,7 +11,6 @@ import UIKit
 struct SideMenuView: View {
     
     @Binding var isShowing: Bool
-    @EnvironmentObject var wishlistManager: WishlistManager
 
     var body: some View {
         //Set side menu color.
@@ -55,7 +54,7 @@ struct SideMenuView: View {
 //                            .padding()
 //                    })
                     
-                    NavigationLink(destination: WishlistView().environmentObject(wishlistManager),
+                    NavigationLink(destination: WishlistView(),
                            label: {
                         Text("Wishlist")
                             .fontWeight(.semibold)
@@ -75,7 +74,7 @@ struct SideMenuView: View {
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-        SideMenuView(isShowing: .constant(true)).environmentObject(WishlistManager())
+        SideMenuView(isShowing: .constant(true))
         }
         
     }
