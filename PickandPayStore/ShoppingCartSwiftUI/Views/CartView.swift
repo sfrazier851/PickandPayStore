@@ -10,8 +10,8 @@ import SwiftUI
 struct CartView: View {
     
     // Environment object modifier of CartManager type.
-    @Binding var productsInCart: [Product]
-    @Binding var numberInCart: Int
+    @State var productsInCart: [Product] = []
+    @State var numberInCart: Int = 0
     
     var body: some View {
         
@@ -41,6 +41,10 @@ struct CartView: View {
         }
         .navigationTitle(Text("My Cart"))
         .padding(.top)
+        .onAppear(){
+            productsInCart = CartManager.sharedCart.products
+            numberInCart = CartManager.sharedCart.products.count
+        }
     }
 }
 

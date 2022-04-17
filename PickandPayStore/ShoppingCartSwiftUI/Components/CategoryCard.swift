@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct CategoryCard: View {
-    
-    @EnvironmentObject var productsManager : ProductsManager
-    // A Category variable.
+        // A Category variable.
     var category: Category
     
     var body: some View {

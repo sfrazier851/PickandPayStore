@@ -15,12 +15,10 @@ struct CategoryContentView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
-    // State variables for site menu.
+    // State variables for side menu.
     @State var showMenu = false
     
-    //Binding for number of items in cart
     @Binding var numberInCart: Int
-    @Binding var products: [Product]
     
     // Instance of CartManager and ProductsManager so you can access its functions and //properties.
     // Added cartManager to ProductCart and CartView.
@@ -55,10 +53,9 @@ struct CategoryContentView: View {
                     }), id: \.id)  { product in
                         
                         //Add a navigation link to each product card
-                        NavigationLink(destination: ProductDetailView(numberInCart: $numberInCart, products: $products, product: product)
-                                        .environmentObject(productsManager))
+                        NavigationLink(destination: ProductDetailView(product: product))
                         {
-                            ProductCard(product: product, numberInCart: $numberInCart, products: $products)
+                            ProductCard(product: product, numberInCart: $numberInCart)
                         //Filter list based on text in search bar
                         }
                     }
@@ -83,7 +80,7 @@ struct CategoryContentView: View {
                         //Navigate to the CartView
                         NavigationLink {
                             // This is the destination.
-                            CartView(productsInCart: $products, numberInCart: $numberInCart)
+                            CartView()
                         } label: {
                             //On CartButton click go to CartView.
                             CartButton(numberInCart: $numberInCart)
@@ -105,6 +102,7 @@ struct CategoryContentView: View {
         }
         .onAppear(){
             showMenu = false
+            numberInCart = CartManager.sharedCart.products.count
         }
     }
 }
