@@ -10,7 +10,11 @@ import UIKit
 
 struct SideMenuView: View {
     
+    @State var isLogged: Bool = UserSessionManager.shared.isLoggedIn()
+    
     @Binding var isShowing: Bool
+    
+    
 
     var body: some View {
         //Set side menu color.
@@ -19,6 +23,40 @@ struct SideMenuView: View {
             
             Color(.init(gray: 0.7 , alpha: 0.5))
                 .ignoresSafeArea()
+            
+            if isLogged
+            {
+                List{
+                    
+                    Text("\(UserSessionManager.shared.getUserName())")
+                         .fontWeight(.semibold)
+                         .foregroundColor(.black)
+                         .padding()
+                    
+                   
+                    
+                    NavigationLink( destination: WishlistView()){
+                        Text("Wish List")
+                             .fontWeight(.semibold)
+                             .foregroundColor(.black)
+                             .padding()
+                             
+                        
+                    }
+                                                    
+                    Text("Log Out")
+                         .fontWeight(.semibold)
+                         .foregroundColor(.black)
+                         .padding()
+                         .onTapGesture {
+                             UserSessionManager.shared.setLoggedInFalse()
+                             PresenterManager.shared.show(vc: .shop)
+                            }
+                }
+                .frame(width: 200)
+            }
+            else
+            {
             
                 List{
 //                    Button(action:{
@@ -30,13 +68,13 @@ struct SideMenuView: View {
 //                            .foregroundColor(.black)
 //                            .padding()
 //                    })
-                    NavigationLink(destination: UIKitRegister().navigationBarTitleDisplayMode(.inline),
-                           label: {
+                    NavigationLink(destination: UIKitRegister().navigationBarTitleDisplayMode(.inline)){
                         Text("Register")
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
                             .padding()
-                    })
+                            
+                    }
                     NavigationLink(destination: UIKitLogin().navigationBarTitleDisplayMode(.inline),
                            label: {
                         Text("Login")
@@ -63,7 +101,7 @@ struct SideMenuView: View {
                     })
                 }
                 .frame(width: 200)
-            
+            }
         }
         .onAppear(){
             UITableView.appearance().backgroundColor = .clear
