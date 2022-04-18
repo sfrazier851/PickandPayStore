@@ -12,6 +12,7 @@ struct ProductReview: Equatable {
     var userID: Int = 0
     var productID: Int = 0
     var review: String = ""
+    var title: String = ""
     
     private static var testing: Bool = false
     static func setTestingTrue() { ProductReview.testing = true }
@@ -40,6 +41,7 @@ struct ProductReview: Equatable {
             productReview.userID = Int(columns[1])!
             productReview.productID = Int(columns[2])!
             productReview.review = columns[3]
+            productReview.title = columns[4]
             
             productReviews.append(productReview)
         }
@@ -67,10 +69,10 @@ struct ProductReview: Equatable {
         return productReviewDAL.getReviewsByProductID(productID: productID)
     }
     
-    static func create(userID: Int, productID: Int, review: String) -> ProductReview? {
+    static func create(userID: Int, productID: Int, review: String, title: String) -> ProductReview? {
         guard let productReviewDAL = productReviewDAL else {
             return nil
         }
-        return productReviewDAL.createProductReview(userID: userID, productID: productID, review: review)
+        return productReviewDAL.createProductReview(userID: userID, productID: productID, review: review, title: title)
     }
 }

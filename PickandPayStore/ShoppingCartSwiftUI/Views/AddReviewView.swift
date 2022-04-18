@@ -29,7 +29,7 @@ struct AddReviewView: View {
                 TextEditor(text: $fdbackText)
                 
                 Button{
-                    reviews.append(ProductReview.create(userID: UserSessionManager.shared.getLoggedInUser()!.id, productID: productID, review: fdbackText)!)
+                    reviews.append(ProductReview.create(userID: UserSessionManager.shared.getLoggedInUser()!.id, productID: productID, review: fdbackText, title: fdbackTitle)!)
                     
                     showReview.toggle()
                 }

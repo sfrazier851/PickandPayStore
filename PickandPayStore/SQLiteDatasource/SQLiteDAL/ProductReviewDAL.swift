@@ -42,11 +42,11 @@ class ProductReviewDAL: SQLiteDAL {
         return self.convert(productReviewsResultSet)
     }
 
-    func createProductReview(userID: Int, productID: Int, review: String) -> ProductReview? {
+    func createProductReview(userID: Int, productID: Int, review: String, title: String) -> ProductReview? {
         guard let db = self.db else {
             return nil
         }
-        let insertStatementString = "INSERT INTO ProductReview ( userID, productID, review ) VALUES ( ?, ?, ? )"
+        let insertStatementString = "INSERT INTO ProductReview ( userID, productID, review, title ) VALUES ( ?, ?, ?, ? )"
         
         var insertStatement: OpaquePointer?
         
@@ -55,6 +55,7 @@ class ProductReviewDAL: SQLiteDAL {
             sqlite3_bind_int(insertStatement, 1, Int32(userID))
             sqlite3_bind_int(insertStatement, 2, Int32(productID))
             sqlite3_bind_text(insertStatement,3, NSString(string: review).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement,4, NSString(string: title).utf8String, -1, nil)
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\nSuccessfully inserted row.")
