@@ -22,7 +22,6 @@
 		7F0A619227FC60300028B399 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A619127FC60300028B399 /* LoadingViewController.swift */; };
 		7F0A619727FC60CB0028B399 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A619627FC60CB0028B399 /* Helper.swift */; };
 		7F0A619D27FC60F10028B399 /* PresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A619C27FC60F10028B399 /* PresenterManager.swift */; };
-		7F0A61A227FC690C0028B399 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61A127FC690C0028B399 /* HomeViewController.swift */; };
 		7F0A61A727FC6CDB0028B399 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */; };
 		7F0A61AC27FC6D990028B399 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61AB27FC6D990028B399 /* LoginViewController.swift */; };
 		7F0A61B127FC73880028B399 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A61B027FC73870028B399 /* Utilities.swift */; };
@@ -54,6 +53,7 @@
 		84652B9B28061A3000166D28 /* ProductInWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9A28061A3000166D28 /* ProductInWL.swift */; };
 		84652B9D28061A9600166D28 /* WishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9C28061A9600166D28 /* WishlistManager.swift */; };
 		84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84699DCF27FA899B00AE497D /* ProductDetail.swift */; };
+		84BB3C4E280A59E20040A928 /* ShowLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB3C4D280A59E20040A928 /* ShowLogin.swift */; };
 		84E250AA27FDFE8900EA997A /* CategoryContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4B27FC914000AC8DD2 /* CategoryContentView.swift */; };
 		84E250AB27FDFE8B00EA997A /* PickCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4927FC7C7E00AC8DD2 /* PickCategoryView.swift */; };
 		84E250AC27FDFEB000EA997A /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4727FC6D8500AC8DD2 /* CategoryCard.swift */; };
@@ -105,7 +105,6 @@
 		7F0A619127FC60300028B399 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		7F0A619627FC60CB0028B399 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		7F0A619C27FC60F10028B399 /* PresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterManager.swift; sourceTree = "<group>"; };
-		7F0A61A127FC690C0028B399 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F0A61AB27FC6D990028B399 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F0A61B027FC73870028B399 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -140,6 +139,10 @@
 		84652B9A28061A3000166D28 /* ProductInWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInWL.swift; sourceTree = "<group>"; };
 		84652B9C28061A9600166D28 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistManager.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
+		84BB3C44280A0D600040A928 /* PickandPayStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickandPayStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BB3C4B280A37060040A928 /* PickandPayStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BB3C4C280A37060040A928 /* PickandPayStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BB3C4D280A59E20040A928 /* ShowLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLogin.swift; sourceTree = "<group>"; };
 		84E250AD27FFAD3300EA997A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		84E250AF2804D04C00EA997A /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
 		AC16E9A927F62F980037743F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -211,7 +214,6 @@
 				45355FB927F3A2FD00ABFDC8 /* Info.plist */,
 				AC16E9A527F62E8D0037743F /* ShoppingCartSwiftUI */,
 				7F0A619127FC60300028B399 /* LoadingViewController.swift */,
-				7F0A61A127FC690C0028B399 /* HomeViewController.swift */,
 				7F0A61A627FC6CDB0028B399 /* RegisterViewController.swift */,
 				7F0A61AB27FC6D990028B399 /* LoginViewController.swift */,
 			);
@@ -250,6 +252,7 @@
 			children = (
 				7F0A619C27FC60F10028B399 /* PresenterManager.swift */,
 				7FCA678827FF8F2D00DB46ED /* SessionManager.swift */,
+				84BB3C4D280A59E20040A928 /* ShowLogin.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -533,7 +536,6 @@
 				7FCA682F2808A28F00DB46ED /* OrderItemDAL.swift in Sources */,
 				7FCA67AF2808868B00DB46ED /* UserDAL.swift in Sources */,
 				AC16E9AA27F62F980037743F /* ContentView.swift in Sources */,
-				7F0A61A227FC690C0028B399 /* HomeViewController.swift in Sources */,
 				7F0A613727F78B950028B399 /* ProductReview.swift in Sources */,
 				7FCA681228089A8700DB46ED /* WishlistDAL.swift in Sources */,
 				7F5D841F27F400870063ED40 /* Wishlist.swift in Sources */,
@@ -570,6 +572,7 @@
 				45C0763127FBFCC0009B4221 /* TrackOrderModel.swift in Sources */,
 				AC16E9B327F632870037743F /* ProductInCart.swift in Sources */,
 				AC16E9AF27F630C60037743F /* ProductCard.swift in Sources */,
+				84BB3C4E280A59E20040A928 /* ShowLogin.swift in Sources */,
 				7FCA680D280896A900DB46ED /* ProductDAL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,7 +685,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -736,7 +739,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

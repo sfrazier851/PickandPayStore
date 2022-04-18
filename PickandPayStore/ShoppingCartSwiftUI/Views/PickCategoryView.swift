@@ -15,13 +15,14 @@ struct PickCategoryView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
-    // State variables for site menu.
+    // State variables for side menu.
     @State var showMenu = false
     
+    //State variable for cart button
+    @State var numberInCart = 0
     // Observable objects.
-    @StateObject var cartManager: CartManager = CartManager()
     @StateObject var productsManager: ProductsManager = ProductsManager()
-    @StateObject var wishlistManager: WishlistManager = WishlistManager()
+   
     
     var body: some View {
         
@@ -33,7 +34,7 @@ struct PickCategoryView: View {
                 }
                 ScrollView{
                     ZStack {
-                        Color(.white)
+                       
                         VStack{
                                 //Create search bar at top of Vstack
                                 SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
@@ -41,12 +42,11 @@ struct PickCategoryView: View {
                                 ForEach(productsManager.categories.filter({ (category: Category) -> Bool in
                                     return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                                 }), id: \.id){ category in
-                                    NavigationLink(destination: CategoryContentView(category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
-                                            .environmentObject(productsManager)
-                                            .environmentObject(cartManager))
+                                    NavigationLink(destination: CategoryContentView(numberInCart: $numberInCart, category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
+                                            .environmentObject(productsManager))
                                         {
                                             CategoryCard(category: category)
-                                                .environmentObject(productsManager)
+                                                
                                     }
                             }
                             .padding()
@@ -69,10 +69,10 @@ struct PickCategoryView: View {
                                     NavigationLink {
                                         // This is the destination.
                                         CartView()
-                                            .environmentObject(cartManager)
+                                            
                                     } label: {
                                         //On CartButton click go to CartView.
-                                        CartButton(numberOfProducts: cartManager.products.count)
+                                        CartButton(numberInCart: $numberInCart)
                                     }
                                     
                                 }
@@ -93,6 +93,7 @@ struct PickCategoryView: View {
             }
             .onAppear(){
                 showMenu = false
+                numberInCart = CartManager.sharedCart.products.count
             }
         }
     }

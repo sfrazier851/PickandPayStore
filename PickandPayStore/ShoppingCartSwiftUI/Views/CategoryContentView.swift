@@ -15,15 +15,14 @@ struct CategoryContentView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
-    // State variables for site menu.
-    @State var showMenu = true
+    // State variables for side menu.
+    @State var showMenu = false
+    
+    @Binding var numberInCart: Int
     
     // Instance of CartManager and ProductsManager so you can access its functions and //properties.
     // Added cartManager to ProductCart and CartView.
-    @EnvironmentObject var cartManager: CartManager
-    @EnvironmentObject var productsManager: ProductsManager
-    @StateObject var wishlistManager: WishlistManager = WishlistManager()
-    
+    @EnvironmentObject var productsManager: ProductsManager    
     
     var category: Category
     var productsList: [Product]
@@ -34,32 +33,33 @@ struct CategoryContentView: View {
     var body: some View {
         
        //Create SearchBar outside of scrollview so it always shows on top
-        SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
+        
         
         ZStack {
                 
             if showMenu {
                 SideMenuView(isShowing: $showMenu)
             }
+            ZStack{
+                
+            
             ScrollView {
-                    
+                SearchBar(searchText: $searchText, searching: $searching, pastSearches: $pastSearches)
                 // Here you iterate over the Product list.
                 LazyVGrid(columns: columns, spacing: 20){
+                    
                     ForEach(productsList.filter({ (product: Product) -> Bool in
                         return product.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                     }), id: \.id)  { product in
                         
                         //Add a navigation link to each product card
-                        NavigationLink(destination: ProductDetailView(product: product)
-                                        .environmentObject(cartManager)
-                                        .environmentObject(productsManager)
-                                        .environmentObject(wishlistManager))
+                        NavigationLink(destination: ProductDetailView(product: product))
                         {
-                        ProductCard(product: product)
-                            .environmentObject(cartManager)
+                            ProductCard(product: product, numberInCart: $numberInCart)
                         //Filter list based on text in search bar
                         }
                     }
+                }
                     .padding()
                 
                    
@@ -81,10 +81,9 @@ struct CategoryContentView: View {
                         NavigationLink {
                             // This is the destination.
                             CartView()
-                                .environmentObject(cartManager)
                         } label: {
                             //On CartButton click go to CartView.
-                            CartButton(numberOfProducts: cartManager.products.count)
+                            CartButton(numberInCart: $numberInCart)
                         }
                     }
                     
@@ -103,19 +102,19 @@ struct CategoryContentView: View {
         }
         .onAppear(){
             showMenu = false
+            numberInCart = CartManager.sharedCart.products.count
         }
     }
 }
 
 
 
-struct CategoryContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryContentView(category:Category(name: "ground", imageName: "speeder" ),
-                            productsList: ProductsManager().getProductsOfCategory(category: 1))
-            .environmentObject(ProductsManager())
-                .environmentObject(CartManager())
-    }
-}
+//struct CategoryContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CategoryContentView(category:Category(name: "ground", imageName: "speeder" ),
+//                            productsList: ProductsManager().getProductsOfCategory(category: 1))
+//            .environmentObject(ProductsManager())
+//    }
+//}
 
 }

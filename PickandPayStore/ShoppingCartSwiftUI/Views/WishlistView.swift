@@ -9,16 +9,17 @@ import SwiftUI
 
 struct WishlistView: View {
     
-    @EnvironmentObject var wishlistManager: WishlistManager 
+    @State var products: [String] = []
+    @State var count: Int = 0
     var body: some View {
         ScrollView {
             
-            if wishlistManager.getCount() > 0
+            if count > 0
             {
-                ForEach(wishlistManager.udWishlist, id: \.self){
+                ForEach(products, id: \.self){
                     product in
-                    ProductInWL(product: (Product.getByName(name: product)?[0])!)
-                        .environmentObject(wishlistManager)
+                    ProductInWL(product: (Product.getByName(name: product)?[0])!, products: $products, count: $count)
+
                 }
                 
                 
@@ -31,11 +32,18 @@ struct WishlistView: View {
         }
         .navigationTitle(Text("My Wishlist"))
        // .padding(.top)
+        .onAppear(){
+            count = WishlistManager.sharedWishlist.getCount()
+            products = WishlistManager.sharedWishlist.getWishlist()
+        }
     }
+        
 }
 
-//struct WishlistView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WishlistView()
-//    }
-//}
+struct WishlistView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView{
+            WishlistView()
+        }
+    }
+}

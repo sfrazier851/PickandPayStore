@@ -10,11 +10,13 @@ import SwiftUI
 struct ProductCard: View {
     
     // Environment object modifier of CartManager type.
-    @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var productsManager: ProductsManager
     
     // It displays a Product object.
     var product: Product
+    
+    @Binding var numberInCart: Int
+    
     
     var body: some View {
         
@@ -41,8 +43,9 @@ struct ProductCard: View {
                     //.background(.ultraThinMaterial)
                     .cornerRadius(20)
                     Button {
-                         cartManager.addToCart(product: product, count: 1)
-                         cartManager.printManager()
+                        CartManager.sharedCart.addToCart(product: product, count: 1)
+                        numberInCart += 1
+                        CartManager.sharedCart.printManager()
                      } label: {
                          Image(systemName: "plus")
                              .padding(5)
@@ -62,10 +65,9 @@ struct ProductCard: View {
 }
 
 
-struct ProductCard_Previews: PreviewProvider {
-    static var previews: some View {
-        // You pass the argument that needs to be displayed here.
-        ProductCard(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"))
-            .environmentObject(CartManager())
-    }
-}
+//struct ProductCard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // You pass the argument that needs to be displayed here.
+//        ProductCard(product: Product(categoryID: 3, name: "bb8", price: 19000, imageName: "bb8"), numberInCart: <#Binding<Int>#>)
+//    }
+//}

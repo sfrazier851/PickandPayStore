@@ -10,25 +10,26 @@ import SwiftUI
 struct CartView: View {
     
     // Environment object modifier of CartManager type.
-    @EnvironmentObject var cartManager: CartManager
+    @State var productsInCart: [Product] = []
+    @State var numberInCart: Int = 0
     
     var body: some View {
         
         ScrollView {
             
-            if cartManager.products.count > 0
+            if productsInCart.count > 0
             {
                 HStack {
                     Text("Your cart total is")
                     Spacer()
-                    Text("$\(cartManager.total, specifier: "%.2f")")
+                    Text("$\(CartManager.sharedCart.total, specifier: "%.2f")")
                         .bold()
                 }
                 .padding()
                 
-                ForEach(cartManager.products, id: \.id){
+                ForEach(productsInCart, id: \.id){
                     product in
-                    ProductInCart(product: product)
+                    ProductInCart(productsInCart: $productsInCart, numberInCart: $numberInCart, product: product)
                 }
         
             }
@@ -40,12 +41,16 @@ struct CartView: View {
         }
         .navigationTitle(Text("My Cart"))
         .padding(.top)
+        .onAppear(){
+            productsInCart = CartManager.sharedCart.products
+            numberInCart = CartManager.sharedCart.products.count
+        }
     }
 }
 
-struct CartView_Previews: PreviewProvider {
-    static var previews: some View {
-        CartView()
-            .environmentObject(CartManager())
-    }
-}
+//struct CartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CartView()
+//            //.environmentObject(CartManager())
+//    }
+//}

@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    
-    @EnvironmentObject var cartManager: CartManager
-    @EnvironmentObject var wishlistManager: WishlistManager
+
     
     @State var total : Int = 1
-    @State var goNext: Int?
-   
+    @State var inWishlist: Bool = false
+    
     var product : Product
     var body: some View {
       // ScrollView{
@@ -69,7 +67,8 @@ struct ProductDetailView: View {
             }.padding(.leading, 160)
                     
                 Button{
-                    cartManager.addToCart(product: product, count: total)
+                    CartManager.sharedCart.addToCart(product: product, count: total)
+                    
                 }label: {
                     Text("Add To Cart")
                         .frame(width: 320, height: 20, alignment: .center)
@@ -80,19 +79,19 @@ struct ProductDetailView: View {
             
                 Button{
                     
-                    if wishlistManager.getWishlist().contains(product.name){
-                        wishlistManager.removeFromWishlist(productName: product.name)
+                    if inWishlist {
+                        WishlistManager.sharedWishlist.removeFromWishlist(productName: product.name)
                     }
                     else{
-                        wishlistManager.addToWishlist(productName: product.name)
+                        WishlistManager.sharedWishlist.addToWishlist(productName: product.name)
                     }
-                    
-                    
-                    
-                    self.goNext = 1
+                    inWishlist.toggle()
+                    print(inWishlist)
+                    print(WishlistManager.sharedWishlist.getWishlist())
                 }
                 label: {
-                    if wishlistManager.getWishlist().contains(product.name){
+                    
+                    if inWishlist {
                         Text("Remove From Wishlist")
                             .frame(width: 320, height: 20, alignment: .center)
                             .foregroundColor(.black)
@@ -131,17 +130,19 @@ struct ProductDetailView: View {
                }
                .background(Color.gray)
                .cornerRadius(5)
-            NavigationLink(destination: WishlistView().environmentObject(wishlistManager), tag: 1, selection: $goNext, label:{EmptyView()})
+            
              Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        
+            .onAppear(){
+                inWishlist = WishlistManager.sharedWishlist.getWishlist().contains(product.name)
+            }
     }
 }
 
-//struct SwiftUIView_Previews: PreviewProvider {
- //   static var previews: some View {
-       // ProductDetailView(product: ProductM(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
-           // .environmentObject(CartManager())
- //   }
-//}
+struct SwiftUIView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProductDetailView(inWishlist: true, product: Product(categoryID: 3, name: "buddy", price: 9000, imageName: "buddy"))
+            
+    }
+}
 
