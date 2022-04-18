@@ -60,6 +60,20 @@ struct Wishlist: Equatable {
         return wishlistDAL.getWishlistByID(wishlistID: wishlistID)
     }
     
+    static func getByProductID(productID: Int) -> [Wishlist]? {
+        guard let wishlistDAL = wishlistDAL else {
+            return nil
+        }
+        return wishlistDAL.getWishlistByProductID(productID: productID)
+    }
+    
+    static func removeByProductID(userID: Int, productID: Int) -> [Wishlist]? {
+        guard let wishlistDAL = wishlistDAL else {
+            return nil
+        }
+        return wishlistDAL.removeByProductID(userID: userID, productID: productID)
+    }
+    
     static func getByUserID(userID: Int) -> [Wishlist]? {
         guard let wishlistDAL = wishlistDAL else {
             return nil

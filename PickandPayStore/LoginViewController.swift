@@ -155,6 +155,18 @@ class LoginViewController: UIViewController {
                 } else {
                     if userToLogin?[0].password == password {
                         UserSessionManager.shared.setLoggedInUser(user: userToLogin![0])
+                        //Check if userdefaults wishlist items are in user's db wishlist already
+                        for productname in WishlistManager.sharedWishlist.getWishlist(){
+                            
+                            if Wishlist.getByProductID(productID: Product.getByName(name: productname)![0].id)?.filter({
+                                (wishlist: Wishlist) -> Bool in
+                                return wishlist.userID == userToLogin![0].id
+                            }) == []{
+                                //Add userdefaults wishlist items to user's db wishlist
+                                Wishlist.create(userID: userToLogin![0].id, productID: (Product.getByName(name: productname)?[0].id)!)
+                            }
+                        }
+                        UserDefaults.standard.set([], forKey: "Wishlist")
                         PresenterManager.shared.show(vc: .shop)
                     } else {
                         showError("Incorrect credentials, please try again.")

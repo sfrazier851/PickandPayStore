@@ -35,6 +35,20 @@ class WishlistDAL: SQLiteDAL {
         return self.convert(wishlistProductsResultSet)
     }
     
+    func getWishlistByProductID(productID: Int) -> [Wishlist]? {
+        guard let wishlistProductsResultSet = WishlistDAL.protectedQuery(modelType: wishlist, queryString: "SELECT * FROM Wishlist WHERE productID = '\(productID)';") else {
+            return nil
+        }
+        return self.convert(wishlistProductsResultSet)
+    }
+    
+    func removeByProductID(userID: Int, productID: Int) -> [Wishlist]? {
+        guard let wishlistProductsResultSet = WishlistDAL.protectedQuery(modelType: wishlist, queryString: "DELETE FROM Wishlist WHERE productID = '\(productID)' AND userID = '\(userID)';") else {
+            return nil
+        }
+        return self.convert(wishlistProductsResultSet)
+    }
+    
     func getWishlistByUserID(userID: Int) -> [Wishlist]? {
         guard let wishlistProductsResultSet = WishlistDAL.protectedQuery(modelType: wishlist, queryString: "SELECT * FROM Wishlist WHERE userID = '\(userID)';") else {
             return nil
