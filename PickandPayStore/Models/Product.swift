@@ -20,7 +20,7 @@ struct Product: Equatable {
 
     private static let productDAL = { () -> ProductDAL? in
         if Product.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return ProductDAL(db: db, convert: convert)
             }
         } else {

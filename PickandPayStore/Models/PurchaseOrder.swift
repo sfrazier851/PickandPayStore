@@ -18,7 +18,7 @@ struct PurchaseOrder: Equatable {
 
     private static let purchaseOrderDAL = { () -> PurchaseOrderDAL? in
         if PurchaseOrder.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return PurchaseOrderDAL(db: db, convert: convert)
             }
         } else {

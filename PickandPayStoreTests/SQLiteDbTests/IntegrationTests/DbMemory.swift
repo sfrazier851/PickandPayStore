@@ -1,5 +1,5 @@
 //
-//  SQLiteDbTests.swift
+//  DbMemory.swift
 //
 //  Created by iMac on 4/1/22.
 //
@@ -8,10 +8,10 @@ import XCTest
 @testable import PickandPayStore
 import SQLite3
 
-class DbIntegration: XCTestCase {
+class DbMemory: XCTestCase {
 
-    // initialize unit test database
-    private static let integrationTestDB = SQLiteDatabase.getIntegrationTestDatabase()
+    // initialize memory test database
+    private static let inMemoryTestDB = SQLiteDatabase.getInMemoryTestDatabase()
     
     // called before each test case
     override func setUpWithError() throws {
@@ -19,7 +19,8 @@ class DbIntegration: XCTestCase {
         print("dropping and recreating tables")
         print("==============================")
         // Drop all tables then recreate tables for test database
-        SQLiteDatabase.createTables(database: DbIntegration.integrationTestDB)
+        SQLiteDatabase.createTables(database: DbMemory.inMemoryTestDB)
+
     }
 
     // called after each test case
@@ -29,26 +30,19 @@ class DbIntegration: XCTestCase {
     // called after all tests have been run
     override class func tearDown() {
         // Call destructor for sqlite3 test database
-        if sqlite3_close_v2(DbIntegration.integrationTestDB!) == 0 {
+        if sqlite3_close_v2(DbMemory.inMemoryTestDB!) == 0 {
             print("\n==============")
             print("test db closed")
             print("==============\n")
         }
+        
     }
     
-    func testCreateDbFile() throws {
+    func testCreateDbInMemory() throws {
         //Given
         //When
-        let integrationDbPath = SQLiteDatabase.getIntegrationTestDbPath()
+        let result = SQLiteDatabase.getDbURLString(database: DbMemory.inMemoryTestDB)
         //Then
-        XCTAssertTrue(FileManager.default.fileExists(atPath: integrationDbPath))
+        XCTAssertTrue(result == "", "\(String(describing: result)) should be empty string")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

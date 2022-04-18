@@ -17,7 +17,7 @@ struct Category: Equatable{
 
     private static let categoryDAL = { () -> CategoryDAL? in
         if Category.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return CategoryDAL(db: db, convert: convert)
             }
         } else {

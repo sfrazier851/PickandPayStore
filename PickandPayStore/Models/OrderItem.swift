@@ -18,7 +18,7 @@ struct OrderItem: Equatable {
 
     private static let orderItemDAL = { () -> OrderItemDAL? in
         if OrderItem.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return OrderItemDAL(db: db, convert: convert)
             }
         } else {

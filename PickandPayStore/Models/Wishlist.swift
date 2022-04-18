@@ -18,7 +18,7 @@ struct Wishlist: Equatable {
 
     private static let wishlistDAL = { () -> WishlistDAL? in
         if Wishlist.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return WishlistDAL(db: db, convert: convert)
             }
         } else {
