@@ -155,12 +155,15 @@ class SQLiteTables {
              userID INTEGER NOT NULL,
              paymentType TEXT NOT NULL,
              date_purchased TEXT DEFAULT (date()) NOT NULL,
+             shippingAddress TEXT NOT NULL,
+             shippingLongitude TEXT DEFAULT "null" NULL,
+             shippingLatitude TEXT DEFAULT "null" NULL,
              FOREIGN KEY(userID) REFERENCES User(ID));
              """
     private static var insertIntoPurchaseOrderTable = """
-             INSERT INTO PurchaseOrder ( userID, paymentType, date_purchased )
-             VALUES ( 1, "COD", '2022-03-29' ),
-                    ( 1, "CC", '2022-03-28' );
+             INSERT INTO PurchaseOrder ( userID, paymentType, date_purchased, shippingAddress )
+             VALUES ( 1, "COD", '2022-03-29', '1600 Amphitheatre Parkway, Mountain View, CA' ),
+                    ( 1, "CC", '2022-03-28' , '55 Brooksby Village Drive, Danvers, MA');
              """
     static var purchaseOrderTableSchemaScripts = [dropPurchaseOrderTable, createPurchaseOrderTable]
     static var purchaseOrderTableInsertScript = insertIntoPurchaseOrderTable

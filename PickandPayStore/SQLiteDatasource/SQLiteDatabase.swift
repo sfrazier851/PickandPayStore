@@ -26,14 +26,14 @@ class SQLiteDatabase {
         return db
     }
     
-    // testing db (creates db file)
+    // testing db (file)
     private static let testInstance = SQLiteDatabase(dbType: .testingDB)
     private var testDatabase: OpaquePointer?
     static func getTestDatabase() -> OpaquePointer? {
         return testInstance.testDatabase
     }
     
-    // testing db (creates db in memory)
+    // testing db (in memory)
     private static let inMemoryTestInstance = SQLiteDatabase(dbType: .inMemoryTestingDB)
     private static var inMemoryTestDatabase: OpaquePointer?
     static func getInMemoryTestDatabase() -> OpaquePointer? {
@@ -43,7 +43,7 @@ class SQLiteDatabase {
             return inMemoryTestDatabase
         } else {
             var inMemoryDb: OpaquePointer?
-            // Create and connect to in-memory database for integration tests
+            // Create and connect to in-memory database for tests
             if sqlite3_open("file::memory:", &inMemoryDb) != SQLITE_OK {
                 print("error opening database")
             } else {

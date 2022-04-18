@@ -42,11 +42,31 @@ class PurchaseOrderDAL: SQLiteDAL {
         return self.convert(purchaseOrderResultSet)
     }
     
-    func createPurchaseOrder(userID: Int, paymentType: String) -> PurchaseOrder? {
+    func updatePurchaseOrder(purchaseOrder: PurchaseOrder) -> PurchaseOrder? {
         guard let db = self.db else {
             return nil
         }
-        let insertStatementString = "INSERT INTO PurchaseOrder ( userID, paymentType ) VALUES ( ?, ? )"
+        let purchaseOrderID = purchaseOrder.id
+        let paymentType = purchaseOrder.paymentType
+        let shippingAddress = purchaseOrder.shipping_address
+        let shippingLongitude = purchaseOrder.shipping_longitude
+        let shippingLatitude = purchaseOrder.shipping_latitude
+        
+        let updateStatementString = "UPDATE PurchaseOrder SET shippingLongitude = '\(shippingLongitude)', shippingLatitude = '\(shippingLatitude)' WHERE ID = '\(purchaseOrderID)';"
+        
+        if sqlite3_exec(db, updateStatementString, nil, nil, nil) != SQLITE_OK {
+            let error = String(cString: sqlite3_errmsg(db)!)
+            print("error running sql script: \(error)")
+        }
+        
+        return PurchaseOrder.getByID(purchaseOrderID: purchaseOrderID)![0]
+    }
+    
+    func createPurchaseOrder(userID: Int, paymentType: String, shippingAddress: String) -> PurchaseOrder? {
+        guard let db = self.db else {
+            return nil
+        }
+        let insertStatementString = "INSERT INTO PurchaseOrder ( userID, paymentType, shippingAddress) VALUES ( ?, ?, ?)"
         
         var insertStatement: OpaquePointer?
         
@@ -54,6 +74,7 @@ class PurchaseOrderDAL: SQLiteDAL {
             
             sqlite3_bind_int(insertStatement, 1, Int32(userID))
             sqlite3_bind_text(insertStatement, 2, NSString(string: paymentType).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 3, NSString(string: shippingAddress).utf8String, -1, nil)
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\nSuccessfully inserted row.")

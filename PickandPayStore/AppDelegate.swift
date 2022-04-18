@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SQLiteDatabase.createTables(database: db)
         SQLiteDatabase.insertData(database: db)
         
+        
         // If database file exists don't recreate and insert data
         /*
         if(!FileManager.default.fileExists(atPath: SQLiteDatabase.getDbPath())) {
@@ -33,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SQLiteDatabase.insertData(database: db)
         }
         */
+        
+        for po in PurchaseOrder.getByUserID(userID: 1)! { print(po) }
         
         // Example db usage:
 //        print()

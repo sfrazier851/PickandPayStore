@@ -12,6 +12,9 @@ struct PurchaseOrder: Equatable {
     var userID: Int = 0
     var paymentType: String = ""
     var date_purchased: String = ""
+    var shipping_address: String = ""
+    var shipping_longitude: String = ""
+    var shipping_latitude: String = ""
     
     private static var testing: Bool = false
     static func setTestingTrue() { PurchaseOrder.testing = true }
@@ -40,10 +43,20 @@ struct PurchaseOrder: Equatable {
             purchaseOrder.userID = Int(columns[1])!
             purchaseOrder.paymentType = columns[2]
             purchaseOrder.date_purchased = columns[3]
+            purchaseOrder.shipping_address = columns[4]
+            purchaseOrder.shipping_longitude = columns[5]
+            purchaseOrder.shipping_latitude = columns[6]
             
             purchaseOrders.append(purchaseOrder)
         }
         return purchaseOrders
+    }
+    
+    static func update(purchaseOrder: PurchaseOrder) -> PurchaseOrder? {
+        guard let purchaseOrderDAL = purchaseOrderDAL else {
+            return nil
+        }
+        return purchaseOrderDAL.updatePurchaseOrder(purchaseOrder: purchaseOrder)
     }
     
     static func getAll() -> [PurchaseOrder]? {
@@ -67,10 +80,10 @@ struct PurchaseOrder: Equatable {
         return purchaseOrderDAL.getPurchaseOrdersByUserID(userID: userID)
     }
     
-    static func create(userID: Int, paymentType: String) -> PurchaseOrder? {
+    static func create(userID: Int, paymentType: String, shippingAddress: String) -> PurchaseOrder? {
         guard let purchaseOrderDAL = purchaseOrderDAL else {
             return nil
         }
-        return purchaseOrderDAL.createPurchaseOrder(userID: userID, paymentType: paymentType)
+        return purchaseOrderDAL.createPurchaseOrder(userID: userID, paymentType: paymentType, shippingAddress: shippingAddress)
     }
 }
