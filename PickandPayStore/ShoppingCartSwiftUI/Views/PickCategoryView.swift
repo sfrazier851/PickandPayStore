@@ -15,13 +15,11 @@ struct PickCategoryView: View {
     @State var searching = false
     @State var pastSearches = [String]()
     
-    // State variables for site menu.
+    // State variables for side menu.
     @State var showMenu = false
     
-    //State variable for cart
+    //State variable for cart button
     @State var numberInCart = 0
-    @State var products = CartManager.sharedCart.products
-    
     // Observable objects.
     @StateObject var productsManager: ProductsManager = ProductsManager()
    
@@ -44,11 +42,11 @@ struct PickCategoryView: View {
                                 ForEach(productsManager.categories.filter({ (category: Category) -> Bool in
                                     return category.name.lowercased().hasPrefix(searchText.lowercased()) || searchText == ""
                                 }), id: \.id){ category in
-                                    NavigationLink(destination: CategoryContentView(numberInCart: $numberInCart, products: $products, category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
+                                    NavigationLink(destination: CategoryContentView(numberInCart: $numberInCart, category: category, productsList: productsManager.getProductsOfCategory(category: category.id))
                                             .environmentObject(productsManager))
                                         {
                                             CategoryCard(category: category)
-                                                .environmentObject(productsManager)
+                                                
                                     }
                             }
                             .padding()
@@ -70,7 +68,7 @@ struct PickCategoryView: View {
                                     //Navigate to the CartView
                                     NavigationLink {
                                         // This is the destination.
-                                        CartView(productsInCart: $products, numberInCart: $numberInCart)
+                                        CartView()
                                             
                                     } label: {
                                         //On CartButton click go to CartView.
@@ -95,6 +93,7 @@ struct PickCategoryView: View {
             }
             .onAppear(){
                 showMenu = false
+                numberInCart = CartManager.sharedCart.products.count
             }
         }
     }

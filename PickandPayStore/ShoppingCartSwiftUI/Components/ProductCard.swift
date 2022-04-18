@@ -14,8 +14,9 @@ struct ProductCard: View {
     
     // It displays a Product object.
     var product: Product
-    @Binding var numberInCart : Int
-    @Binding var products: [Product]
+    
+    @Binding var numberInCart: Int
+    
     
     var body: some View {
         
@@ -44,8 +45,6 @@ struct ProductCard: View {
                     Button {
                         CartManager.sharedCart.addToCart(product: product, count: 1)
                         numberInCart += 1
-                        products = CartManager.sharedCart.products
-                        
                         CartManager.sharedCart.printManager()
                      } label: {
                          Image(systemName: "plus")
