@@ -110,18 +110,21 @@ struct ProductDetailView: View {
                 
                 
                 List{
-                    Section{
+                    //Section{
                         if p != []{
                             ForEach(p , id: \.id){ productreview in
-                                Text(productreview.review)
+                                Section(header: Text(productreview.title)){
+                                    Text("\(productreview.review) - \(User.getByID(userID: productreview.userID)![0].username)")
                                 }
+                                
+                            }
                         }
                         if p.count == 0{
                             Text("No Reviews Yet")
                        }
-                    }header:{
-                        Text("Reviews")
-                    }
+                    //}//header:{
+                        //Text("Reviews")
+                    //}
                     
                 }.frame(width: 320.0).border(Color.black)
             if UserSessionManager.shared.isLoggedIn(){
