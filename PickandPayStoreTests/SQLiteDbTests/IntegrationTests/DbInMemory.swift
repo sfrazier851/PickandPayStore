@@ -8,7 +8,7 @@ import XCTest
 @testable import PickandPayStore
 import SQLite3
 
-class DbMemory: XCTestCase {
+class DbInMemory: XCTestCase {
 
     // initialize memory test database
     private static let inMemoryTestDB = SQLiteDatabase.getInMemoryTestDatabase()
@@ -19,7 +19,7 @@ class DbMemory: XCTestCase {
         print("dropping and recreating tables")
         print("==============================")
         // Drop all tables then recreate tables for test database
-        SQLiteDatabase.createTables(database: DbMemory.inMemoryTestDB)
+        SQLiteDatabase.createTables(database: DbInMemory.inMemoryTestDB)
 
     }
 
@@ -30,7 +30,7 @@ class DbMemory: XCTestCase {
     // called after all tests have been run
     override class func tearDown() {
         // Call destructor for sqlite3 test database
-        if sqlite3_close_v2(DbMemory.inMemoryTestDB!) == 0 {
+        if sqlite3_close_v2(DbInMemory.inMemoryTestDB!) == 0 {
             print("\n==============")
             print("test db closed")
             print("==============\n")
@@ -41,7 +41,7 @@ class DbMemory: XCTestCase {
     func testCreateDbInMemory() throws {
         //Given
         //When
-        let result = SQLiteDatabase.getDbURLString(database: DbMemory.inMemoryTestDB)
+        let result = SQLiteDatabase.getDbURLString(database: DbInMemory.inMemoryTestDB)
         //Then
         XCTAssertTrue(result == "", "\(String(describing: result)) should be empty string")
     }

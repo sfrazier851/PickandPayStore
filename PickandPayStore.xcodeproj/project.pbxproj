@@ -48,7 +48,8 @@
 		7FCA682F2808A28F00DB46ED /* OrderItemDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA682E2808A28F00DB46ED /* OrderItemDAL.swift */; };
 		7FCA68CD2809F06B00DB46ED /* DbFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA68CC2809F06B00DB46ED /* DbFile.swift */; };
 		7FCA6948280C926C00DB46ED /* BaseDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA6947280C926C00DB46ED /* BaseDAL.swift */; };
-		7FCA6962280C9E0300DB46ED /* DbMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA6961280C9E0300DB46ED /* DbMemory.swift */; };
+		7FCA6962280C9E0300DB46ED /* DbInMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA6961280C9E0300DB46ED /* DbInMemory.swift */; };
+		7FCA697F280D01CE00DB46ED /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA697E280D01CD00DB46ED /* CategoryTests.swift */; };
 		84652B9B28061A3000166D28 /* ProductInWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9A28061A3000166D28 /* ProductInWL.swift */; };
 		84652B9D28061A9600166D28 /* WishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9C28061A9600166D28 /* WishlistManager.swift */; };
 		84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84699DCF27FA899B00AE497D /* ProductDetail.swift */; };
@@ -132,7 +133,8 @@
 		7FCA693B280C87CA00DB46ED /* PickandPayStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FCA693C280C87CA00DB46ED /* PickandPayStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FCA6947280C926C00DB46ED /* BaseDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDAL.swift; sourceTree = "<group>"; };
-		7FCA6961280C9E0300DB46ED /* DbMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbMemory.swift; sourceTree = "<group>"; };
+		7FCA6961280C9E0300DB46ED /* DbInMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbInMemory.swift; sourceTree = "<group>"; };
+		7FCA697E280D01CD00DB46ED /* CategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
 		84652B9A28061A3000166D28 /* ProductInWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInWL.swift; sourceTree = "<group>"; };
 		84652B9C28061A9600166D28 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistManager.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
@@ -313,7 +315,7 @@
 		7FCA68C82809E53800DB46ED /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
-				7FCA6961280C9E0300DB46ED /* DbMemory.swift */,
+				7FCA6961280C9E0300DB46ED /* DbInMemory.swift */,
 				7FCA68CC2809F06B00DB46ED /* DbFile.swift */,
 				7FCA695D280C9B1F00DB46ED /* ModelTests */,
 				7FCA695C280C9B0E00DB46ED /* DALTests */,
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				7F0A614127F80A970028B399 /* UserTests.swift */,
+				7FCA697E280D01CD00DB46ED /* CategoryTests.swift */,
 			);
 			path = ModelTests;
 			sourceTree = "<group>";
@@ -573,8 +576,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				45355FC327F3A2FD00ABFDC8 /* PickandPayStoreTests.swift in Sources */,
-				7FCA6962280C9E0300DB46ED /* DbMemory.swift in Sources */,
+				7FCA6962280C9E0300DB46ED /* DbInMemory.swift in Sources */,
 				7FCA6948280C926C00DB46ED /* BaseDAL.swift in Sources */,
+				7FCA697F280D01CE00DB46ED /* CategoryTests.swift in Sources */,
 				7FCA68CD2809F06B00DB46ED /* DbFile.swift in Sources */,
 				7F0A614227F80A970028B399 /* UserTests.swift in Sources */,
 			);
