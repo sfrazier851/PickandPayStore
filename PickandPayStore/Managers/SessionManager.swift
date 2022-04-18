@@ -14,9 +14,12 @@ class UserSessionManager {
     private init() {}
     
     private static var loggedInUser: User?
+    private static var isLoggedIn: Bool = false
     
     func setLoggedInUser(user: User) {
         UserSessionManager.loggedInUser = user
+        UserSessionManager.isLoggedIn = true
+        
     }
     
     func getLoggedInUser() -> User? {
@@ -26,4 +29,16 @@ class UserSessionManager {
         return user
     }
     
+    func isLoggedIn() -> Bool{
+            return UserSessionManager.isLoggedIn
+        }
+        
+        func getUserName() -> String{
+            return getLoggedInUser()?.username ?? "no user"
+        }
+        
+        func setLoggedInFalse(){
+            UserSessionManager.isLoggedIn = false
+        }
+        
 }
