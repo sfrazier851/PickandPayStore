@@ -45,7 +45,11 @@
 		7FCA681F28089CD200DB46ED /* PurchaseOrderDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA681E28089CD200DB46ED /* PurchaseOrderDAL.swift */; };
 		7FCA68242808A04500DB46ED /* ProductReviewDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA68232808A04500DB46ED /* ProductReviewDAL.swift */; };
 		7FCA682F2808A28F00DB46ED /* OrderItemDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA682E2808A28F00DB46ED /* OrderItemDAL.swift */; };
-		7FCA68CD2809F06B00DB46ED /* DbIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA68CC2809F06B00DB46ED /* DbIntegration.swift */; };
+		7FCA68CD2809F06B00DB46ED /* DbFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA68CC2809F06B00DB46ED /* DbFile.swift */; };
+		7FCA6948280C926C00DB46ED /* BaseDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA6947280C926C00DB46ED /* BaseDAL.swift */; };
+		7FCA6962280C9E0300DB46ED /* DbInMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA6961280C9E0300DB46ED /* DbInMemory.swift */; };
+		7FCA697F280D01CE00DB46ED /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA697E280D01CD00DB46ED /* CategoryTests.swift */; };
+		7FCA698A280DA59900DB46ED /* WishlistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA6989280DA59900DB46ED /* WishlistTests.swift */; };
 		84652B9B28061A3000166D28 /* ProductInWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9A28061A3000166D28 /* ProductInWL.swift */; };
 		84652B9D28061A9600166D28 /* WishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9C28061A9600166D28 /* WishlistManager.swift */; };
 		84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84699DCF27FA899B00AE497D /* ProductDetail.swift */; };
@@ -124,7 +128,14 @@
 		7FCA681E28089CD200DB46ED /* PurchaseOrderDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseOrderDAL.swift; sourceTree = "<group>"; };
 		7FCA68232808A04500DB46ED /* ProductReviewDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewDAL.swift; sourceTree = "<group>"; };
 		7FCA682E2808A28F00DB46ED /* OrderItemDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemDAL.swift; sourceTree = "<group>"; };
-		7FCA68CC2809F06B00DB46ED /* DbIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbIntegration.swift; sourceTree = "<group>"; };
+		7FCA68CC2809F06B00DB46ED /* DbFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbFile.swift; sourceTree = "<group>"; };
+		7FCA693A280C87CA00DB46ED /* PickandPayStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickandPayStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FCA693B280C87CA00DB46ED /* PickandPayStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FCA693C280C87CA00DB46ED /* PickandPayStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FCA6947280C926C00DB46ED /* BaseDAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDAL.swift; sourceTree = "<group>"; };
+		7FCA6961280C9E0300DB46ED /* DbInMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbInMemory.swift; sourceTree = "<group>"; };
+		7FCA697E280D01CD00DB46ED /* CategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
+		7FCA6989280DA59900DB46ED /* WishlistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTests.swift; sourceTree = "<group>"; };
 		84652B9A28061A3000166D28 /* ProductInWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInWL.swift; sourceTree = "<group>"; };
 		84652B9C28061A9600166D28 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistManager.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
@@ -180,9 +191,9 @@
 				45355FAA27F3A2FC00ABFDC8 /* PickandPayStore */,
 				45355FC127F3A2FD00ABFDC8 /* PickandPayStoreTests */,
 				45355FCB27F3A2FD00ABFDC8 /* PickandPayStoreUITests */,
-				84BB3C44280A0D600040A928 /* PickandPayStore.app */,
-				84BB3C4B280A37060040A928 /* PickandPayStoreTests.xctest */,
-				84BB3C4C280A37060040A928 /* PickandPayStoreUITests.xctest */,
+				7FCA693A280C87CA00DB46ED /* PickandPayStore.app */,
+				7FCA693B280C87CA00DB46ED /* PickandPayStoreTests.xctest */,
+				7FCA693C280C87CA00DB46ED /* PickandPayStoreUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -285,8 +296,8 @@
 		7FCA67962802B51200DB46ED /* SQLiteDbTests */ = {
 			isa = PBXGroup;
 			children = (
+				7FCA6940280C89AA00DB46ED /* UnitTests */,
 				7FCA68C82809E53800DB46ED /* IntegrationTests */,
-				7FCA68972809871F00DB46ED /* UnitTests */,
 			);
 			path = SQLiteDbTests;
 			sourceTree = "<group>";
@@ -306,20 +317,40 @@
 			path = SQLiteDAL;
 			sourceTree = "<group>";
 		};
-		7FCA68972809871F00DB46ED /* UnitTests */ = {
+		7FCA68C82809E53800DB46ED /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
-				7F0A614127F80A970028B399 /* UserTests.swift */,
+				7FCA6961280C9E0300DB46ED /* DbInMemory.swift */,
+				7FCA68CC2809F06B00DB46ED /* DbFile.swift */,
+				7FCA695D280C9B1F00DB46ED /* ModelTests */,
+				7FCA695C280C9B0E00DB46ED /* DALTests */,
+			);
+			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
+		7FCA6940280C89AA00DB46ED /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				7FCA6947280C926C00DB46ED /* BaseDAL.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
 		};
-		7FCA68C82809E53800DB46ED /* IntegrationTests */ = {
+		7FCA695C280C9B0E00DB46ED /* DALTests */ = {
 			isa = PBXGroup;
 			children = (
-				7FCA68CC2809F06B00DB46ED /* DbIntegration.swift */,
 			);
-			path = IntegrationTests;
+			path = DALTests;
+			sourceTree = "<group>";
+		};
+		7FCA695D280C9B1F00DB46ED /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F0A614127F80A970028B399 /* UserTests.swift */,
+				7FCA697E280D01CD00DB46ED /* CategoryTests.swift */,
+				7FCA6989280DA59900DB46ED /* WishlistTests.swift */,
+			);
+			path = ModelTests;
 			sourceTree = "<group>";
 		};
 		AC16E9A527F62E8D0037743F /* ShoppingCartSwiftUI */ = {
@@ -379,7 +410,7 @@
 			);
 			name = PickandPayStore;
 			productName = PickandPayStore;
-			productReference = 84BB3C44280A0D600040A928 /* PickandPayStore.app */;
+			productReference = 7FCA693A280C87CA00DB46ED /* PickandPayStore.app */;
 			productType = "com.apple.product-type.application";
 		};
 		45355FBD27F3A2FD00ABFDC8 /* PickandPayStoreTests */ = {
@@ -397,7 +428,7 @@
 			);
 			name = PickandPayStoreTests;
 			productName = PickandPayStoreTests;
-			productReference = 84BB3C4B280A37060040A928 /* PickandPayStoreTests.xctest */;
+			productReference = 7FCA693B280C87CA00DB46ED /* PickandPayStoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		45355FC727F3A2FD00ABFDC8 /* PickandPayStoreUITests */ = {
@@ -415,7 +446,7 @@
 			);
 			name = PickandPayStoreUITests;
 			productName = PickandPayStoreUITests;
-			productReference = 84BB3C4C280A37060040A928 /* PickandPayStoreUITests.xctest */;
+			productReference = 7FCA693C280C87CA00DB46ED /* PickandPayStoreUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -551,7 +582,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				45355FC327F3A2FD00ABFDC8 /* PickandPayStoreTests.swift in Sources */,
-				7FCA68CD2809F06B00DB46ED /* DbIntegration.swift in Sources */,
+				7FCA6962280C9E0300DB46ED /* DbInMemory.swift in Sources */,
+				7FCA6948280C926C00DB46ED /* BaseDAL.swift in Sources */,
+				7FCA698A280DA59900DB46ED /* WishlistTests.swift in Sources */,
+				7FCA697F280D01CE00DB46ED /* CategoryTests.swift in Sources */,
+				7FCA68CD2809F06B00DB46ED /* DbFile.swift in Sources */,
 				7F0A614227F80A970028B399 /* UserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

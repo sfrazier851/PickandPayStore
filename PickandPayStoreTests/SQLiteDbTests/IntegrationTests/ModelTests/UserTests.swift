@@ -1,5 +1,5 @@
 //
-//  SQLiteDbTests.swift
+//  UserTests.swift
 //
 //  Created by iMac on 4/1/22.
 //
@@ -10,8 +10,8 @@ import SQLite3
 
 class UserTests: XCTestCase {
 
-    // initialize unit test database
-    private static let unitTestDB = SQLiteDatabase.getUnitTestDatabase()
+    // initialize memory test database
+    private static let inMemoryTestDB = SQLiteDatabase.getInMemoryTestDatabase()
     
     // called before each test case
     override func setUpWithError() throws {
@@ -19,7 +19,7 @@ class UserTests: XCTestCase {
         print("dropping and recreating tables")
         print("==============================")
         // Drop all tables then recreate tables for test database
-        SQLiteDatabase.createTables(database: UserTests.unitTestDB)
+        SQLiteDatabase.createTables(database: UserTests.inMemoryTestDB)
         // Set static var to use unit test db
         User.setTestingTrue()
     }
@@ -31,7 +31,7 @@ class UserTests: XCTestCase {
     // called after all tests have been run
     override class func tearDown() {
         // Call destructor for sqlite3 test database
-        if sqlite3_close_v2(UserTests.unitTestDB!) == 0 {
+        if sqlite3_close_v2(UserTests.inMemoryTestDB!) == 0 {
             print("\n==============")
             print("test db closed")
             print("==============\n")
@@ -126,12 +126,4 @@ class UserTests: XCTestCase {
         //Then
         XCTAssert(user_count == query_count, "\(query_count) and \(user_count) should be equal")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

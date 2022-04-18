@@ -18,7 +18,7 @@ struct ProductReview: Equatable {
     
     private static let productReviewDAL = { () -> ProductReviewDAL? in
         if ProductReview.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return ProductReviewDAL(db: db, convert: convert)
             }
         } else {

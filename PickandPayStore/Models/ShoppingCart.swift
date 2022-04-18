@@ -18,7 +18,7 @@ struct ShoppingCart: Equatable {
 
     private static let shoppingCartDAL = { () -> ShoppingCartDAL? in
         if ShoppingCart.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return ShoppingCartDAL(db: db, convert: convert)
             }
         } else {

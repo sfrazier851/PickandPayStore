@@ -10,74 +10,84 @@ import SQLite3
 
 class SQLiteDatabase {
     
-    private enum testing {
-        case none
-        case unit
-        case integration
+    private enum db_type {
+        case applicationDB
+        case inMemoryTestingDB
+        case testingDB
     }
     
     // application database instance
-    private static let sharedInstance = SQLiteDatabase(testing: .none)
-    private var database: OpaquePointer?
-    private static var dbPath: String = getDbFilePath(dbFilename: K.SQLiteDatabase.dbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
-    static func getDbPath() -> String { return dbPath }
+    private static let applicationInstance = SQLiteDatabase(dbType: .applicationDB)
+    private var appDatabase: OpaquePointer?
     static func getDatabase() -> OpaquePointer? {
-        guard let db = sharedInstance.database else {
+        guard let db = applicationInstance.appDatabase else {
             return nil
         }
         return db
     }
     
-    // integration testing database instance
-    private static let integrationTestInstance = SQLiteDatabase(testing: .integration)
-    private var integrationTestDatabase: OpaquePointer?
-    private static var integrationDbPath: String = ""
-    static func getIntegrationTestDbPath() -> String { return integrationDbPath }
-    static func getIntegrationTestDatabase() -> OpaquePointer? {
-        return integrationTestInstance.integrationTestDatabase
+    // testing db (file)
+    private static let testInstance = SQLiteDatabase(dbType: .testingDB)
+    private var testDatabase: OpaquePointer?
+    static func getTestDatabase() -> OpaquePointer? {
+        return testInstance.testDatabase
     }
     
-    // unit testing database instance
-    private static let unitTestInstance = SQLiteDatabase(testing: .unit)
-    private var unitTestDatabase: OpaquePointer?
-    static func getUnitTestDatabase() -> OpaquePointer? {
-        return unitTestInstance.unitTestDatabase
+    // testing db (in memory)
+    private static let inMemoryTestInstance = SQLiteDatabase(dbType: .inMemoryTestingDB)
+    private static var inMemoryTestDatabase: OpaquePointer?
+    static func getInMemoryTestDatabase() -> OpaquePointer? {
+        // if getDbURLString returns "" (empty string) the db exists in memory
+        // else create and return a new in memory database
+        if "" == getDbURLString(database: inMemoryTestDatabase) {
+            return inMemoryTestDatabase
+        } else {
+            var inMemoryDb: OpaquePointer?
+            // Create and connect to in-memory database for tests
+            if sqlite3_open("file::memory:", &inMemoryDb) != SQLITE_OK {
+                print("error opening database")
+            } else {
+                print("\n==============")
+                print("test db opened")
+                print("==============\n")
+            }
+            inMemoryTestDatabase = inMemoryDb
+            return inMemoryTestDatabase
+        }
     }
     
-    private init(testing: testing) {
+    private init(dbType: db_type) {
         // Create a connection to the database
-        switch testing {
-            case .unit:
-                // Create and connect to in-memory database for unit tests
-                if sqlite3_open("file::memory:", &unitTestDatabase) != SQLITE_OK {
+        switch dbType {
+            case .inMemoryTestingDB:
+                // Create and connect to in-memory database for integration tests
+                if sqlite3_open("file::memory:", &SQLiteDatabase.inMemoryTestDatabase) != SQLITE_OK {
                     print("error opening database")
                 } else {
                     print("\n==============")
                     print("test db opened")
                     print("==============\n")
                 }
-            case .integration:
-                // Get integration test db file path
-                let dbFilePath = SQLiteDatabase.getDbFilePath(dbFilename: K.SQLiteDatabase.testDbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
-                SQLiteDatabase.integrationDbPath = dbFilePath
+            case .testingDB:
+                // Get test db (file-based) path
+                let dbFilePath = SQLiteDatabase.createDbFilePathFromConfig(dbFilename: K.SQLiteDatabase.testDbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
                 print(dbFilePath)
-                // Connect to db or create if doesn't exist for integration tests
-                if sqlite3_open(dbFilePath, &integrationTestDatabase) != SQLITE_OK {
+                // Connect to db or create if doesn't exist
+                if sqlite3_open(dbFilePath, &testDatabase) != SQLITE_OK {
                     print("error opening database")
                 }
-            case .none:
+            case .applicationDB:
                 // Get application db file path
-                let dbFilePath = SQLiteDatabase.getDbFilePath(dbFilename: K.SQLiteDatabase.dbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
-                SQLiteDatabase.dbPath = dbFilePath
+                let dbFilePath = SQLiteDatabase.createDbFilePathFromConfig(dbFilename: K.SQLiteDatabase.dbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
                 print(dbFilePath)
-                // Connect to db or create if doesn't exist for application
-                if sqlite3_open(dbFilePath, &database) != SQLITE_OK {
+                // Connect to db or create if doesn't exist
+                if sqlite3_open(dbFilePath, &appDatabase) != SQLITE_OK {
                     print("error opening database")
                 }
         }
     }
     
-    private static func getDbFilePath(dbFilename: String, dbFileExtension: String) -> String {
+    private static func createDbFilePathFromConfig(dbFilename: String, dbFileExtension: String) -> String {
         do {
             // Get full path
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -92,17 +102,31 @@ class SQLiteDatabase {
     }
     
     private static func runSqlScript(sqlScript: String, database: OpaquePointer?) {
-        if let db = database {
-            do {
-                if sqlite3_exec(db, sqlScript, nil, nil, nil) != SQLITE_OK {
-                    let error = String(cString: sqlite3_errmsg(db)!)
-                    print("error running sql script: \(error)")
-                }
-            }
+        guard let db = database else {
+            return
+        }
+        if sqlite3_exec(db, sqlScript, nil, nil, nil) != SQLITE_OK {
+            let error = String(cString: sqlite3_errmsg(db)!)
+            print("error running sql script: \(error)")
         }
     }
     
+    static func getDbURLString(database: OpaquePointer?) -> String? {
+        // return nil if in memory database does not exist
+        guard let pointer = sqlite3_db_filename(database, nil) else {
+            return nil
+        }
+        // if the database exists in memory, urlString will be empty string:
+        // https://sqlite.org/c3ref/db_filename.html
+        // else it will return the database file full path as string
+        let urlString = String(cString: pointer)
+        return urlString
+    }
+    
     static func createTables(database: OpaquePointer?) {
+        guard let db = database else {
+            return
+        }
         let scripts = [ SQLiteTables.userTableSchemaScripts.joined(),
                         SQLiteTables.categoryTableSchemaScripts.joined(),
                         SQLiteTables.productTableSchemaScripts.joined(),
@@ -113,11 +137,14 @@ class SQLiteDatabase {
                         SQLiteTables.orderItemTableSchemaScripts.joined() ]
         
         for script in scripts {
-            runSqlScript(sqlScript: script, database: database)
+            runSqlScript(sqlScript: script, database: db)
         }
     }
     
     static func insertData(database: OpaquePointer?) {
+        guard let db = database else {
+            return
+        }
         let scripts = [ SQLiteTables.userTableInsertScript,
                         SQLiteTables.categoryTableInsertScript,
                         SQLiteTables.productTableInsertScript,
@@ -127,7 +154,7 @@ class SQLiteDatabase {
                         SQLiteTables.purchaseOrderTableInsertScript,
                         SQLiteTables.orderItemTableInsertScript ]
         for script in scripts {
-            runSqlScript(sqlScript: script, database: database)
+            runSqlScript(sqlScript: script, database: db)
         }
     }
     

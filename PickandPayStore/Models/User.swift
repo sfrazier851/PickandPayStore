@@ -20,7 +20,7 @@ struct User: Equatable {
     
     private static let userDAL = { () -> UserDAL? in
         if User.testing == true {
-            if let db = SQLiteDatabase.getUnitTestDatabase() {
+            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
                 return UserDAL(db: db, convert: convert)
             }
         } else {
