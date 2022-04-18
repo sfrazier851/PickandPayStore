@@ -13,6 +13,9 @@ struct ProductDetailView: View {
     @State var total : Int = 1
     @State var inWishlist: Bool = false
     
+    @State var showReview: Bool = false
+    
+    @State var p = [ProductReview]()
     var product : Product
     var body: some View {
       // ScrollView{
@@ -108,12 +111,12 @@ struct ProductDetailView: View {
                 
                 List{
                     Section{
-                    let p = ProductReview.getByProductID(productID: product.id)
-                            ForEach(p! , id: \.id){ productreview in
+                        if p != []{
+                            ForEach(p , id: \.id){ productreview in
                                 Text(productreview.review)
                                 }
-                        
-                        if p?.count == 0{
+                        }
+                        if p.count == 0{
                             Text("No Reviews Yet")
                        }
                     }header:{
@@ -121,8 +124,9 @@ struct ProductDetailView: View {
                     }
                     
                 }.frame(width: 320.0).border(Color.black)
+            if UserSessionManager.shared.isLoggedIn(){
                Button{
-                   
+                   showReview.toggle()
                }label: {
                    Text("Add A Review")
                        .frame(width: 320, height: 20, alignment: .center)
@@ -130,10 +134,15 @@ struct ProductDetailView: View {
                }
                .background(Color.gray)
                .cornerRadius(5)
+               .sheet(isPresented: $showReview, onDismiss: nil){
+                   AddReviewView(reviews: $p, productID: product.id, showReview: $showReview)
+               }
+               }
             
              Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .onAppear(){
+                p = ProductReview.getByProductID(productID: product.id) ?? []
                 if UserSessionManager.shared.getLoggedInUser() == nil{
                     inWishlist = WishlistManager.sharedWishlist.getWishlist().contains(product.name)
                 }
@@ -146,6 +155,7 @@ struct ProductDetailView: View {
                     }
                 }
             }
+            
     }
 }
 

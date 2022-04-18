@@ -59,6 +59,7 @@
 		84E250AC27FDFEB000EA997A /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4727FC6D8500AC8DD2 /* CategoryCard.swift */; };
 		84E250AE27FFAD3300EA997A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E250AD27FFAD3300EA997A /* SearchBar.swift */; };
 		84E250B02804D04C00EA997A /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E250AF2804D04C00EA997A /* WishlistView.swift */; };
+		84FED903280E01DB0096F0CB /* AddReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FED902280E01DB0096F0CB /* AddReviewView.swift */; };
 		AC16E9AA27F62F980037743F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9A927F62F980037743F /* ContentView.swift */; };
 		AC16E9AC27F62FF60037743F /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9AB27F62FF60037743F /* CartView.swift */; };
 		AC16E9AF27F630C60037743F /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9AE27F630C60037743F /* ProductCard.swift */; };
@@ -139,12 +140,10 @@
 		84652B9A28061A3000166D28 /* ProductInWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInWL.swift; sourceTree = "<group>"; };
 		84652B9C28061A9600166D28 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistManager.swift; sourceTree = "<group>"; };
 		84699DCF27FA899B00AE497D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
-		84BB3C44280A0D600040A928 /* PickandPayStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickandPayStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		84BB3C4B280A37060040A928 /* PickandPayStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		84BB3C4C280A37060040A928 /* PickandPayStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickandPayStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BB3C4D280A59E20040A928 /* ShowLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLogin.swift; sourceTree = "<group>"; };
 		84E250AD27FFAD3300EA997A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		84E250AF2804D04C00EA997A /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
+		84FED902280E01DB0096F0CB /* AddReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewView.swift; sourceTree = "<group>"; };
 		AC16E9A927F62F980037743F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC16E9AB27F62FF60037743F /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		AC16E9AE27F630C60037743F /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
@@ -375,6 +374,7 @@
 				84699DCF27FA899B00AE497D /* ProductDetail.swift */,
 				84E250AF2804D04C00EA997A /* WishlistView.swift */,
 				AC47210E2808AC840086A524 /* SideMenuView.swift */,
+				84FED902280E01DB0096F0CB /* AddReviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -547,6 +547,7 @@
 				7FCA681F28089CD200DB46ED /* PurchaseOrderDAL.swift in Sources */,
 				7F0A61AC27FC6D990028B399 /* LoginViewController.swift in Sources */,
 				84E250B02804D04C00EA997A /* WishlistView.swift in Sources */,
+				84FED903280E01DB0096F0CB /* AddReviewView.swift in Sources */,
 				45355FAE27F3A2FC00ABFDC8 /* SceneDelegate.swift in Sources */,
 				7FCA67FC280893C200DB46ED /* CategoryDAL.swift in Sources */,
 				7F5D83ED27F3B5620063ED40 /* User.swift in Sources */,
