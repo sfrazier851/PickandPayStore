@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class RegisterViewController: UIViewController {
     
@@ -170,6 +171,17 @@ class RegisterViewController: UIViewController {
                 // Create the user
                 let newUser = User.create(username: username, email: email, password: password, phoneNumber: phonenumber)
                 UserSessionManager.shared.setLoggedInUser(user: newUser!)
+                //Check if userdefaults wishlist items are in user's db wishlist already
+                for productname in WishlistManager.sharedWishlist.getWishlist(){
+                    if Wishlist.getByProductID(productID: Product.getByName(name: productname)![0].id)?.filter({
+                        (wishlist: Wishlist) -> Bool in
+                        return wishlist.userID == newUser!.id
+                    }) == []{
+                        //Add userdefaults wishlist items to user's db wishlist
+                        Wishlist.create(userID: newUser!.id, productID: (Product.getByName(name: productname)?[0].id)!)
+                    }
+                }
+                UserDefaults.standard.set([], forKey: "Wishlist")
                 PresenterManager.shared.show(vc: .shop)
             }
             else {

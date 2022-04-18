@@ -134,7 +134,17 @@ struct ProductDetailView: View {
              Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .onAppear(){
-                inWishlist = WishlistManager.sharedWishlist.getWishlist().contains(product.name)
+                if UserSessionManager.shared.getLoggedInUser() == nil{
+                    inWishlist = WishlistManager.sharedWishlist.getWishlist().contains(product.name)
+                }
+                else{
+                    if Wishlist.getByProductID(productID: Product.getByName(name: product.name)![0].id)?.filter({
+                        (wishlist: Wishlist) -> Bool in
+                        return wishlist.userID == UserSessionManager.shared.getLoggedInUser()!.id
+                    }) != []{
+                        inWishlist = true
+                    }
+                }
             }
     }
 }

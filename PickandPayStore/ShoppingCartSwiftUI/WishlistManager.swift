@@ -16,12 +16,22 @@ class WishlistManager {
     
     func addToWishlist(productName: String){
         udWishlist.append(productName)
-        UserDefaults.standard.set(udWishlist, forKey: "Wishlist")
+        if UserSessionManager.shared.getLoggedInUser() == nil{
+            UserDefaults.standard.set(udWishlist, forKey: "Wishlist")
+        }
+        else{
+            Wishlist.create(userID: UserSessionManager.shared.getLoggedInUser()!.id, productID: (Product.getByName(name: productName)?[0].id)!)
+        }
     }
     
     func removeFromWishlist(productName: String){
         udWishlist.removeAll{ $0 == productName }
-        UserDefaults.standard.set(udWishlist, forKey: "Wishlist")
+        if UserSessionManager.shared.getLoggedInUser() == nil{
+            UserDefaults.standard.set(udWishlist, forKey: "Wishlist")
+        }
+        else{
+            Wishlist.removeByProductID(userID: UserSessionManager.shared.getLoggedInUser()!.id,productID: (Product.getByName(name: productName)?[0].id)!)
+        }
     }
     
     func getCount() -> Int{
