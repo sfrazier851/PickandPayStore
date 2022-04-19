@@ -15,6 +15,9 @@ struct CartView: View {
     // This state variable controlls the display of the NotRegisteredNotification.
     @State var displayNotification: Bool = false
     
+    //flag to display checkoutview
+   // @State var displayCheckout = true
+    
     
     // Environment object modifier of CartManager type.
     @State var productsInCart: [Product] = []
@@ -38,7 +41,12 @@ struct CartView: View {
                         
                         HStack {
                             Button ( action: {
+                                
+                                
                                 displayNotification.toggle()
+                              //  displayCheckout.toggle()
+                                
+                                
                             }, label: {
                                 Text("Check Out")
                                     .foregroundColor(.black)
@@ -64,14 +72,20 @@ struct CartView: View {
                 }
                 
             }
-            .navigationTitle(Text("My Cart"))
+            .navigationTitle(isLoggedIn && displayNotification ? Text("Order"): Text("My Cart")  )
             .padding(.top)
             .onAppear(){
                 productsInCart = CartManager.sharedCart.products
                 numberInCart = CartManager.sharedCart.products.count
             }
     
-            displayNotification ? NotRegisteredNotification() : nil
+         //   displayNotification ? NotRegisteredNotification() : nil
+            
+            if isLoggedIn && displayNotification{
+                CheckOutView()
+            }else if displayNotification{
+              
+                NotRegisteredNotification()            }
             
         }
     }
