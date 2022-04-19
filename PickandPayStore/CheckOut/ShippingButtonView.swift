@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ShippingButtonView: View {
-    @State private var adress = ""
-    @State private var postalCode = ""
-    @State private var state = ""
+   
+    @Binding var adress: String
+    @Binding var postalCode : String
+    @Binding var state: String
+   // @Binding var shippingAdress: String
     @State private var states = ["Ny","Fl","Tx","Cl","DA","CU"]
     
     var body: some View {
@@ -19,6 +21,8 @@ struct ShippingButtonView: View {
         Form{
             Section(header: Text("Shipping")){
                 TextField("Adress", text: $adress)
+                    
+                
                 Picker("State", selection: $state){
                     
                     ForEach(states, id: \.self) {
@@ -34,8 +38,8 @@ struct ShippingButtonView: View {
     }
 }
 
-struct ShippingButtonView_Previews: PreviewProvider {
+/*struct ShippingButtonView_Previews: PreviewProvider {
     static var previews: some View {
         ShippingButtonView()
     }
-}
+}*/

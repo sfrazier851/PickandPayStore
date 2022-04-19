@@ -12,52 +12,52 @@ struct CheckOutView: View {
     
     
     @State var productsInCar: [Product] = []
-    //@State var userLoggedIn: User
+    @State var userLoggedIn: User = UserSessionManager.shared.getLoggedInUser()!
     
     
     @State var subtotal: Float = 0
+    @State var paymentSelected = ""
+    @State var shipment = "233 Ny 11411"
+    @State var adrees = ""
+    @State var postalCode = ""
+    @State var state = ""
     
-    /*let order = PurchaseOrder.create(userID: <#T##Int#>, paymentType: <#T##String#>, shippingAddress: <#T##String#>)
     
-    func fillproducts(){
-    
-    }*/
     
     var body: some View {
         NavigationView{
             
             VStack{
                 List{
-                Section{
+                    Section{
+                        
+                        Text("Summary")
+                             .font(.title)
+                             .fontWeight(.bold)
+                             .foregroundColor(.blue)
+                        SummaryOrderView()
+                             .padding()
+                    }
+                   //Section
                     
-                    Text("Summary")
-                         .font(.title)
-                         .fontWeight(.bold)
-                         .foregroundColor(.blue)
-                     SummaryOrderView()
-                         .padding()
-                }
-               //Section
-                
-                SelectPaymentView()
-                    .frame(height: 150)
-                
-              
-                
-                
-               ShippingButtonView()
-                    .frame(height: 200)
-               PlaceOrderView()
+                   //Select payment
+                    SelectPaymentView(paymentSelected: $paymentSelected)
+                        .frame(height: 150)
                     
-                        .navigationTitle("Order list")
-                        .onAppear(){
-                            productsInCar = CartManager.sharedCart.products
-                           //need to fecht the user logged in
+                                
+                   //Shipping Section
+                    ShippingButtonView(adress: $adrees, postalCode: $postalCode, state: $state)
+                        .frame(height: 200)
+                    
+                        
+                  //Place order
+                    PlaceOrderView(productsInOrder: $productsInCar, userId: $userLoggedIn.id, paymentSelected: $paymentSelected, shippmentAdress: $shipment)
+                        
+                    
                             
-                        }
-                    
-                }
-                //List
+                        
+                    }
+                    //List
                 
                
             }
@@ -87,6 +87,11 @@ struct CheckOutView: View {
     }
        
 }
+
+
+
+
+
 
 struct CheckOutView_Previews: PreviewProvider {
     static var previews: some View {
