@@ -8,25 +8,28 @@
 import SwiftUI
 
 struct ShippingButtonView: View {
+    @State private var adress = ""
+    @State private var postalCode = ""
+    @State private var state = ""
+    @State private var states = ["Ny","Fl","Tx","Cl","DA","CU"]
     
-    @State var currentAddress: String = " "
-    @State var postalCode: String = " "
     var body: some View {
         
-        Menu("Shipping Address"){
-            
-            
-                Button("Address 1"){
+       
+        Form{
+            Section(header: Text("Shipping")){
+                TextField("Adress", text: $adress)
+                Picker("State", selection: $state){
                     
-                }
-                Button("State"){
-                    
-                }
-            
-                Button("postal code"){
+                    ForEach(states, id: \.self) {
+                        Text($0)
+                    }
                 }
                 
-            
+                TextField("Postal code", text: $postalCode)
+               
+            }
+           
         }
     }
 }

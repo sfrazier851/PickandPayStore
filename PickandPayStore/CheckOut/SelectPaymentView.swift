@@ -8,16 +8,51 @@
 import SwiftUI
 
 struct SelectPaymentView: View {
+   
+    @State var banckAccount = ""
+    @State var show = false
     var body: some View {
-        Menu("Select Payment"){
-            Button("COD", action: selectCod)
+        
+        
+        
+        Form{
+            
+            
+            Section(header: Text("Payment")){
+                Menu("Select Payment"){
+                    
+                    
+                    Button("COD", action: selectCod)
+                        
+                    Button("Net Banking"){
+                        show.toggle()
+                        
+                    }
+                    
+                }
                 
-            Button("Net Banking", action: selectNetBanking)
+            }
+            
+            
+            if show {
+                TextField("Bank account",text: $banckAccount)
+                    
+                    
+                    
+            }
+           
+        
         }
     }
     
-    func selectCod(){}
-    func selectNetBanking(){}
+    func selectCod(){
+      
+    }
+   /* func selectNetBanking(bankacc: Int){
+        let banc = bankacc
+        let bankAccount = TextField("Bank account",banc)
+        
+    }*/
 }
 
 struct SelectPaymentView_Previews: PreviewProvider {
