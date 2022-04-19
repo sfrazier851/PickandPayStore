@@ -15,6 +15,7 @@ struct CartView: View {
     // This state variable controlls the display of the NotRegisteredNotification.
     @State var displayNotification: Bool = false
     
+    
     // Environment object modifier of CartManager type.
     @State var productsInCart: [Product] = []
     @State var numberInCart: Int = 0
@@ -69,6 +70,7 @@ struct CartView: View {
                 productsInCart = CartManager.sharedCart.products
                 numberInCart = CartManager.sharedCart.products.count
             }
+    
             displayNotification ? NotRegisteredNotification() : nil
             
         }
