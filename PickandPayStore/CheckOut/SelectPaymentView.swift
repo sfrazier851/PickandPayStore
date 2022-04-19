@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SelectPaymentView: View {
-   
+    
+    @Binding var paymentSelected: String
     @State var banckAccount = ""
     @State var show = false
     var body: some View {
@@ -22,11 +23,13 @@ struct SelectPaymentView: View {
                 Menu("Select Payment"){
                     
                     
-                    Button("COD", action: selectCod)
+                    Button("COD"){
+                        paymentSelected = "COD"
+                    }
                         
                     Button("Net Banking"){
                         show.toggle()
-                        
+                        paymentSelected = "net Banking"
                     }
                     
                 }
@@ -55,8 +58,12 @@ struct SelectPaymentView: View {
     }*/
 }
 
+
+
+/*
 struct SelectPaymentView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectPaymentView()
+        SelectPaymentView(paymentSelected: $paymentSelected)
     }
 }
+*/
