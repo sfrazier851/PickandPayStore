@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct SummaryOrderView: View {
-    @State var productsInCar = [
-        Product(id: 1, categoryID: 1, name: "Ghost", price: 95000, imageName: "ghost", description: "destroy everybody"),
-        Product(id: 2, categoryID: 1, name: "SA-Bomber", price: 86500, imageName: "sa-bomber", description: "a bomber"),
-        Product(id: 3, categoryID: 1, name: "Striker", price: 299000, imageName: "striker", description: "a striker"),
-        Product(id: 4, categoryID: 1, name: "Star destroyer", price: 179400, imageName: "star-destroyer", description: " a star destroyer")]
+    @State var productsInCar: [Product] = []
     //@State var userLoggedIn: User
     
     
@@ -54,6 +50,9 @@ struct SummaryOrderView: View {
                 Text("$ \(getTotal(products:productsInCar),specifier: "%.2f")")
                     .fontWeight(.heavy)
             }
+        }
+        .onAppear(){
+            productsInCar = CartManager.sharedCart.products
         }
         }
         

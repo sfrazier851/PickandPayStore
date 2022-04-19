@@ -8,18 +8,10 @@
 import SwiftUI
 
 struct CheckOutView: View {
-    
-  /*  ( 1, 'Ghost', 95000, 'ghost', ''),
-    ( 1, 'SA-Bomber',86500,'sa-bomber', ''),
-    ( 1, 'Striker',299000,'striker', ''),
-    ( 1, 'Star Destroyer', 179400, 'star-destroyer', ''),*/
+  
     
     
-    @State var productsInCar = [
-        Product(id: 1, categoryID: 1, name: "Ghost", price: 95000, imageName: "ghost", description: "destroy everybody"),
-        Product(id: 2, categoryID: 1, name: "SA-Bomber", price: 86500, imageName: "sa-bomber", description: "a bomber"),
-        Product(id: 3, categoryID: 1, name: "Striker", price: 299000, imageName: "striker", description: "a striker"),
-        Product(id: 4, categoryID: 1, name: "Star destroyer", price: 179400, imageName: "star-destroyer", description: " a star destroyer")]
+    @State var productsInCar: [Product] = []
     //@State var userLoggedIn: User
     
     
@@ -56,19 +48,21 @@ struct CheckOutView: View {
                ShippingButtonView()
                     .frame(height: 200)
                PlaceOrderView()
-                
+                    
+                        .navigationTitle("Order list")
+                        .onAppear(){
+                            productsInCar = CartManager.sharedCart.products
+                           //need to fecht the user logged in
+                            
+                        }
                     
                 }
                 //List
                 
+               
             }
            //Vstack
-            .navigationTitle("Order list")
-            .onAppear(){
-              //  productsInCar = CartManager.sharedCart.products
-               // userLoggedIn =
-                
-            }
+           
         
         }
     }
