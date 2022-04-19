@@ -25,35 +25,52 @@ struct CheckOutView: View {
     
     @State var subtotal: Float = 0
     
+    /*let order = PurchaseOrder.create(userID: <#T##Int#>, paymentType: <#T##String#>, shippingAddress: <#T##String#>)
+    
+    func fillproducts(){
+    
+    }*/
+    
     var body: some View {
         NavigationView{
             
             VStack{
+                List{
+                Section{
+                    
+                    Text("Summary")
+                         .font(.title)
+                         .fontWeight(.bold)
+                         .foregroundColor(.blue)
+                     SummaryOrderView()
+                         .padding()
+                }
+               //Section
                 
-               Text("Summary")
-                    .font(.title)
-                SummaryOrderView()
-                    .padding()
-            
-               SelectPaymentView()
-                    .padding()
-                Text("Shipping")
+                SelectPaymentView()
+                    .frame(height: 150)
+                
+              
+                
+                
                ShippingButtonView()
-                    .padding()
-                PlaceOrderView()
-                .navigationTitle("Order list")
-                .onAppear(){
-                  //  productsInCar = CartManager.sharedCart.products
-                   // userLoggedIn =
+                    .frame(height: 200)
+               PlaceOrderView()
+                
                     
                 }
-            }
+                //List
                 
-               
-            //
-            
-      }
-       
+            }
+           //Vstack
+            .navigationTitle("Order list")
+            .onAppear(){
+              //  productsInCar = CartManager.sharedCart.products
+               // userLoggedIn =
+                
+            }
+        
+        }
     }
     
   
@@ -79,6 +96,9 @@ struct CheckOutView: View {
 
 struct CheckOutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckOutView()
+        Group {
+            CheckOutView()
+           
+        }
     }
 }

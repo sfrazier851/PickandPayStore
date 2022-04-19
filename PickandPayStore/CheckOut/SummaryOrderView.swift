@@ -23,9 +23,10 @@ struct SummaryOrderView: View {
                 ForEach(productsInCar,id: \.id){product in
                     HStack{
                         Text("\(product.name)")
+                            .foregroundColor(Color.blue)
                         Spacer()
                         Text(" $\(product.price,specifier: "%.2f")")
-                        
+                            .foregroundColor(Color.blue)
                     }
                     
                     
@@ -48,10 +49,10 @@ struct SummaryOrderView: View {
 
             HStack{
                 Text("Total")
-                    
+                    .fontWeight(.heavy)
                 Spacer()
                 Text("$ \(getTotal(products:productsInCar),specifier: "%.2f")")
-                
+                    .fontWeight(.heavy)
             }
         }
         }
