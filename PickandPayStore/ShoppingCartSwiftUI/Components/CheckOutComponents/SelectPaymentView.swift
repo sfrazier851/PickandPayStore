@@ -34,8 +34,20 @@ struct SelectPaymentView: View {
                     
                 }
                 
-                ApplePayButtonView(action: {})
-                    .padding()
+                
+               if CartManager.sharedCart.paymentSucces{
+                    Text("Thank for purchase ,you will receive a email confirmation")
+                        .padding()
+                   
+                   
+                }else{
+                  
+                    ApplePayButtonView(action: CartManager.sharedCart.pay)
+                        .padding()
+                }
+                    
+                
+                
                 
             }
             

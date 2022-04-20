@@ -28,6 +28,23 @@ struct CheckOutView: View {
         NavigationView{
             
             VStack{
+                
+               if CartManager.sharedCart.paymentSucces{
+                  Text("Payment succes")
+                   let order = PurchaseOrder.create(userID: userLoggedIn.id, paymentType: "Apple pay", shippingAddress: shipment)
+                   
+                   let succes = createOrderItems(productsInOrder: productsInCar, purchaseOrder: order!)
+                   
+                   
+                 /*  ForEach(productsInCar, id: \.id){ product in
+                       OrderItem.create(purchaseOrderID: order.id, productID: product.id, purchasePrice: product.price)
+                       
+                   }*/
+                   
+                   
+                 
+                }else{
+                
                 List{
                     Section{
                         
@@ -44,10 +61,10 @@ struct CheckOutView: View {
                     SelectPaymentView(paymentSelected: $paymentSelected)
                         .frame(height: 150)
                     
-                                
+                  //  ApplePayButtonView(action: CartManager.sharedCart.pay)
                    //Shipping Section
-                    ShippingButtonView(adress: $adrees, postalCode: $postalCode, state: $state)
-                        .frame(height: 200)
+                   // ShippingButtonView(adress: $adrees, postalCode: $postalCode, state: $state)
+                   //     .frame(height: 200)
                     
                         
                   //Place order
@@ -58,15 +75,27 @@ struct CheckOutView: View {
                         
                     }
                     //List
-                
+              }
+               //if else
                
             }
            //Vstack
-           
+            .onAppear{
+                if CartManager.sharedCart.paymentSucces {
+                   CartManager.sharedCart.paymentSucces = false
+                }
+            }
         
         }
     }
     
+    func createOrderItems(productsInOrder: [Product], purchaseOrder: PurchaseOrder) -> Bool{
+        for product in productsInOrder{
+            OrderItem.create(purchaseOrderID: purchaseOrder.id, productID: product.id, purchasePrice: product.price)
+            print("product item \(product.name)")
+        }
+        return true
+    }
   
     func getSubTotal(products: [Product]) -> Float{
         var total: Float = 0.0
