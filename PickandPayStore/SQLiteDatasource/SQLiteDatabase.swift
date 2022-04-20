@@ -12,7 +12,6 @@ class SQLiteDatabase {
     
     private enum db_type {
         case applicationDB
-        //case inMemoryTestingDB
         case testingDB
     }
     
@@ -59,15 +58,6 @@ class SQLiteDatabase {
     private init(dbType: db_type) {
         // Create a connection to the database
         switch dbType {
-            /*case .inMemoryTestingDB:
-                // Create and connect to in-memory database for integration tests
-                if sqlite3_open("file::memory:", &SQLiteDatabase.inMemoryTestDatabase) != SQLITE_OK {
-                    print("error opening database")
-                } else {
-                    print("\n==============")
-                    print("test db opened")
-                    print("==============\n")
-                }*/
             case .testingDB:
                 // Get test db (file-based) path
                 let dbFilePath = SQLiteDatabase.createDbFilePathFromConfig(dbFilename: K.SQLiteDatabase.testDbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
