@@ -1,4 +1,4 @@
-//
+////
 //  PlaceOrderView.swift
 //  PickandPayStore
 //
@@ -25,8 +25,10 @@ struct PlaceOrderView: View {
         Button(action:{
             
             let order = PurchaseOrder.create(userID: userId, paymentType: paymentSelected, shippingAddress: shippmentAdress)
-            createOrderItems(productsInOrder: productsInOrder, purchaseOrder: order!)
-           
+          //  createOrderItems(productsInOrder: productsInOrder, purchaseOrder: order!)
+            for product in productsInOrder{
+                OrderItem.create(purchaseOrderID: order!.id, productID: product.id, purchasePrice: product.price)
+            }
         },label: {
             Text("Place Order")
                 .font(.headline)

@@ -34,6 +34,9 @@ struct SelectPaymentView: View {
                     
                 }
                 
+                ApplePayButtonView(action: {})
+                    .padding()
+                
             }
             
             
@@ -60,10 +63,10 @@ struct SelectPaymentView: View {
 
 
 
-/*
-struct SelectPaymentView_Previews: PreviewProvider {
+
+/*struct SelectPaymentView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectPaymentView(paymentSelected: $paymentSelected)
+        SelectPaymentView(paymentSelected: $())
     }
-}
-*/
+}*/
+
