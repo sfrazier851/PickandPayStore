@@ -20,6 +20,7 @@
 		455475A9280E0B780085AC46 /* ShippingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475A8280E0B780085AC46 /* ShippingButtonView.swift */; };
 		455475AB280E11B00085AC46 /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475AA280E11B00085AC46 /* PlaceOrderView.swift */; };
 		455475AD280E15A20085AC46 /* SummaryOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475AC280E15A20085AC46 /* SummaryOrderView.swift */; };
+		455475EF280FAAAC0085AC46 /* ApplePayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475EE280FAAAC0085AC46 /* ApplePayButtonView.swift */; };
 		45C0762E27FBF69A009B4221 /* TrackOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0762D27FBF69A009B4221 /* TrackOrderView.swift */; };
 		45C0763127FBFCC0009B4221 /* TrackOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0763027FBFCC0009B4221 /* TrackOrderModel.swift */; };
 		7F0A613727F78B950028B399 /* ProductReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A613627F78B950028B399 /* ProductReview.swift */; };
@@ -110,6 +111,7 @@
 		455475A8280E0B780085AC46 /* ShippingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingButtonView.swift; sourceTree = "<group>"; };
 		455475AA280E11B00085AC46 /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
 		455475AC280E15A20085AC46 /* SummaryOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOrderView.swift; sourceTree = "<group>"; };
+		455475EE280FAAAC0085AC46 /* ApplePayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayButtonView.swift; sourceTree = "<group>"; };
 		45C0762D27FBF69A009B4221 /* TrackOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderView.swift; sourceTree = "<group>"; };
 		45C0763027FBFCC0009B4221 /* TrackOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderModel.swift; sourceTree = "<group>"; };
 		7F0A613627F78B950028B399 /* ProductReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReview.swift; sourceTree = "<group>"; };
@@ -211,7 +213,7 @@
 		45355FAA27F3A2FC00ABFDC8 /* PickandPayStore */ = {
 			isa = PBXGroup;
 			children = (
-				455475A3280DBF880085AC46 /* CheckOut */,
+				455475ED280FAA820085AC46 /* ApplePay */,
 				7F0A619B27FC60E00028B399 /* Managers */,
 				45C0762F27FBFC55009B4221 /* TrackOrders */,
 				7F5D83EB27F3B5560063ED40 /* Models */,
@@ -250,16 +252,23 @@
 			path = PickandPayStoreUITests;
 			sourceTree = "<group>";
 		};
-		455475A3280DBF880085AC46 /* CheckOut */ = {
+		455475E1280F5AE00085AC46 /* CheckOutComponents */ = {
 			isa = PBXGroup;
 			children = (
-				455475A4280DBFA40085AC46 /* CheckOutView.swift */,
-				455475A6280E00CC0085AC46 /* SelectPaymentView.swift */,
-				455475A8280E0B780085AC46 /* ShippingButtonView.swift */,
-				455475AA280E11B00085AC46 /* PlaceOrderView.swift */,
 				455475AC280E15A20085AC46 /* SummaryOrderView.swift */,
+				455475AA280E11B00085AC46 /* PlaceOrderView.swift */,
+				455475A8280E0B780085AC46 /* ShippingButtonView.swift */,
+				455475A6280E00CC0085AC46 /* SelectPaymentView.swift */,
 			);
-			path = CheckOut;
+			path = CheckOutComponents;
+			sourceTree = "<group>";
+		};
+		455475ED280FAA820085AC46 /* ApplePay */ = {
+			isa = PBXGroup;
+			children = (
+				455475EE280FAAAC0085AC46 /* ApplePayButtonView.swift */,
+			);
+			path = ApplePay;
 			sourceTree = "<group>";
 		};
 		45C0762F27FBFC55009B4221 /* TrackOrders */ = {
@@ -394,6 +403,7 @@
 			children = (
 				AC16E9A927F62F980037743F /* ContentView.swift */,
 				AC16E9AB27F62FF60037743F /* CartView.swift */,
+				455475A4280DBFA40085AC46 /* CheckOutView.swift */,
 				AC9AAB4927FC7C7E00AC8DD2 /* PickCategoryView.swift */,
 				AC9AAB4B27FC914000AC8DD2 /* CategoryContentView.swift */,
 				84699DCF27FA899B00AE497D /* ProductDetail.swift */,
@@ -408,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				AC16E9AE27F630C60037743F /* ProductCard.swift */,
+				455475E1280F5AE00085AC46 /* CheckOutComponents */,
 				AC16E9B027F632320037743F /* CartButton.swift */,
 				AC16E9B227F632870037743F /* ProductInCart.swift */,
 				84652B9A28061A3000166D28 /* ProductInWL.swift */,
@@ -566,6 +577,7 @@
 				7FCA681228089A8700DB46ED /* WishlistDAL.swift in Sources */,
 				7F5D841F27F400870063ED40 /* Wishlist.swift in Sources */,
 				AC47210D2808A6EF0086A524 /* MenuButton.swift in Sources */,
+				455475EF280FAAAC0085AC46 /* ApplePayButtonView.swift in Sources */,
 				45355FAC27F3A2FC00ABFDC8 /* AppDelegate.swift in Sources */,
 				84652B9B28061A3000166D28 /* ProductInWL.swift in Sources */,
 				AC6038CE280E0ABD00B5DB52 /* NotRegisteredNotification.swift in Sources */,
