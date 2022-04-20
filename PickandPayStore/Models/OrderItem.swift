@@ -13,21 +13,11 @@ struct OrderItem: Equatable {
     var productID: Int = 0
     var purchasePrice: Float = 0.0
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { OrderItem.testing = true }
-
-    private static let orderItemDAL = { () -> OrderItemDAL? in
-        if OrderItem.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return OrderItemDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return OrderItemDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    private static var orderItemDAL: OrderItemDAL? = OrderItemDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
+    
+    static func setTestingTrue() {
+        orderItemDAL = OrderItemDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
     // Convert query result set to Array of OrderItem
     static func convert(orderItemsResultSet: [[String]]) -> [OrderItem]? {

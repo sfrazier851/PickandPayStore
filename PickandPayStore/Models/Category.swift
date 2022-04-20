@@ -12,21 +12,11 @@ struct Category: Equatable{
     var name: String = ""
     var imageName: String = ""
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { Category.testing = true }
-
-    private static let categoryDAL = { () -> CategoryDAL? in
-        if Category.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return CategoryDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return CategoryDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    private static var categoryDAL: CategoryDAL? = CategoryDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
+    
+    static func setTestingTrue() {
+        categoryDAL = CategoryDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
     // Convert query result set to Array of Category
     static func convert(categoriesResultSet: [[String]]) -> [Category]? {

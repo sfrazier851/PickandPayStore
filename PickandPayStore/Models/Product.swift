@@ -15,21 +15,11 @@ struct Product: Equatable {
     var imageName: String = ""
     var description: String = ""
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { Product.testing = true }
-
-    private static let productDAL = { () -> ProductDAL? in
-        if Product.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return ProductDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return ProductDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    private static var productDAL: ProductDAL? = ProductDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
+    
+    static func setTestingTrue() {
+        productDAL = ProductDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
     // Convert query result set to Array of Product
     static func convert(productsResultSet: [[String]]) -> [Product]? {

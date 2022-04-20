@@ -13,21 +13,11 @@ struct ProductReview: Equatable {
     var productID: Int = 0
     var review: String = ""
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { ProductReview.testing = true }
+    static func setTestingTrue() {
+        productReviewDAL = ProductReviewDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
-    private static let productReviewDAL = { () -> ProductReviewDAL? in
-        if ProductReview.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return ProductReviewDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return ProductReviewDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    private static var productReviewDAL: ProductReviewDAL? = ProductReviewDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
     // Convert query result set to Array of ProductReview
     static func convert(productReviewsResultSet: [[String]]) -> [ProductReview]? {
