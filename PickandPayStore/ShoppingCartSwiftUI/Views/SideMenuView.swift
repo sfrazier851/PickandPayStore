@@ -43,7 +43,16 @@ struct SideMenuView: View {
                              
                         
                     }
-                                                    
+                    
+                    NavigationLink( destination: PastOrdersView()){
+                        Text("Past Orders")
+                             .fontWeight(.semibold)
+                             .foregroundColor(.black)
+                             .padding()
+                             
+                        
+                    }
+                    
                     Text("Log Out")
                          .fontWeight(.semibold)
                          .foregroundColor(.black)
