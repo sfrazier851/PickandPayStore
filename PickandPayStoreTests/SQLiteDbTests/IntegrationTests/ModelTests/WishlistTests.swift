@@ -23,14 +23,18 @@ class WishlistTests: XCTestCase {
         SQLiteDatabase.createTables(database: WishlistTests.inMemoryTestDB)
         // Set static var to use unit test db
         Wishlist.setTestingTrue()
+        Product.setTestingTrue()
+        Category.setTestingTrue()
+        User.setTestingTrue()
     }
 
     // called after each test case
     override func tearDownWithError() throws {
+
     }
     
     // called after all tests have been run
-    override class func tearDown() {
+        override func tearDown() {
         // Call destructor for sqlite3 test database
         if sqlite3_close_v2(WishlistTests.inMemoryTestDB!) == 0 {
             print("\n==============")
@@ -38,38 +42,46 @@ class WishlistTests: XCTestCase {
             print("==============\n")
         }
     }
-    /*
+    
     func testWishlistCreate() throws {
         //Given
         let created_user = User.create(username: "new_user", email: "email", password: "password", phoneNumber: "phone_number")!
         let created_category = Category.create(name: "new_category", imageName: "category_image")!
         let created_product = Product.create(categoryID: created_category.id, name: "new_product", price: 0.0, imageName: "product_image", description: "product_description")!
-        let userID: Int = 0
-        let productID: Int = 0
-        let date_added: String = ""
-        let confirm_wishlist = Wishlist(id: 1, userID: created_user.id, productID: created_product.id, date_added: String(Date()!))
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd"
+        
+        let confirm_wishlist = Wishlist(id: 1, userID: created_user.id, productID: created_product.id, date_added: dateFormatterPrint.string(from: Date()))
         
         //When
-        let new_category = Category.create(name: name, imageName: imageName)
+        let new_wishlist = Wishlist.create(userID: created_user.id, productID: created_product.id)!
         
         //Then
-        XCTAssert(confirm_category == new_category, "\(confirm_category) and \(String(describing: new_category)) should be equal")
+        XCTAssert(confirm_wishlist == new_wishlist, "\(confirm_wishlist) and \(String(describing: new_wishlist)) should be equal")
     }
     
     func testWishlistGetAll() throws {
         //Given
-        let category_count = 3
-        for x in 1...category_count {
-            Category.create(name: "name\(x)", imageName: "image\(x)")
+        let created_user = User.create(username: "new_user", email: "email", password: "password", phoneNumber: "phone_number")!
+        let created_category = Category.create(name: "new_category", imageName: "category_image")!
+        let created_product = Product.create(categoryID: created_category.id, name: "new_product", price: 0.0, imageName: "product_image", description: "product_description")!
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd"
+        
+        let wishlist_count = 3
+        for x in 1...wishlist_count {
+            Wishlist.create(userID: created_user.id, productID: created_product.id)
         }
         
         //When
-        let query_count = Category.getAll()!.count
+        let query_count = Wishlist.getAll()!.count
         
         //Then
-        XCTAssert(category_count == query_count, "\(query_count) and \(category_count) should be equal")
+        XCTAssert(wishlist_count == query_count, "\(query_count) and \(wishlist_count) should be equal")
     }
-    
+    /*
     func testWishlistGetByID() throws {
         //Given
         let category_query_id = 3
