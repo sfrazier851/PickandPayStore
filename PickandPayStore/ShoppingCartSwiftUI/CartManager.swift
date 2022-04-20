@@ -18,6 +18,29 @@ class CartManager {
     @Published private(set) var total: Float = 0
     private(set) var productsToBeRemoved: [Product] = []
     
+    //Apple pay
+    let paymentHandler = PaymentHandler()
+    //change to state
+    
+    @State var paymentSucces = false
+    
+    //payment function
+    func pay(){
+        paymentHandler.startPayment(products: products, total: total) { success in
+            self.paymentSucces = success
+            self.products = []
+            self.total = 0
+        }
+    }
+    
+    //save in database
+    func createOrderItems(productsInOrder: [Product], purchaseOrder: PurchaseOrder){
+        for product in productsInOrder{
+            OrderItem.create(purchaseOrderID: purchaseOrder.id, productID: product.id, purchasePrice: product.price)
+        }
+    }
+    
+    
    // Add to cart.
     func addToCart(product: Product, count: Int){
         for _ in 1...count{
