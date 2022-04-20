@@ -11,6 +11,7 @@ struct PlaceOrderView: View {
     
     @Binding var productsInOrder : [Product]
     @Binding var userId : Int
+    @Binding var success: Bool
     @Binding  var paymentSelected : String
     @Binding var shippmentAdress : String
     
@@ -25,10 +26,14 @@ struct PlaceOrderView: View {
         Button(action:{
             
             let order = PurchaseOrder.create(userID: userId, paymentType: paymentSelected, shippingAddress: shippmentAdress)
-          //  createOrderItems(productsInOrder: productsInOrder, purchaseOrder: order!)
             for product in productsInOrder{
+                print(productsInOrder)
                 OrderItem.create(purchaseOrderID: order!.id, productID: product.id, purchasePrice: product.price)
             }
+            for p in productsInOrder{
+                CartManager.sharedCart.removeFromCart(product: p)
+            }
+            success = true
         },label: {
             Text("Place Order")
                 .font(.headline)

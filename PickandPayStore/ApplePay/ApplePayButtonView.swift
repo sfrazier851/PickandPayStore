@@ -10,6 +10,7 @@ import PassKit
 
 struct ApplePayButtonView: View {
     var action: () -> Void
+    @Binding var success: Bool
     
     var body: some View {
         Representable(action: action )
@@ -72,6 +73,6 @@ extension ApplePayButtonView {
 
 struct ApplePayButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ApplePayButtonView(action: {})
+        ApplePayButtonView(action: {}, success: .constant(true))
     }
 }

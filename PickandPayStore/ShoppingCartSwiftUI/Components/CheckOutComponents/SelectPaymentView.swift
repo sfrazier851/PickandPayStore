@@ -10,6 +10,7 @@ import SwiftUI
 struct SelectPaymentView: View {
     
     @Binding var paymentSelected: String
+    @Binding var success: Bool
     @State var banckAccount = ""
     @State var show = false
     var body: some View {
@@ -35,14 +36,14 @@ struct SelectPaymentView: View {
                 }
                 
                 
-               if CartManager.sharedCart.paymentSucces{
+               if success{
                     Text("Thank for purchase ,you will receive a email confirmation")
                         .padding()
                    
                    
                 }else{
                   
-                    ApplePayButtonView(action: CartManager.sharedCart.pay)
+                    ApplePayButtonView(action: CartManager.sharedCart.pay, success: $success)
                         .padding()
                 }
                     

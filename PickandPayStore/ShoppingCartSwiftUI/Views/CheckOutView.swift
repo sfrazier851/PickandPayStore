@@ -22,6 +22,8 @@ struct CheckOutView: View {
     @State var postalCode = ""
     @State var state = ""
     
+    @State var success = CartManager.sharedCart.paymentSucces
+    
     
     
     var body: some View {
@@ -29,19 +31,8 @@ struct CheckOutView: View {
             
             VStack{
                 
-               if CartManager.sharedCart.paymentSucces{
+               if success{
                   Text("Payment succes")
-                   let order = PurchaseOrder.create(userID: userLoggedIn.id, paymentType: "Apple pay", shippingAddress: shipment)
-                   
-                   let succes = createOrderItems(productsInOrder: productsInCar, purchaseOrder: order!)
-                   
-                   
-                 /*  ForEach(productsInCar, id: \.id){ product in
-                       OrderItem.create(purchaseOrderID: order.id, productID: product.id, purchasePrice: product.price)
-                       
-                   }*/
-                   
-                   
                  
                 }else{
                 
@@ -58,7 +49,7 @@ struct CheckOutView: View {
                    //Section
                     
                    //Select payment
-                    SelectPaymentView(paymentSelected: $paymentSelected)
+                    SelectPaymentView(paymentSelected: $paymentSelected, success: $success)
                         .frame(height: 150)
                     
                   //  ApplePayButtonView(action: CartManager.sharedCart.pay)
@@ -68,7 +59,7 @@ struct CheckOutView: View {
                     
                         
                   //Place order
-                    PlaceOrderView(productsInOrder: $productsInCar, userId: $userLoggedIn.id, paymentSelected: $paymentSelected, shippmentAdress: $shipment)
+                    PlaceOrderView(productsInOrder: $productsInCar, userId: $userLoggedIn.id, success: $success, paymentSelected: $paymentSelected, shippmentAdress: $shipment)
                         
                     
                             
@@ -81,8 +72,9 @@ struct CheckOutView: View {
             }
            //Vstack
             .onAppear{
-                if CartManager.sharedCart.paymentSucces {
-                   CartManager.sharedCart.paymentSucces = false
+                productsInCar = CartManager.sharedCart.products
+                if success {
+                   success = false
                 }
             }
         
