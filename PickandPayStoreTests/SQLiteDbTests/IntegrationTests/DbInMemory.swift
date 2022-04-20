@@ -11,10 +11,11 @@ import SQLite3
 class DbInMemory: XCTestCase {
 
     // initialize memory test database
-    private static let inMemoryTestDB = SQLiteDatabase.getInMemoryTestDatabase()
+    private static var inMemoryTestDB: OpaquePointer?
     
     // called before each test case
     override func setUpWithError() throws {
+        DbInMemory.inMemoryTestDB = SQLiteDatabase.getInMemoryTestDatabase()
         print("\n==============================")
         print("dropping and recreating tables")
         print("==============================")

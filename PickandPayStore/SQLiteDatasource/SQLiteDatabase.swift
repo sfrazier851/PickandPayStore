@@ -33,7 +33,6 @@ class SQLiteDatabase {
     }
     
     // testing db (in memory)
-    //private static let inMemoryTestInstance = SQLiteDatabase(dbType: .inMemoryTestingDB)
     private static var inMemoryTestDatabase: OpaquePointer?
     static func getInMemoryTestDatabase() -> OpaquePointer? {
         // if getDbURLString returns "" (empty string) the db exists in memory

@@ -11,10 +11,11 @@ import SQLite3
 class DbFile: XCTestCase {
 
     // initialize file test database
-    private static let fileTestDB = SQLiteDatabase.getTestDatabase()
+    private static var fileTestDB: OpaquePointer?
     
     // called before each test case
     override func setUpWithError() throws {
+        DbFile.fileTestDB = SQLiteDatabase.getTestDatabase()
         print("\n==============================")
         print("dropping and recreating tables")
         print("==============================")
