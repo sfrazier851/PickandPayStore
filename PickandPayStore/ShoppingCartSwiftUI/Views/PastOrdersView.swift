@@ -11,23 +11,46 @@ struct PastOrdersView: View {
     
     @StateObject var pastPurchases: PastPurchaseManager = PastPurchaseManager()
     
+    @State var showDetails: Bool = false
     
     var body: some View {
         
-        List(pastPurchases.getPastPurchases(), id: \.id) { purchase in
-            
-            VStack(alignment: .leading){
-                Text("Date: \(purchase.date_purchased)")
-                    .fontWeight(.bold)
-                Text("Address : \(purchase.shipping_address)")
-                    .fontWeight(.light)
-            }
-            .frame(alignment: .leading)
-            .padding()
-            
-            
+        
+        ZStack {
+            List(pastPurchases.getPastPurchases(), id: \.id) { purchase in
+                    
+                    HStack {
+                        VStack(alignment: .leading){
+                                Text("Date: \(purchase.date_purchased)")
+                                    .fontWeight(.bold)
+                                Text("Payment: \(purchase.paymentType)")
+                                    .fontWeight(.light)
+                                Text("Address : \(purchase.shipping_address)")
+                                    .fontWeight(.light)
+                                Spacer()
+                            
+                        }
+                        .frame(alignment: .leading)
+                        .padding()
+                    
+                    
+                        Button(action: {
+                            
+                            showDetails.toggle()
+                        }, label: {
+                            Text("Details")
+                                .fontWeight(.bold)
+                                .foregroundColor(.green)
+                            
+                        })
+                        .frame(width: 100, height: 50)
+                        .border(.green, width: 2)
+                    }
+                    
+                    showDetails ? PurchaseDetailView(purchaseId: purchase.id, showThisView: $showDetails) : nil
+                }
+            .navigationTitle("Past Purchases")
         }
-        .navigationTitle("Past Purchases")
         
     }
 }
