@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         */
         
-        for po in PurchaseOrder.getByUserID(userID: 1)! { print(po) }
+        //for po in PurchaseOrder.getByUserID(userID: 1)! { print(po) }
         
         // Example db usage:
 //        print()
