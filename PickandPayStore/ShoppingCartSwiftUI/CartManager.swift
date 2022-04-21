@@ -28,6 +28,7 @@ class CartManager {
     func pay(){
         paymentHandler.startPayment(products: products, total: total) { success in
             self.paymentSucces = success
+            
             self.products = []
             self.total = 0
         }

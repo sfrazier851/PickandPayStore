@@ -16,11 +16,7 @@ struct PlaceOrderView: View {
     @Binding var shippmentAdress : String
     
     
-    func createOrderItems(productsInOrder: [Product], purchaseOrder: PurchaseOrder){
-        for product in productsInOrder{
-            OrderItem.create(purchaseOrderID: purchaseOrder.id, productID: product.id, purchasePrice: product.price)
-        }
-    }
+  
     
     var body: some View {
         Button(action:{
