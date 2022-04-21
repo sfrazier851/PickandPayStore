@@ -17,7 +17,7 @@ struct CheckOutView: View {
     
     @State var subtotal: Float = 0
     @State var paymentSelected = ""
-    @State var shipment = "233 Ny 11411"
+    @State var shipment = ""
     @State var adrees = ""
     @State var postalCode = ""
     @State var state = ""
@@ -32,7 +32,14 @@ struct CheckOutView: View {
             VStack{
                 
                if success{
-                  Text("Payment succes")
+                  Text("Payment successfull")
+                   Text("You will recive a confirmation email whit your receive")
+                   
+                   if paymentSelected == "Apple pay"{
+                       let order = PurchaseOrder.create(userID: userLoggedIn.id, paymentType: paymentSelected, shippingAddress: shipment)
+                       let productsInOrder = createOrderItems(productsInOrder: productsInCar, purchaseOrder: order!)
+                       
+                   }
                  
                 }else{
                 
@@ -50,16 +57,23 @@ struct CheckOutView: View {
                     
                    //Select payment
                     SelectPaymentView(paymentSelected: $paymentSelected, success: $success)
-                        .frame(height: 150)
+                        
+                   
+                    Section(header: Text("Shipping Adress")){
+                        
+                        TextField("Adress", text: $adrees)
+                        TextField("Postal", text: $postalCode)
+                       // ShippingButtonView(adress: $adrees, postalCode: $postalCode, state: $state)
+                       //     .frame(height: 200)
+                        
+                     
+                    }
                     
-                  //  ApplePayButtonView(action: CartManager.sharedCart.pay)
-                   //Shipping Section
-                   // ShippingButtonView(adress: $adrees, postalCode: $postalCode, state: $state)
-                   //     .frame(height: 200)
+                    var   shipmentAdress = adrees + postalCode
                     
                         
                   //Place order
-                    PlaceOrderView(productsInOrder: $productsInCar, userId: $userLoggedIn.id, success: $success, paymentSelected: $paymentSelected, shippmentAdress: $shipment)
+                    PlaceOrderView(productsInOrder: $productsInCar, userId: $userLoggedIn.id, success: $success, paymentSelected: $paymentSelected, shippmentAdress: $adrees)
                         
                     
                             

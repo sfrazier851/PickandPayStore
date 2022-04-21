@@ -11,67 +11,52 @@ struct SelectPaymentView: View {
     
     @Binding var paymentSelected: String
     @Binding var success: Bool
-    @State var banckAccount = ""
+   
     @State var show = false
+    @State var payment = "Select Payment"
     var body: some View {
-        
-        
-        
-        Form{
-            
             
             Section(header: Text("Payment")){
-                Menu("Select Payment"){
-                    
+                Menu("\(payment)"){
                     
                     Button("COD"){
                         paymentSelected = "COD"
+                        payment = "COD"
+                        show = false
+                       // Text("COD")
                     }
+                    //button
                         
                     Button("Net Banking"){
-                        show.toggle()
+                       // show.toggle()
                         paymentSelected = "net Banking"
+                        payment = "Net Banking"
+                        show = false
                     }
-                    
+                    //button
+                    Button("Apple pay"){
+                        show.toggle()
+                        paymentSelected = "Apple pay"
+                    }
                 }
-                
-                
-               if success{
-                    Text("Thank for purchase ,you will receive a email confirmation")
-                        .padding()
-                   
-                   
-                }else{
-                  
-                    ApplePayButtonView(action: CartManager.sharedCart.pay, success: $success)
-                        .padding()
-                }
-                    
-                
-                
+                //menu
                 
             }
-            
-            
+    
             if show {
-                TextField("Bank account",text: $banckAccount)
+               // TextField("Bank account",text: $banckAccount)
                     
+                ApplePayButtonView(action: CartManager.sharedCart.pay, success: $success)
+                    .padding()
                     
-                    
+            }else{
+               // Text("\(payment)")
+                
             }
            
-        
-        }
     }
     
-    func selectCod(){
-      
-    }
-   /* func selectNetBanking(bankacc: Int){
-        let banc = bankacc
-        let bankAccount = TextField("Bank account",banc)
-        
-    }*/
+  
 }
 
 
