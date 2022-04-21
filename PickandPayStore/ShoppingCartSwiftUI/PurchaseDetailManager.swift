@@ -8,37 +8,40 @@
 import Foundation
 import SwiftUI
 
-class PurchaseDetailManager: ObservableObject{
-
-    var orderedItems = [Int]()
+class PurchaseDetailManager{
     
-    @Published var orderedProducts = [Product]()
-
-    init(){}
-
-    func getItems(purchaseId: Int) -> [Product]{
+    static let shared = PurchaseDetailManager()
+    
+    private init(){}
+    
+    // Add the private(set) to variables, so they can be set only within this class.
+    @Published private(set) var products: [Product] = []
+    
+     private(set) var ordered: [OrderItem] = []
+    
+    
+    func getItems(purchaseId: Int) -> [OrderItem]{
         
-        fillOrderedItems(purchaseId: purchaseId)
-        
-        for order in self.orderedItems{
-            
-            if let product = Product.getByID(productID: order){
-                for p in product{
-                    self.orderedProducts.append(p)
+        if let p = OrderItem.getByPurchaseOrderID(purchaseOrderID: purchaseId){
+            if self.ordered.count > 0
+            {
+                self.ordered = []
+                for item in p{
+                    self.ordered.append(item)
                 }
+            
             }
         }
-        return self.orderedProducts
+        printArray(a: self.ordered)
+        print(self.ordered.count)
+        return self.ordered
     }
+   
     
     
-    
-    func fillOrderedItems(purchaseId: Int){
-        if let order = OrderItem.getByPurchaseOrderID(purchaseOrderID: purchaseId){
-            for orderedItem in order{
-                self.orderedItems.append(orderedItem.productID)
-            }
+    func printArray(a: [Any]){
+        for i in a {
+            print(i)
         }
-        
     }
 }

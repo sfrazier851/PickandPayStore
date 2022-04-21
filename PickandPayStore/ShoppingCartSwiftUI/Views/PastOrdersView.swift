@@ -11,15 +11,14 @@ struct PastOrdersView: View {
     
     @StateObject var pastPurchases: PastPurchaseManager = PastPurchaseManager()
     
-    @State var showDetails: Bool = false
     
     var body: some View {
         
         
-        ZStack {
+    
             List(pastPurchases.getPastPurchases(), id: \.id) { purchase in
-                    
-                    HStack {
+                
+                HStack {
                         VStack(alignment: .leading){
                                 Text("Date: \(purchase.date_purchased)")
                                     .fontWeight(.bold)
@@ -33,23 +32,17 @@ struct PastOrdersView: View {
                         .frame(alignment: .leading)
                         .padding()
                     
-                    
-                        Button(action: {
-                            
-                            showDetails.toggle()
-                        }, label: {
-                            Text("Details")
-                                .fontWeight(.bold)
-                                .foregroundColor(.green)
-                            
-                        })
-                        .frame(width: 100, height: 50)
-                        .border(.green, width: 2)
+                    NavigationLink(destination: PurchaseDetailView(purchaseId: purchase.id, pastPurchases: pastPurchases)){
+                        Text("Details")
+                            .fontWeight(.medium)
+                            .foregroundColor(.black)
+                            .padding()
                     }
+                    .frame(width: 130, height: 50)
+                    .border(.green, width: 2)
                     
-                    showDetails ? PurchaseDetailView(purchaseId: purchase.id, showThisView: $showDetails) : nil
-                }
-            .navigationTitle("Past Purchases")
+                   
+            }.navigationTitle("Past Purchases")
         }
         
     }

@@ -10,21 +10,28 @@ import SwiftUI
 struct PurchaseDetailView: View {
     
     var purchaseId: Int
-    
-    @Binding var showThisView: Bool
-    
-    @StateObject var orderItems: PurchaseDetailManager = PurchaseDetailManager()
+    @ObservedObject var pastPurchases: PastPurchaseManager
     
     var body: some View {
+            
         
         VStack {
             
+               VStack {
+                   List(pastPurchases.getPurchasedProducts(purchaseId: purchaseId), id: \.id) { product in
+                       ProductInOrderView(product: Product.getByID(productID: product.productID)!)
+                    }
+                    //.navigationTitle("Details")
+                }
+                .navigationTitle("Details")
         }
+       // .navigationTitle("Details")
+        
     }
 }
 
-struct PurchaseDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PurchaseDetailView(purchaseId:2, showThisView: .constant(true))
-    }
-}
+//struct PurchaseDetailView_Previews: PreviewProvider {
+   // static var previews: some View {
+   //     PurchaseDetailView(purchaseId:1)
+   // }
+//}
