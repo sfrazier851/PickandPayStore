@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//View to show the user's wishlist
 struct WishlistView: View {
     
     @State var products: [String] = []
@@ -14,12 +15,12 @@ struct WishlistView: View {
     var body: some View {
         ScrollView {
             
+            //Use a foreach loop to show each product in the wishlist if there is any
             if count > 0
             {
                 ForEach(products, id: \.self){
                     product in
                     ProductInWL(product: (Product.getByName(name: product)?[0])!, products: $products, count: $count)
-
                 }
                 
                 
@@ -31,7 +32,8 @@ struct WishlistView: View {
             
         }
         .navigationTitle(Text("My Wishlist"))
-       // .padding(.top)
+        
+        //When the view appears, check if the user is logged in or not to get wishlist count and contents
         .onAppear(){
             if UserSessionManager.shared.getLoggedInUser() == nil{
                 count = WishlistManager.sharedWishlist.getCount()
@@ -45,6 +47,7 @@ struct WishlistView: View {
                         products.append(Product.getByID(productID: p.productID)?[0].name ?? "")
                     }
                 }
+                //Otherwise set to default empty values
                 else{
                     count = 0
                     products = []
