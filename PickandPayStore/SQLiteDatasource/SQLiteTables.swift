@@ -96,13 +96,14 @@ class SQLiteTables {
              userID INTEGER NOT NULL,
              productID INTEGER NOT NULL,
              review TEXT NOT NULL,
+             title TEXT NOT NULL,
              FOREIGN KEY(userID) REFERENCES User(ID),
              FOREIGN KEY(productID) REFERENCES Product(ID));
              """
     private static var insertIntoProductReviewTable = """
-             INSERT INTO ProductReview ( userID, productID, review )
-             VALUES ( 1, 1, "Works great! Would recommend to all my friends."),
-                    ( 2, 1, "Meh, it was alright.");
+             INSERT INTO ProductReview ( userID, productID, review, title )
+             VALUES ( 1, 1, "Works great! Would recommend to all my friends.", "Love this"),
+                    ( 2, 1, "Meh, it was alright.", "Not the worst");
              """
     static var productReviewTableSchemaScripts = [dropProductReviewTable, createProductReviewTable]
     static var productReviewTableInsertScript = insertIntoProductReviewTable

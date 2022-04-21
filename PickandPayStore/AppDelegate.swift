@@ -20,20 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //NOTE: this recreates the database if already exists.
         // Comment out if changes were made to database.
         // THEN add comments after first run.
-        let db = SQLiteDatabase.getDatabase()
-        SQLiteDatabase.createTables(database: db)
+      let db = SQLiteDatabase.getDatabase()
+       SQLiteDatabase.createTables(database: db)
         SQLiteDatabase.insertData(database: db)
         
         
         // If database file exists don't recreate and insert data
-        /*
-        if(!FileManager.default.fileExists(atPath: SQLiteDatabase.getDbPath())) {
-            print("creating db")
-            let db = SQLiteDatabase.getDatabase()
-            SQLiteDatabase.createTables(database: db)
-            SQLiteDatabase.insertData(database: db)
-        }
-        */
+        
+//        if(!FileManager.default.fileExists(atPath: SQLiteDatabase.getDbPath())) {
+//            print("creating db")
+//            let db = SQLiteDatabase.getDatabase()
+//            SQLiteDatabase.createTables(database: db)
+//            SQLiteDatabase.insertData(database: db)
+//        }
+        
         
         //for po in PurchaseOrder.getByUserID(userID: 1)! { print(po) }
         

@@ -33,8 +33,23 @@ struct WishlistView: View {
         .navigationTitle(Text("My Wishlist"))
        // .padding(.top)
         .onAppear(){
-            count = WishlistManager.sharedWishlist.getCount()
-            products = WishlistManager.sharedWishlist.getWishlist()
+            if UserSessionManager.shared.getLoggedInUser() == nil{
+                count = WishlistManager.sharedWishlist.getCount()
+                products = WishlistManager.sharedWishlist.getWishlist()
+            }
+            else{
+                if let productList = Wishlist.getByUserID(userID: UserSessionManager.shared.getLoggedInUser()!.id){
+                    count = productList.count
+                
+                    for p in productList{
+                        products.append(Product.getByID(productID: p.productID)?[0].name ?? "")
+                    }
+                }
+                else{
+                    count = 0
+                    products = []
+                }
+            }
         }
     }
         

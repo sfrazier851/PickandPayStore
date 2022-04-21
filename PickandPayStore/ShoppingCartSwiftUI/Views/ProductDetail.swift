@@ -13,6 +13,9 @@ struct ProductDetailView: View {
     @State var total : Int = 1
     @State var inWishlist: Bool = false
     
+    @State var showReview: Bool = false
+    
+    @State var p = [ProductReview]()
     var product : Product
     var body: some View {
       // ScrollView{
@@ -107,22 +110,26 @@ struct ProductDetailView: View {
                 
                 
                 List{
-                    Section{
-                    let p = ProductReview.getByProductID(productID: product.id)
-                            ForEach(p! , id: \.id){ productreview in
-                                Text(productreview.review)
+                    //Section{
+                        if p != []{
+                            ForEach(p , id: \.id){ productreview in
+                                Section(header: Text(productreview.title)){
+                                    Text("\(productreview.review) - \(User.getByID(userID: productreview.userID)![0].username)")
                                 }
-                        
-                        if p?.count == 0{
+                                
+                            }
+                        }
+                        if p.count == 0{
                             Text("No Reviews Yet")
                        }
-                    }header:{
-                        Text("Reviews")
-                    }
+                    //}//header:{
+                        //Text("Reviews")
+                    //}
                     
                 }.frame(width: 320.0).border(Color.black)
+            if UserSessionManager.shared.isLoggedIn(){
                Button{
-                   
+                   showReview.toggle()
                }label: {
                    Text("Add A Review")
                        .frame(width: 320, height: 20, alignment: .center)
@@ -130,12 +137,28 @@ struct ProductDetailView: View {
                }
                .background(Color.gray)
                .cornerRadius(5)
+               .sheet(isPresented: $showReview, onDismiss: nil){
+                   AddReviewView(reviews: $p, productID: product.id, showReview: $showReview)
+               }
+               }
             
              Spacer()
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .onAppear(){
-                inWishlist = WishlistManager.sharedWishlist.getWishlist().contains(product.name)
+                p = ProductReview.getByProductID(productID: product.id) ?? []
+                if UserSessionManager.shared.getLoggedInUser() == nil{
+                    inWishlist = WishlistManager.sharedWishlist.getWishlist().contains(product.name)
+                }
+                else{
+                    if Wishlist.getByProductID(productID: Product.getByName(name: product.name)![0].id)?.filter({
+                        (wishlist: Wishlist) -> Bool in
+                        return wishlist.userID == UserSessionManager.shared.getLoggedInUser()!.id
+                    }) != []{
+                        inWishlist = true
+                    }
+                }
             }
+            
     }
 }
 

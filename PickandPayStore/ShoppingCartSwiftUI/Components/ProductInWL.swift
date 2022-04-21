@@ -32,10 +32,29 @@ struct ProductInWL: View {
             }
             Spacer()
             
+            Image(systemName: "plus")
+                .foregroundColor(.red)
+                .onTapGesture {
+                    CartManager.sharedCart.addToCart(product: product, count: 1)
+                    if UserSessionManager.shared.getLoggedInUser() == nil{
+                        WishlistManager.sharedWishlist.removeFromWishlist(productName: product.name)
+                    }
+                    else{
+                        Wishlist.removeByProductID(userID: UserSessionManager.shared.getLoggedInUser()!.id,productID: product.id)
+                    }
+                    products.removeAll{ $0 == product.name }
+                    count -= 1
+                }
+            
             Image(systemName: "trash")
                 .foregroundColor(.red)
                 .onTapGesture {
-                    WishlistManager.sharedWishlist.removeFromWishlist(productName: product.name)
+                    if UserSessionManager.shared.getLoggedInUser() == nil{
+                        WishlistManager.sharedWishlist.removeFromWishlist(productName: product.name)
+                    }
+                    else{
+                        Wishlist.removeByProductID(userID: UserSessionManager.shared.getLoggedInUser()!.id,productID: product.id)
+                    }
                     products.removeAll{ $0 == product.name }
                     count -= 1
                 }

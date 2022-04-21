@@ -15,6 +15,13 @@
 		45355FC327F3A2FD00ABFDC8 /* PickandPayStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FC227F3A2FD00ABFDC8 /* PickandPayStoreTests.swift */; };
 		45355FCD27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FCC27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift */; };
 		45355FCF27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */; };
+		455475A5280DBFA40085AC46 /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475A4280DBFA40085AC46 /* CheckOutView.swift */; };
+		455475A7280E00CC0085AC46 /* SelectPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475A6280E00CC0085AC46 /* SelectPaymentView.swift */; };
+		455475A9280E0B780085AC46 /* ShippingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475A8280E0B780085AC46 /* ShippingButtonView.swift */; };
+		455475AB280E11B00085AC46 /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475AA280E11B00085AC46 /* PlaceOrderView.swift */; };
+		455475AD280E15A20085AC46 /* SummaryOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475AC280E15A20085AC46 /* SummaryOrderView.swift */; };
+		455475EF280FAAAC0085AC46 /* ApplePayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475EE280FAAAC0085AC46 /* ApplePayButtonView.swift */; };
+		455475F2280FC60D0085AC46 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455475F1280FC60D0085AC46 /* PaymentHandler.swift */; };
 		45C0762E27FBF69A009B4221 /* TrackOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0762D27FBF69A009B4221 /* TrackOrderView.swift */; };
 		45C0763127FBFCC0009B4221 /* TrackOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0763027FBFCC0009B4221 /* TrackOrderModel.swift */; };
 		7F0A613727F78B950028B399 /* ProductReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0A613627F78B950028B399 /* ProductReview.swift */; };
@@ -54,6 +61,8 @@
 		7FCA69E02810F82300DB46ED /* ShoppingCartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA69DF2810F82300DB46ED /* ShoppingCartTests.swift */; };
 		7FCA69E82811018700DB46ED /* PurchaseOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA69E72811018700DB46ED /* PurchaseOrderTests.swift */; };
 		7FCA69FC28110D1600DB46ED /* OrderItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA69FB28110D1500DB46ED /* OrderItemTests.swift */; };
+		7FFC2D0A28118A5B00AED35F /* PickandPayStore.app in Resources */ = {isa = PBXBuildFile; fileRef = 7FCA693A280C87CA00DB46ED /* PickandPayStore.app */; platformFilter = ios; };
+		7FFC2D0B28118A6000AED35F /* PickandPayStore.app in Resources */ = {isa = PBXBuildFile; fileRef = 7FCA693A280C87CA00DB46ED /* PickandPayStore.app */; };
 		84652B9B28061A3000166D28 /* ProductInWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9A28061A3000166D28 /* ProductInWL.swift */; };
 		84652B9D28061A9600166D28 /* WishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84652B9C28061A9600166D28 /* WishlistManager.swift */; };
 		84699DD027FA899B00AE497D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84699DCF27FA899B00AE497D /* ProductDetail.swift */; };
@@ -63,6 +72,7 @@
 		84E250AC27FDFEB000EA997A /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4727FC6D8500AC8DD2 /* CategoryCard.swift */; };
 		84E250AE27FFAD3300EA997A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E250AD27FFAD3300EA997A /* SearchBar.swift */; };
 		84E250B02804D04C00EA997A /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E250AF2804D04C00EA997A /* WishlistView.swift */; };
+		84FED903280E01DB0096F0CB /* AddReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FED902280E01DB0096F0CB /* AddReviewView.swift */; };
 		AC16E9AA27F62F980037743F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9A927F62F980037743F /* ContentView.swift */; };
 		AC16E9AC27F62FF60037743F /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9AB27F62FF60037743F /* CartView.swift */; };
 		AC16E9AF27F630C60037743F /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9AE27F630C60037743F /* ProductCard.swift */; };
@@ -71,6 +81,7 @@
 		AC16E9BB27F637060037743F /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9BA27F637060037743F /* CartManager.swift */; };
 		AC47210D2808A6EF0086A524 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47210C2808A6EF0086A524 /* MenuButton.swift */; };
 		AC47210F2808AC840086A524 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47210E2808AC840086A524 /* SideMenuView.swift */; };
+		AC6038CE280E0ABD00B5DB52 /* NotRegisteredNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6038CD280E0ABD00B5DB52 /* NotRegisteredNotification.swift */; };
 		AC9AAB4F27FCC40E00AC8DD2 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9AAB4E27FCC40E00AC8DD2 /* ProductsManager.swift */; };
 		ACF01B8827FAA0C300989F1C /* CartComponentSwiftUiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16E9BF27F742930037743F /* CartComponentSwiftUiVC.swift */; };
 /* End PBXBuildFile section */
@@ -102,6 +113,14 @@
 		45355FC227F3A2FD00ABFDC8 /* PickandPayStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickandPayStoreTests.swift; sourceTree = "<group>"; };
 		45355FCC27F3A2FD00ABFDC8 /* PickandPayStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickandPayStoreUITests.swift; sourceTree = "<group>"; };
 		45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickandPayStoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		455475A4280DBFA40085AC46 /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
+		455475A6280E00CC0085AC46 /* SelectPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPaymentView.swift; sourceTree = "<group>"; };
+		455475A8280E0B780085AC46 /* ShippingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingButtonView.swift; sourceTree = "<group>"; };
+		455475AA280E11B00085AC46 /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
+		455475AC280E15A20085AC46 /* SummaryOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOrderView.swift; sourceTree = "<group>"; };
+		455475EE280FAAAC0085AC46 /* ApplePayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayButtonView.swift; sourceTree = "<group>"; };
+		455475F0280FC57B0085AC46 /* PickandPayStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PickandPayStore.entitlements; sourceTree = "<group>"; };
+		455475F1280FC60D0085AC46 /* PaymentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
 		45C0762D27FBF69A009B4221 /* TrackOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderView.swift; sourceTree = "<group>"; };
 		45C0763027FBFCC0009B4221 /* TrackOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderModel.swift; sourceTree = "<group>"; };
 		7F0A613627F78B950028B399 /* ProductReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReview.swift; sourceTree = "<group>"; };
@@ -150,6 +169,7 @@
 		84BB3C4D280A59E20040A928 /* ShowLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLogin.swift; sourceTree = "<group>"; };
 		84E250AD27FFAD3300EA997A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		84E250AF2804D04C00EA997A /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
+		84FED902280E01DB0096F0CB /* AddReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewView.swift; sourceTree = "<group>"; };
 		AC16E9A927F62F980037743F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC16E9AB27F62FF60037743F /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		AC16E9AE27F630C60037743F /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
@@ -159,6 +179,7 @@
 		AC16E9BF27F742930037743F /* CartComponentSwiftUiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartComponentSwiftUiVC.swift; sourceTree = "<group>"; };
 		AC47210C2808A6EF0086A524 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		AC47210E2808AC840086A524 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		AC6038CD280E0ABD00B5DB52 /* NotRegisteredNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotRegisteredNotification.swift; sourceTree = "<group>"; };
 		AC9AAB4727FC6D8500AC8DD2 /* CategoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCard.swift; sourceTree = "<group>"; };
 		AC9AAB4927FC7C7E00AC8DD2 /* PickCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryView.swift; sourceTree = "<group>"; };
 		AC9AAB4B27FC914000AC8DD2 /* CategoryContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryContentView.swift; sourceTree = "<group>"; };
@@ -205,6 +226,8 @@
 		45355FAA27F3A2FC00ABFDC8 /* PickandPayStore */ = {
 			isa = PBXGroup;
 			children = (
+				455475F0280FC57B0085AC46 /* PickandPayStore.entitlements */,
+				455475ED280FAA820085AC46 /* ApplePay */,
 				7F0A619B27FC60E00028B399 /* Managers */,
 				45C0762F27FBFC55009B4221 /* TrackOrders */,
 				7F5D83EB27F3B5560063ED40 /* Models */,
@@ -241,6 +264,26 @@
 				45355FCE27F3A2FD00ABFDC8 /* PickandPayStoreUITestsLaunchTests.swift */,
 			);
 			path = PickandPayStoreUITests;
+			sourceTree = "<group>";
+		};
+		455475E1280F5AE00085AC46 /* CheckOutComponents */ = {
+			isa = PBXGroup;
+			children = (
+				455475AC280E15A20085AC46 /* SummaryOrderView.swift */,
+				455475AA280E11B00085AC46 /* PlaceOrderView.swift */,
+				455475A8280E0B780085AC46 /* ShippingButtonView.swift */,
+				455475A6280E00CC0085AC46 /* SelectPaymentView.swift */,
+			);
+			path = CheckOutComponents;
+			sourceTree = "<group>";
+		};
+		455475ED280FAA820085AC46 /* ApplePay */ = {
+			isa = PBXGroup;
+			children = (
+				455475EE280FAAAC0085AC46 /* ApplePayButtonView.swift */,
+				455475F1280FC60D0085AC46 /* PaymentHandler.swift */,
+			);
+			path = ApplePay;
 			sourceTree = "<group>";
 		};
 		45C0762F27FBFC55009B4221 /* TrackOrders */ = {
@@ -379,11 +422,13 @@
 			children = (
 				AC16E9A927F62F980037743F /* ContentView.swift */,
 				AC16E9AB27F62FF60037743F /* CartView.swift */,
+				455475A4280DBFA40085AC46 /* CheckOutView.swift */,
 				AC9AAB4927FC7C7E00AC8DD2 /* PickCategoryView.swift */,
 				AC9AAB4B27FC914000AC8DD2 /* CategoryContentView.swift */,
 				84699DCF27FA899B00AE497D /* ProductDetail.swift */,
 				84E250AF2804D04C00EA997A /* WishlistView.swift */,
 				AC47210E2808AC840086A524 /* SideMenuView.swift */,
+				84FED902280E01DB0096F0CB /* AddReviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -392,12 +437,14 @@
 			isa = PBXGroup;
 			children = (
 				AC16E9AE27F630C60037743F /* ProductCard.swift */,
+				455475E1280F5AE00085AC46 /* CheckOutComponents */,
 				AC16E9B027F632320037743F /* CartButton.swift */,
 				AC16E9B227F632870037743F /* ProductInCart.swift */,
 				84652B9A28061A3000166D28 /* ProductInWL.swift */,
 				AC9AAB4727FC6D8500AC8DD2 /* CategoryCard.swift */,
 				84E250AD27FFAD3300EA997A /* SearchBar.swift */,
 				AC47210C2808A6EF0086A524 /* MenuButton.swift */,
+				AC6038CD280E0ABD00B5DB52 /* NotRegisteredNotification.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -509,6 +556,7 @@
 				45355FB827F3A2FD00ABFDC8 /* LaunchScreen.storyboard in Resources */,
 				45355FB527F3A2FD00ABFDC8 /* Assets.xcassets in Resources */,
 				45355FB327F3A2FC00ABFDC8 /* Main.storyboard in Resources */,
+				7FFC2D0B28118A6000AED35F /* PickandPayStore.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +564,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FFC2D0A28118A5B00AED35F /* PickandPayStore.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,22 +598,31 @@
 				7FCA681228089A8700DB46ED /* WishlistDAL.swift in Sources */,
 				7F5D841F27F400870063ED40 /* Wishlist.swift in Sources */,
 				AC47210D2808A6EF0086A524 /* MenuButton.swift in Sources */,
+				455475EF280FAAAC0085AC46 /* ApplePayButtonView.swift in Sources */,
 				45355FAC27F3A2FC00ABFDC8 /* AppDelegate.swift in Sources */,
 				84652B9B28061A3000166D28 /* ProductInWL.swift in Sources */,
+				AC6038CE280E0ABD00B5DB52 /* NotRegisteredNotification.swift in Sources */,
 				7F5D842927F4090B0063ED40 /* PurchaseOrder.swift in Sources */,
 				7F5D83D727F3B3420063ED40 /* SQLiteTables.swift in Sources */,
 				7FCA681F28089CD200DB46ED /* PurchaseOrderDAL.swift in Sources */,
+				455475AD280E15A20085AC46 /* SummaryOrderView.swift in Sources */,
 				7F0A61AC27FC6D990028B399 /* LoginViewController.swift in Sources */,
+				455475F2280FC60D0085AC46 /* PaymentHandler.swift in Sources */,
 				84E250B02804D04C00EA997A /* WishlistView.swift in Sources */,
+				84FED903280E01DB0096F0CB /* AddReviewView.swift in Sources */,
 				45355FAE27F3A2FC00ABFDC8 /* SceneDelegate.swift in Sources */,
 				7FCA67FC280893C200DB46ED /* CategoryDAL.swift in Sources */,
 				7F5D83ED27F3B5620063ED40 /* User.swift in Sources */,
 				7F5D83E727F3B5210063ED40 /* SQLiteDAL.swift in Sources */,
 				7F0A619D27FC60F10028B399 /* PresenterManager.swift in Sources */,
+				455475A5280DBFA40085AC46 /* CheckOutView.swift in Sources */,
 				7FCA681A28089B8B00DB46ED /* ShoppingCartDAL.swift in Sources */,
 				7F5D83DC27F3B3720063ED40 /* SQLiteDatabase.swift in Sources */,
+				455475A7280E00CC0085AC46 /* SelectPaymentView.swift in Sources */,
+				455475A9280E0B780085AC46 /* ShippingButtonView.swift in Sources */,
 				7F0A619727FC60CB0028B399 /* Helper.swift in Sources */,
 				7FCA678927FF8F2D00DB46ED /* SessionManager.swift in Sources */,
+				455475AB280E11B00085AC46 /* PlaceOrderView.swift in Sources */,
 				7F5D83E227F3B3AE0063ED40 /* Constants.swift in Sources */,
 				7F5D842E27F40CEE0063ED40 /* OrderItem.swift in Sources */,
 				7F5D840F27F3F8B50063ED40 /* Category.swift in Sources */,
@@ -767,9 +825,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PickandPayStore/PickandPayStore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BV8QQX5M8Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PickandPayStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -777,7 +836,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -796,6 +855,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PickandPayStore/PickandPayStore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -806,7 +866,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
