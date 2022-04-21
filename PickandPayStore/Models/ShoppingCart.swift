@@ -13,21 +13,11 @@ struct ShoppingCart: Equatable {
     var productID: Int = 0
     var date_added: String = ""
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { ShoppingCart.testing = true }
-
-    private static let shoppingCartDAL = { () -> ShoppingCartDAL? in
-        if ShoppingCart.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return ShoppingCartDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return ShoppingCartDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    private static var shoppingCartDAL: ShoppingCartDAL? = ShoppingCartDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
+    
+    static func setTestingTrue() {
+        shoppingCartDAL = ShoppingCartDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
     // Convert query result set to Array of Wishlist
     static func convert(shoppingCartResultSet: [[String]]) -> [ShoppingCart]? {

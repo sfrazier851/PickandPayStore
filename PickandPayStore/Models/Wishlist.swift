@@ -13,21 +13,11 @@ struct Wishlist: Equatable {
     var productID: Int = 0
     var date_added: String = ""
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { Wishlist.testing = true }
-
-    private static let wishlistDAL = { () -> WishlistDAL? in
-        if Wishlist.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return WishlistDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return WishlistDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    private static var wishlistDAL: WishlistDAL? = WishlistDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
+    
+    static func setTestingTrue() {
+        wishlistDAL = WishlistDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
     // Convert query result set to Array of Wishlist
     static func convert(wishlistResultSet: [[String]]) -> [Wishlist]? {

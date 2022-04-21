@@ -15,21 +15,11 @@ struct User: Equatable {
     var phoneNumber: String = ""
     var balance: Float = 0.0
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { User.testing = true }
+    private static var userDAL: UserDAL? = UserDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
-    private static let userDAL = { () -> UserDAL? in
-        if User.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return UserDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return UserDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    static func setTestingTrue() {
+        User.userDAL = UserDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
     // Convert user result set to Array of User
     private static func convert(usersResultSet: [[String]]) -> [User]? {

@@ -115,7 +115,7 @@ class SQLiteTables {
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
              userID INTEGER NOT NULL,
              productID INTEGER NOT NULL,
-             date_added TEXT DEFAULT (date()) NOT NULL,
+             date_added TEXT DEFAULT (strftime('%Y-%m-%d','now', 'localtime')) NOT NULL,
              FOREIGN KEY(userID) REFERENCES User(ID),
              FOREIGN KEY(productID) REFERENCES Product(ID));
              """
@@ -135,7 +135,7 @@ class SQLiteTables {
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
              userID INTEGER NOT NULL,
              productID INTEGER NOT NULL,
-             date_added TEXT DEFAULT (date()) NOT NULL,
+             date_added TEXT DEFAULT (strftime('%Y-%m-%d','now', 'localtime')) NOT NULL,
              FOREIGN KEY(userID) REFERENCES User(ID),
              FOREIGN KEY(productID) REFERENCES Product(ID));
              """
@@ -155,10 +155,10 @@ class SQLiteTables {
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
              userID INTEGER NOT NULL,
              paymentType TEXT NOT NULL,
-             date_purchased TEXT DEFAULT (date()) NOT NULL,
+             date_purchased TEXT DEFAULT (strftime('%Y-%m-%d','now', 'localtime')) NOT NULL,
              shippingAddress TEXT NOT NULL,
-             shippingLongitude TEXT DEFAULT "null" NULL,
-             shippingLatitude TEXT DEFAULT "null" NULL,
+             shippingLongitude TEXT DEFAULT "" NOT NULL,
+             shippingLatitude TEXT DEFAULT "" NOT NULL,
              FOREIGN KEY(userID) REFERENCES User(ID));
              """
     private static var insertIntoPurchaseOrderTable = """

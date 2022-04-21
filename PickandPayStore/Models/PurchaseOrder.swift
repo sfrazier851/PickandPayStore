@@ -16,21 +16,11 @@ struct PurchaseOrder: Equatable {
     var shipping_longitude: String = ""
     var shipping_latitude: String = ""
     
-    private static var testing: Bool = false
-    static func setTestingTrue() { PurchaseOrder.testing = true }
-
-    private static let purchaseOrderDAL = { () -> PurchaseOrderDAL? in
-        if PurchaseOrder.testing == true {
-            if let db = SQLiteDatabase.getInMemoryTestDatabase() {
-                return PurchaseOrderDAL(db: db, convert: convert)
-            }
-        } else {
-            if let db = SQLiteDatabase.getDatabase() {
-                return PurchaseOrderDAL(db: db, convert: convert)
-            }
-        }
-        return nil
-    }()
+    private static var purchaseOrderDAL: PurchaseOrderDAL? = PurchaseOrderDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
+    
+    static func setTestingTrue() {
+        purchaseOrderDAL = PurchaseOrderDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
+    }
     
     // Convert query result set to Array of PurchaseOrder
     static func convert(purchaseOrderResultSet: [[String]]) -> [PurchaseOrder]? {
@@ -50,13 +40,6 @@ struct PurchaseOrder: Equatable {
             purchaseOrders.append(purchaseOrder)
         }
         return purchaseOrders
-    }
-    
-    static func update(purchaseOrder: PurchaseOrder) -> PurchaseOrder? {
-        guard let purchaseOrderDAL = purchaseOrderDAL else {
-            return nil
-        }
-        return purchaseOrderDAL.updatePurchaseOrder(purchaseOrder: purchaseOrder)
     }
     
     static func getAll() -> [PurchaseOrder]? {

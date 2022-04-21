@@ -1,29 +1,29 @@
 //
-//  WishlistTests.swift
+//  ShoppingCartTests.swift
 //  PickandPayStoreTests
 //
-//  Created by iMac on 4/18/22.
+//  Created by iMac on 4/20/22.
 //
 
 import XCTest
 @testable import PickandPayStore
 import SQLite3
 
-class WishlistTests: XCTestCase {
+class ShoppingCartTests: XCTestCase {
 
     // initialize memory test database
     private static var inMemoryTestDB: OpaquePointer?
     
     // called before each test case
     override func setUpWithError() throws {
-        WishlistTests.inMemoryTestDB = SQLiteDatabase.getInMemoryTestDatabase()
+        ShoppingCartTests.inMemoryTestDB = SQLiteDatabase.getInMemoryTestDatabase()
         print("\n==============================")
         print("dropping and recreating tables")
         print("==============================")
         // Drop all tables then recreate tables for test database
-        SQLiteDatabase.createTables(database: WishlistTests.inMemoryTestDB)
+        SQLiteDatabase.createTables(database: ShoppingCartTests.inMemoryTestDB)
         // Set static var to use unit test db
-        Wishlist.setTestingTrue()
+        ShoppingCart.setTestingTrue()
         Product.setTestingTrue()
         Category.setTestingTrue()
         User.setTestingTrue()
@@ -36,7 +36,7 @@ class WishlistTests: XCTestCase {
     // called after all tests have been run
         override func tearDown() {
         // Call destructor for sqlite3 test database
-        if sqlite3_close_v2(WishlistTests.inMemoryTestDB!) == 0 {
+        if sqlite3_close_v2(ShoppingCartTests.inMemoryTestDB!) == 0 {
             print("\n==============")
             print("test db closed")
             print("==============\n")
@@ -47,7 +47,7 @@ class WishlistTests: XCTestCase {
         }
     }
     
-    func testWishlistCreate() throws {
+    func testShoppingCartCreate() throws {
         //Given
         let created_user = User.create(username: "new_user", email: "email", password: "password", phoneNumber: "phone_number")!
         let created_category = Category.create(name: "new_category", imageName: "category_image")!
@@ -58,16 +58,16 @@ class WishlistTests: XCTestCase {
         df.dateFormat = "yyyy-MM-dd"
         let dateString = df.string(from: date)
         
-        let confirm_wishlist = Wishlist(id: 1, userID: created_user.id, productID: created_product.id, date_added: dateString)
+        let confirm_shopping_cart = ShoppingCart(id: 1, userID: created_user.id, productID: created_product.id, date_added: dateString)
         
         //When
-        let new_wishlist = Wishlist.create(userID: created_user.id, productID: created_product.id)!
+        let new_shopping_cart = ShoppingCart.create(userID: created_user.id, productID: created_product.id)!
         
         //Then
-        XCTAssert(confirm_wishlist == new_wishlist, "\(confirm_wishlist) and \(String(describing: new_wishlist)) should be equal")
+        XCTAssert(confirm_shopping_cart == new_shopping_cart, "\(confirm_shopping_cart) and \(String(describing: new_shopping_cart)) should be equal")
     }
     
-    func testWishlistGetAll() throws {
+    func testShoppingCartGetAll() throws {
         //Given
         let created_user = User.create(username: "new_user", email: "email", password: "password", phoneNumber: "phone_number")!
         let created_category = Category.create(name: "new_category", imageName: "category_image")!
@@ -76,56 +76,56 @@ class WishlistTests: XCTestCase {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd"
         
-        let wishlist_count = 3
-        for x in 1...wishlist_count {
-            Wishlist.create(userID: created_user.id, productID: created_product.id)
+        let shopping_cart_count = 3
+        for x in 1...shopping_cart_count {
+            ShoppingCart.create(userID: created_user.id, productID: created_product.id)
         }
         
         //When
-        let query_count = Wishlist.getAll()!.count
+        let query_count = ShoppingCart.getAll()!.count
         
         //Then
-        XCTAssert(wishlist_count == query_count, "\(query_count) and \(wishlist_count) should be equal")
+        XCTAssert(shopping_cart_count == query_count, "\(shopping_cart_count) and \(query_count) should be equal")
     }
     
-    func testWishlistGetByID() throws {
+    func testShoppingCartGetByID() throws {
         //Given
         let created_user = User.create(username: "new_user", email: "email", password: "password", phoneNumber: "phone_number")!
         let created_category = Category.create(name: "new_category", imageName: "category_image")!
         let created_product = Product.create(categoryID: created_category.id, name: "new_product", price: 0.0, imageName: "product_image", description: "product_description")!
         
-        let wishlist_query_id = 3
-        var confirm_wishlist: Wishlist = Wishlist()
-        for x in 1...wishlist_query_id {
-            if x == wishlist_query_id {
-                confirm_wishlist = Wishlist.create(userID: created_user.id, productID: created_product.id)!
+        let shopping_cart_query_id = 3
+        var confirm_shopping_cart: ShoppingCart = ShoppingCart()
+        for x in 1...shopping_cart_query_id {
+            if x == shopping_cart_query_id {
+                confirm_shopping_cart = ShoppingCart.create(userID: created_user.id, productID: created_product.id)!
             } else {
-                Wishlist.create(userID: created_user.id, productID: created_product.id)
+                ShoppingCart.create(userID: created_user.id, productID: created_product.id)
             }
         }
         
         //When
-        let query_wishlist = Wishlist.getByID(wishlistID: wishlist_query_id)![0]
+        let query_shopping_cart = ShoppingCart.getByID(shoppingCartID: shopping_cart_query_id)![0]
         
         //Then
-        XCTAssert(confirm_wishlist == query_wishlist, "\(confirm_wishlist) and \(query_wishlist) should be equal")
+        XCTAssert(confirm_shopping_cart == query_shopping_cart, "\(confirm_shopping_cart) and \(query_shopping_cart) should be equal")
     }
     
-    func testWishlistGetByUserID() throws {
+    func testShoppingCartGetByUserID() throws {
         //Given
         let created_user = User.create(username: "new_user", email: "email", password: "password", phoneNumber: "phone_number")!
         let created_category = Category.create(name: "new_category", imageName: "category_image")!
         let created_product = Product.create(categoryID: created_category.id, name: "new_product", price: 0.0, imageName: "product_image", description: "product_description")!
         
-        let wishlist_count = 3
-        for x in 1...wishlist_count {
-            Wishlist.create(userID: created_user.id, productID: created_product.id)
+        let shopping_cart_count = 3
+        for x in 1...shopping_cart_count {
+            ShoppingCart.create(userID: created_user.id, productID: created_product.id)
         }
         
         //When
-        let query_count = Wishlist.getByUserID(userID: created_user.id)!.count
+        let query_count = ShoppingCart.getByUserID(userID: created_user.id)!.count
         
         //Then
-        XCTAssert(wishlist_count == query_count, "\(wishlist_count) and \(query_count) should be equal")
+        XCTAssert(shopping_cart_count == query_count, "\(shopping_cart_count) and \(query_count) should be equal")
     }
 }

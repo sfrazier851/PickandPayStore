@@ -12,7 +12,6 @@ class SQLiteDatabase {
     
     private enum db_type {
         case applicationDB
-        case inMemoryTestingDB
         case testingDB
     }
     
@@ -34,7 +33,6 @@ class SQLiteDatabase {
     }
     
     // testing db (in memory)
-    private static let inMemoryTestInstance = SQLiteDatabase(dbType: .inMemoryTestingDB)
     private static var inMemoryTestDatabase: OpaquePointer?
     static func getInMemoryTestDatabase() -> OpaquePointer? {
         // if getDbURLString returns "" (empty string) the db exists in memory
@@ -59,15 +57,6 @@ class SQLiteDatabase {
     private init(dbType: db_type) {
         // Create a connection to the database
         switch dbType {
-            case .inMemoryTestingDB:
-                // Create and connect to in-memory database for integration tests
-                if sqlite3_open("file::memory:", &SQLiteDatabase.inMemoryTestDatabase) != SQLITE_OK {
-                    print("error opening database")
-                } else {
-                    print("\n==============")
-                    print("test db opened")
-                    print("==============\n")
-                }
             case .testingDB:
                 // Get test db (file-based) path
                 let dbFilePath = SQLiteDatabase.createDbFilePathFromConfig(dbFilename: K.SQLiteDatabase.testDbFilename, dbFileExtension: K.SQLiteDatabase.dbFileExtension)
