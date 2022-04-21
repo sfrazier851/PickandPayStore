@@ -9,6 +9,8 @@ The selected items may be collected in a shopping cart. At checkout time, the it
 
 [PickandPayStore.UI.Flows.Requirements.and.Database.Queries.pdf](https://github.com/algoives/PickandPayStore/files/8411353/PickandPayStore.UI.Flows.Requirements.and.Database.Queries.pdf)
 
-[PickandPayStoreDatabaseERD.pdf](https://github.com/algoives/PickandPayStore/files/8428049/PickandPayStoreDatabaseERD.pdf)
+[ERD with colored entities (UML notation).pdf](https://github.com/algoives/PickandPayStore/files/8530923/ERD.with.colored.entities.UML.notation.pdf)
 
 [Possible App Theme ideas.pdf](https://github.com/algoives/PickandPayStore/files/8411338/Possible.App.Theme.ideas.pdf)
+
+Link for Presentation:   https://docs.google.com/presentation/d/1jBOMFsfx8KtX1bV9qgYzEp9cVI_E3hqC9MTCcKR3MLw/edit?usp=sharing
