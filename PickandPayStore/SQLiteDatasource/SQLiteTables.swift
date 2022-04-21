@@ -134,7 +134,7 @@ class SQLiteTables {
              (ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
              userID INTEGER NOT NULL,
              productID INTEGER NOT NULL,
-             date_added TEXT DEFAULT (date()) NOT NULL,
+             date_added TEXT DEFAULT (strftime('%Y-%m-%d','now', 'localtime')) NOT NULL,
              FOREIGN KEY(userID) REFERENCES User(ID),
              FOREIGN KEY(productID) REFERENCES Product(ID));
              """

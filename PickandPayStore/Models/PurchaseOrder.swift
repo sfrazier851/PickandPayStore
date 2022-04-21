@@ -42,13 +42,6 @@ struct PurchaseOrder: Equatable {
         return purchaseOrders
     }
     
-    static func update(purchaseOrder: PurchaseOrder) -> PurchaseOrder? {
-        guard let purchaseOrderDAL = purchaseOrderDAL else {
-            return nil
-        }
-        return purchaseOrderDAL.updatePurchaseOrder(purchaseOrder: purchaseOrder)
-    }
-    
     static func getAll() -> [PurchaseOrder]? {
         guard let purchaseOrderDAL = purchaseOrderDAL else {
             return nil
