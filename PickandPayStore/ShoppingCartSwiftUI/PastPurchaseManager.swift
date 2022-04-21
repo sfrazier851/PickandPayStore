@@ -19,7 +19,7 @@ class PastPurchaseManager: ObservableObject {
     
     init(){
         if let userId = UserSessionManager.shared.getLoggedInUser()?.id {
-            if let p =  PurchaseOrder.getByUserID(userID: 1){
+            if let p =  PurchaseOrder.getByUserID(userID: userId){
                 for purchaseOrder in p {
                     purchaseOrders.append(purchaseOrder)
                 }
