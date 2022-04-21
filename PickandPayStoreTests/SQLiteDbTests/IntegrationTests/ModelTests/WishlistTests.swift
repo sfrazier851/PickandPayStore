@@ -53,10 +53,12 @@ class WishlistTests: XCTestCase {
         let created_category = Category.create(name: "new_category", imageName: "category_image")!
         let created_product = Product.create(categoryID: created_category.id, name: "new_product", price: 0.0, imageName: "product_image", description: "product_description")!
         
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "yyyy-MM-dd"
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let dateString = df.string(from: date)
         
-        let confirm_wishlist = Wishlist(id: 1, userID: created_user.id, productID: created_product.id, date_added: dateFormatterPrint.string(from: Date()))
+        let confirm_wishlist = Wishlist(id: 1, userID: created_user.id, productID: created_product.id, date_added: dateString)
         
         //When
         let new_wishlist = Wishlist.create(userID: created_user.id, productID: created_product.id)!
