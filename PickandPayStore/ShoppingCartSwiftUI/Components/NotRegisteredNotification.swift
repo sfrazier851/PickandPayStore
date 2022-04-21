@@ -21,7 +21,7 @@ struct NotRegisteredNotification: View {
                 
                 HStack{
                     
-                    Button(action: {
+                  /*  Button(action: {
                         PresenterManager.shared.show(vc: .login)
                     }, label: {
                         Text("Log In")
@@ -39,6 +39,21 @@ struct NotRegisteredNotification: View {
                             .fontWeight(.bold)
                             .padding()
                         
+                    })*/
+                    
+                    NavigationLink(destination: UIKitRegister().navigationBarTitleDisplayMode(.inline)){
+                        Text("Register")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.red)
+                            .padding()
+                            
+                    }
+                    NavigationLink(destination: UIKitLogin().navigationBarTitleDisplayMode(.inline),
+                           label: {
+                        Text("Login")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.red)
+                            .padding()
                     })
                     
                 }
