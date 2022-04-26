@@ -17,7 +17,7 @@
 2. XCode 13 - IDE
 3. Swift 5 - Programming Language
 4. UIKit/Storyboard & SwiftUI
-5. SQLite Database
+5. SQLite Database + (XCTest) Unit & Integration Tests
 6. Apple Pay
 
 ## Screenshots
