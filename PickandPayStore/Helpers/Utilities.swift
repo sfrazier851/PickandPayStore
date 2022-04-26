@@ -60,7 +60,7 @@ class Utilities {
         
     }
     
-    // Blue filled button with black text
+    // White filled button with black text
     static func styleFilledButton(_ button:UIButton) {
         
         button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
@@ -72,14 +72,14 @@ class Utilities {
         button.tintColor = UIColor.white
     }
     
-    // Orange hollow button with border and Orange label
+    // transparent hollow button with black border and black text
     static func styleHollowButton(_ button:UIButton) {
         
         button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         // Hollow rounded corner style
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor //K.Color.Orange.cgColor
-        button.backgroundColor = UIColor.white
+        button.backgroundColor = UIColor.clear
         
         button.layer.cornerRadius = 25.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
