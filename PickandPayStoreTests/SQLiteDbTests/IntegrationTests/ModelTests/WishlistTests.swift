@@ -11,7 +11,7 @@ import SQLite3
 
 class WishlistTests: XCTestCase {
 
-    // initialize memory test database
+    // (in-memory) test database
     private static var inMemoryTestDB: OpaquePointer?
     
     // called before each test case
@@ -22,7 +22,7 @@ class WishlistTests: XCTestCase {
         print("==============================")
         // Drop all tables then recreate tables for test database
         SQLiteDatabase.createTables(database: WishlistTests.inMemoryTestDB)
-        // Set static var to use unit test db
+        // use in-memory db for testing
         Wishlist.setTestingTrue()
         Product.setTestingTrue()
         Category.setTestingTrue()

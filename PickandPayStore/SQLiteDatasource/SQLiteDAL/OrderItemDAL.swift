@@ -12,6 +12,7 @@ class OrderItemDAL: SQLiteDAL {
     
     private let orderitem = OrderItem()
     private let db: OpaquePointer?
+    // function defined in corresponding model struct
     private let convert: (_ orderItemsResultSet: [[String]]) -> [OrderItem]?
     
     init(db: OpaquePointer?, convert: @escaping (_ orderItemsResultSet: [[String]]) -> [OrderItem]?) {

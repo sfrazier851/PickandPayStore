@@ -8,6 +8,8 @@
 import Foundation
 import SQLite3
 
+// Base class for the Data Access Layer
+
 class SQLiteDAL {
     
     private static var db: OpaquePointer?

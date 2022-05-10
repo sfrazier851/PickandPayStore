@@ -7,6 +7,9 @@
 
 import Foundation
 
+// PurchaseOrder Model is for all Database operations for the entity.
+// NOTE: the order of public properties matters and MUST match the order of columns
+//   in the database table definition.
 struct PurchaseOrder: Equatable {
     var id: Int = 0
     var userID: Int = 0
@@ -16,8 +19,10 @@ struct PurchaseOrder: Equatable {
     var shipping_longitude: String = ""
     var shipping_latitude: String = ""
     
+    // pass in the database for the application
     private static var purchaseOrderDAL: PurchaseOrderDAL? = PurchaseOrderDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
+    // set the database to be an in-memory database for tests
     static func setTestingTrue() {
         purchaseOrderDAL = PurchaseOrderDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
     }

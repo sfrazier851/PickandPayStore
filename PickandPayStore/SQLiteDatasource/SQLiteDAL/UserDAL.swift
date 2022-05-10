@@ -12,6 +12,7 @@ class UserDAL: SQLiteDAL {
         
     private let user = User()
     private let db: OpaquePointer?
+    // function defined in corresponding model struct
     private let convert: (_ usersResultSet: [[String]]) -> [User]?
     
     init(db: OpaquePointer?, convert: @escaping (_ usersResultSet: [[String]]) -> [User]?) {

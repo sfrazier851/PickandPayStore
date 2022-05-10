@@ -7,6 +7,9 @@
 
 import Foundation
 
+// Product Model is for all Database operations for the entity.
+// NOTE: the order of public properties matters and MUST match the order of columns
+//   in the database table definition.
 struct Product: Equatable {
     var id: Int = 0
     var categoryID: Int = 0
@@ -15,8 +18,10 @@ struct Product: Equatable {
     var imageName: String = ""
     var description: String = ""
     
+    // pass in the database for the application
     private static var productDAL: ProductDAL? = ProductDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
+    // set the database to be an in-memory database for tests
     static func setTestingTrue() {
         productDAL = ProductDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
     }

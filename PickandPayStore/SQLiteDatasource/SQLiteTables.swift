@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Contains strings for SQL Table creation and insert data.
+
 class SQLiteTables {
     
    private static var dropUserTable = "DROP TABLE IF EXISTS User;"

@@ -7,6 +7,9 @@
 
 import Foundation
 
+// ProductReview Model is for all Database operations for the entity.
+// NOTE: the order of public properties matters and MUST match the order of columns
+//   in the database table definition.
 struct ProductReview: Equatable {
     var id: Int = 0
     var userID: Int = 0
@@ -14,10 +17,12 @@ struct ProductReview: Equatable {
     var review: String = ""
     var title: String = ""
     
+    // pass in the database for the application
     static func setTestingTrue() {
         productReviewDAL = ProductReviewDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
     }
     
+    // set the database to be an in-memory database for tests
     private static var productReviewDAL: ProductReviewDAL? = ProductReviewDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
     // Convert query result set to Array of ProductReview

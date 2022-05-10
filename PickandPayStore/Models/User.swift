@@ -7,6 +7,9 @@
 
 import Foundation
 
+// User Model is for all Database operations for the User entity.
+// NOTE: the order of public properties matters and MUST match the order of columns
+//   in the database table definition.
 struct User: Equatable {
     var id: Int = 0
     var username: String = ""
@@ -15,8 +18,10 @@ struct User: Equatable {
     var phoneNumber: String = ""
     var balance: Float = 0.0
     
+    // pass in the database for the application
     private static var userDAL: UserDAL? = UserDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
+    // set the database to be an in-memory database for tests
     static func setTestingTrue() {
         User.userDAL = UserDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
     }
@@ -40,6 +45,7 @@ struct User: Equatable {
         return users
     }
     
+    // User queries and creation
     static func getAll() -> [User]? {
         guard let userDAL = userDAL else {
             return nil

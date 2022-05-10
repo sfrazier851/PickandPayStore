@@ -12,6 +12,7 @@ class ProductReviewDAL: SQLiteDAL {
         
     private let productreview = ProductReview()
     private let db: OpaquePointer?
+    // function defined in corresponding model struct
     private let convert: (_ productReviewResultSet: [[String]]) -> [ProductReview]?
     
     init(db: OpaquePointer?, convert: @escaping (_ productReviewResultSet: [[String]]) -> [ProductReview]?) {

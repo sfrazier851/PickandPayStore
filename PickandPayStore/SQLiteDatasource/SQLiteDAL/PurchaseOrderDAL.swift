@@ -12,6 +12,7 @@ class PurchaseOrderDAL: SQLiteDAL {
     
     private let purchaseorder = PurchaseOrder()
     private let db: OpaquePointer?
+    // function defined in corresponding model struct
     private let convert: (_ purchaseOrderResultSet: [[String]]) -> [PurchaseOrder]?
     
     init(db: OpaquePointer?, convert: @escaping (_ purchaseOrderResultSet: [[String]]) -> [PurchaseOrder]?) {

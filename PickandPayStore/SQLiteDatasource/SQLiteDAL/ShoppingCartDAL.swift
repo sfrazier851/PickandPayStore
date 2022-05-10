@@ -12,6 +12,7 @@ class ShoppingCartDAL: SQLiteDAL {
         
     private let shoppingcart = ShoppingCart()
     private let db: OpaquePointer?
+    // function defined in corresponding model struct
     private let convert: (_ shoppingCartResultSet: [[String]]) -> [ShoppingCart]?
     
     init(db: OpaquePointer?, convert: @escaping (_ shoppingCartResultSet: [[String]]) -> [ShoppingCart]?) {

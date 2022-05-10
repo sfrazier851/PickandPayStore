@@ -10,7 +10,7 @@ import SQLite3
 
 class DbFile: XCTestCase {
 
-    // initialize file test database
+    // file test database
     private static var fileTestDB: OpaquePointer?
     
     // called before each test case

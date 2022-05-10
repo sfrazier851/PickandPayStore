@@ -7,19 +7,24 @@
 
 import Foundation
 
+// ShoppingCart Model is for all Database operations for the entity.
+// NOTE: the order of public properties matters and MUST match the order of columns
+//   in the database table definition.
 struct ShoppingCart: Equatable {
     var id: Int = 0
     var userID: Int = 0
     var productID: Int = 0
     var date_added: String = ""
     
+    // pass in the database for the application
     private static var shoppingCartDAL: ShoppingCartDAL? = ShoppingCartDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
+    // set the database to be an in-memory database for tests
     static func setTestingTrue() {
         shoppingCartDAL = ShoppingCartDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
     }
     
-    // Convert query result set to Array of Wishlist
+    // Convert query result set to Array of ShoppingCart
     static func convert(shoppingCartResultSet: [[String]]) -> [ShoppingCart]? {
         var cartProducts = [ShoppingCart]()
         for cartProduct_row in shoppingCartResultSet {

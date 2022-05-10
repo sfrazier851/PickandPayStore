@@ -76,6 +76,7 @@ class SQLiteDatabase {
         }
     }
     
+    // returns the database file path (used with Configuration in Helpers/Constants.swift)
     private static func createDbFilePathFromConfig(dbFilename: String, dbFileExtension: String) -> String {
         do {
             // Get full path
@@ -90,16 +91,20 @@ class SQLiteDatabase {
         return ""
     }
     
+    // run any sql (script) string against a sqlite database
     private static func runSqlScript(sqlScript: String, database: OpaquePointer?) {
         guard let db = database else {
             return
         }
+        // execute sql (script) string
         if sqlite3_exec(db, sqlScript, nil, nil, nil) != SQLITE_OK {
             let error = String(cString: sqlite3_errmsg(db)!)
             print("error running sql script: \(error)")
         }
     }
     
+    // Returns the database file path for file-based database
+    //     and returns empty string if the database is in-memory database.
     static func getDbURLString(database: OpaquePointer?) -> String? {
         // return nil if in memory database does not exist
         guard let pointer = sqlite3_db_filename(database, nil) else {
@@ -112,6 +117,7 @@ class SQLiteDatabase {
         return urlString
     }
     
+    // Iterate over sql table creation scripts and run against passed-in database
     static func createTables(database: OpaquePointer?) {
         guard let db = database else {
             return
@@ -130,6 +136,7 @@ class SQLiteDatabase {
         }
     }
     
+    // Iterate over sql data insert scripts and run against passed-in database
     static func insertData(database: OpaquePointer?) {
         guard let db = database else {
             return

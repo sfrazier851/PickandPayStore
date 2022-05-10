@@ -12,6 +12,7 @@ class CategoryDAL: SQLiteDAL {
         
     private let category = Category()
     private let db: OpaquePointer?
+    // function defined in corresponding model struct
     private let convert: (_ categoryResultSet: [[String]]) -> [Category]?
     
     init(db: OpaquePointer?, convert: @escaping (_ categoryResultSet: [[String]]) -> [Category]?) {

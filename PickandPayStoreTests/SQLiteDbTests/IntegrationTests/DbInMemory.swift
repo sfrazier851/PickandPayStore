@@ -10,7 +10,7 @@ import SQLite3
 
 class DbInMemory: XCTestCase {
 
-    // initialize memory test database
+    // memory test database
     private static var inMemoryTestDB: OpaquePointer?
     
     // called before each test case

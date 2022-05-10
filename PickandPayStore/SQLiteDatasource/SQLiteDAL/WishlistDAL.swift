@@ -12,6 +12,7 @@ class WishlistDAL: SQLiteDAL {
         
     private let wishlist = Wishlist()
     private let db: OpaquePointer?
+    // function defined in corresponding model struct
     private let convert: (_ wishlistResultSet: [[String]]) -> [Wishlist]?
     
     init(db: OpaquePointer?, convert: @escaping (_ wishlistResultSet: [[String]]) -> [Wishlist]?) {

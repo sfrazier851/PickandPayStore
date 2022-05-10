@@ -11,7 +11,7 @@ import SQLite3
 
 class OrderItemTests: XCTestCase {
 
-    // initialize memory test database
+    // (in-memory) test database
     private static var inMemoryTestDB: OpaquePointer?
     
     // called before each test case
@@ -22,7 +22,7 @@ class OrderItemTests: XCTestCase {
         print("==============================")
         // Drop all tables then recreate tables for test database
         SQLiteDatabase.createTables(database: OrderItemTests.inMemoryTestDB)
-        // Set static var to use unit test db
+        // use in-memory db for testing
         User.setTestingTrue()
         Category.setTestingTrue()
         Product.setTestingTrue()

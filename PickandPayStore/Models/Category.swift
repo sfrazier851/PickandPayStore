@@ -7,13 +7,18 @@
 
 import Foundation
 
+// Category Model is for all Database operations for the Category entity.
+// NOTE: the order of public properties matters and MUST match the order of columns
+//   in the database table definition.
 struct Category: Equatable{
     var id: Int = 0
     var name: String = ""
     var imageName: String = ""
     
+    // pass in the database for the application
     private static var categoryDAL: CategoryDAL? = CategoryDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
+    // set the database to be an in-memory database for tests
     static func setTestingTrue() {
         categoryDAL = CategoryDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
     }
@@ -34,6 +39,7 @@ struct Category: Equatable{
         return categories
     }
     
+    // Category queries and creation
     static func getAll() -> [Category]? {
         guard let categoryDAL = categoryDAL else {
             return nil

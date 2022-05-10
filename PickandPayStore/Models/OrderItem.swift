@@ -7,14 +7,19 @@
 
 import Foundation
 
+// OrderItem Model is for all Database operations for the entity.
+// NOTE: the order of public properties matters and MUST match the order of columns
+//   in the database table definition.
 struct OrderItem: Equatable {
     var id: Int = 0
     var purchaseOrderID: Int = 0
     var productID: Int = 0
     var purchasePrice: Float = 0.0
     
+    // pass in the database for the application
     private static var orderItemDAL: OrderItemDAL? = OrderItemDAL(db: SQLiteDatabase.getDatabase(), convert: convert)
     
+    // set the database to be an in-memory database for tests
     static func setTestingTrue() {
         orderItemDAL = OrderItemDAL(db: SQLiteDatabase.getInMemoryTestDatabase(), convert: convert)
     }
